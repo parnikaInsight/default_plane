@@ -1,3 +1,5 @@
+# cubemap runs with cargo run or cargo +nightly run
+
 [package]
 name = "default_plane"
 version = "0.1.0"
