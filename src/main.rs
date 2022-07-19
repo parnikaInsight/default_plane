@@ -12,7 +12,7 @@ fn main() {
         // })
 
         //fox
-        .add_startup_system(setup)
+        .add_startup_system(setup_fox)
         .add_system(setup_scene_once_loaded)
         .add_system(keyboard_animation_control)
 
@@ -29,7 +29,7 @@ fn main() {
 
 struct Animations(Vec<Handle<AnimationClip>>);
 
-fn setup(
+fn setup_fox(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
     mut meshes: ResMut<Assets<Mesh>>,
