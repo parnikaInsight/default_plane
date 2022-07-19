@@ -12,3 +12,4 @@ edition = "2021"
 bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "pax"}
 #bevy = "0.7"
 web-sys = "0.3.58" #works with .58 too but bevy blender doesn't
+bevy_blender = {git = "https://github.com/paxsethorld/bevy_blender.git", branch = "updated"}
