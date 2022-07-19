@@ -1,51 +1,4 @@
 use bevy::prelude::*;
-// use bevy_blender::*;
-
-// // Use pan orbit camera
-// mod camera;
-
-// fn main() {
-//     App::new()
-//         .add_plugins(DefaultPlugins)
-//         .add_plugin(BlenderPlugin)
-//         .add_startup_system(setup)
-//         .add_system(camera::pan_orbit_camera)
-//         .run();
-// }
-
-// fn setup(mut commands: Commands, asset_server: ResMut<AssetServer>) {
-//     spawn_blender_object(
-//         &mut commands,
-//         &asset_server,
-//         "robot.blend",
-//         "Cube.002",
-//         false,
-//         None,
-//     );
-
-//     // Light and camera
-//     commands.spawn_bundle(PointLightBundle {
-//         transform: Transform::from_translation(Vec3::new(4.0, 8.0, 4.0)),
-//         ..Default::default()
-//     });
-
-//     let translation = Vec3::new(5.0, 5.0, 5.0);
-//     let radius = translation.length();
-
-//     commands
-//         .spawn_bundle(PerspectiveCameraBundle {
-//             transform: Transform::from_translation(translation).looking_at(Vec3::ZERO, Vec3::Y),
-//             ..Default::default()
-//         })
-//         .insert(camera::PanOrbitCamera {
-//             radius,
-//             ..Default::default()
-//         });
-// }
-
-
-
-// use bevy::prelude::*;
 
 // Loads and renders a glTF file as a scene.
 
@@ -53,13 +6,24 @@ use bevy::prelude::*;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .insert_resource(AmbientLight {
-            color: Color::WHITE,
-            brightness: 1.0,
-        })
+        // .insert_resource(AmbientLight {
+        //     color: Color::WHITE,
+        //     brightness: 1.0,
+        // })
+
+        //fox
         .add_startup_system(setup)
         .add_system(setup_scene_once_loaded)
         .add_system(keyboard_animation_control)
+
+        .insert_resource(AmbientLight {
+            color: Color::WHITE,
+            brightness: 1.0 / 5.0f32,
+        })
+        //helmet
+        .add_startup_system(setup_helmet)
+        .add_system(animate_light_direction)
+
         .run();
 }
 
@@ -79,11 +43,11 @@ fn setup(
     ]));
 
     // Camera
-    commands.spawn_bundle(Camera3dBundle {
-        transform: Transform::from_xyz(100.0, 100.0, 150.0)
-            .looking_at(Vec3::new(0.0, 20.0, 0.0), Vec3::Y),
-        ..default()
-    });
+    // commands.spawn_bundle(Camera3dBundle {
+    //     transform: Transform::from_xyz(100.0, 100.0, 150.0)
+    //         .looking_at(Vec3::new(0.0, 20.0, 0.0), Vec3::Y),
+    //     ..default()
+    // });
 
     // Plane
     commands.spawn_bundle(PbrBundle {
@@ -179,7 +143,7 @@ fn keyboard_animation_control(
 }
 
 // ----------------------------------------------------------------
-// //helmet example
+// // //helmet example
 // fn main() {
 //     App::new()
 //         .insert_resource(AmbientLight {
@@ -192,45 +156,45 @@ fn keyboard_animation_control(
 //         .run();
 // }
 
-// fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-//     commands.spawn_bundle(Camera3dBundle {
-//         transform: Transform::from_xyz(0.7, 0.7, 1.0).looking_at(Vec3::new(0.0, 0.3, 0.0), Vec3::Y),
-//         ..default()
-//     });
-//     const HALF_SIZE: f32 = 1.0;
-//     commands.spawn_bundle(DirectionalLightBundle {
-//         directional_light: DirectionalLight {
-//             shadow_projection: OrthographicProjection {
-//                 left: -HALF_SIZE,
-//                 right: HALF_SIZE,
-//                 bottom: -HALF_SIZE,
-//                 top: HALF_SIZE,
-//                 near: -10.0 * HALF_SIZE,
-//                 far: 10.0 * HALF_SIZE,
-//                 ..default()
-//             },
-//             shadows_enabled: true,
-//             ..default()
-//         },
-//         ..default()
-//     });
-//     commands.spawn_bundle(SceneBundle {
-//         scene: asset_server.load("models/FlightHelmet/FlightHelmet.gltf#Scene0"),
-//         ..default()
-//     });
-// }
+fn setup_helmet(mut commands: Commands, asset_server: Res<AssetServer>) {
+    commands.spawn_bundle(Camera3dBundle {
+        transform: Transform::from_xyz(0.7, 0.7, 1.0).looking_at(Vec3::new(0.0, 0.3, 0.0), Vec3::Y),
+        ..default()
+    });
+    const HALF_SIZE: f32 = 1.0;
+    commands.spawn_bundle(DirectionalLightBundle {
+        directional_light: DirectionalLight {
+            shadow_projection: OrthographicProjection {
+                left: -HALF_SIZE,
+                right: HALF_SIZE,
+                bottom: -HALF_SIZE,
+                top: HALF_SIZE,
+                near: -10.0 * HALF_SIZE,
+                far: 10.0 * HALF_SIZE,
+                ..default()
+            },
+            shadows_enabled: true,
+            ..default()
+        },
+        ..default()
+    });
+    commands.spawn_bundle(SceneBundle {
+        scene: asset_server.load("models/FlightHelmet/FlightHelmet.gltf#Scene0"),
+        ..default()
+    });
+}
 
-// fn animate_light_direction(
-//     time: Res<Time>,
-//     mut query: Query<&mut Transform, With<DirectionalLight>>,
-// ) {
-//     for mut transform in &mut query {
-//         transform.rotation = Quat::from_euler(
-//             EulerRot::ZYX,
-//             0.0,
-//             time.seconds_since_startup() as f32 * std::f32::consts::TAU / 10.0,
-//             -std::f32::consts::FRAC_PI_4,
-//         );
-//     }
-// }
+fn animate_light_direction(
+    time: Res<Time>,
+    mut query: Query<&mut Transform, With<DirectionalLight>>,
+) {
+    for mut transform in &mut query {
+        transform.rotation = Quat::from_euler(
+            EulerRot::ZYX,
+            0.0,
+            time.seconds_since_startup() as f32 * std::f32::consts::TAU / 10.0,
+            -std::f32::consts::FRAC_PI_4,
+        );
+    }
+}
 
