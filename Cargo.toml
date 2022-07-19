@@ -9,7 +9,7 @@ edition = "2021"
 #bevy = {git = "https://github.com/bevyengine/bevy.git"}
 bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "pax"}
 
-web-sys = "0.3.58"
+web-sys = "0.3.53" #works with 0.3.58 too but bevy_blender doesn't
 
 #  bevy = "0.6.0"
 #  bevy_blender = "0.1" #{git = "https://github.com/paxsethorld/bevy_blender.git"}
