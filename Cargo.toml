@@ -9,4 +9,4 @@ edition = "2021"
 #pax branch merges most updated bevy code with Robert Swain's cubemap code (won't necessarily be in 0.8)
 bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "pax"}
 #bevy = "0.7"
-web-sys = "0.3.53" #works with .58 too but bevy blender doesn't
+web-sys = "0.3.58" #works with .58 too but bevy blender doesn't
