@@ -1,3 +1,5 @@
+//cubemap
+
 use bevy::{input::mouse::MouseMotion, prelude::*};
 
 #[derive(Component)]

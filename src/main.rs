@@ -1,5 +1,6 @@
 //! A simple 3D scene with light shining over a cube sitting on a plane.
 
+//cubemap
 use bevy::{
     asset::LoadState,
     prelude::*,
@@ -11,16 +12,19 @@ use bevy::{
     },
 };
 
+//cubemap
 mod camera_controller;
 mod cubemap_materials;
 
 use camera_controller::*;
 use cubemap_materials::*;
 
+//blender
 use bevy_blender::*;
 // Use pan orbit camera
 mod camera;
 
+//cubemap
 const CUBEMAPS: &[(&str, CompressedImageFormats)] = &[
     (
         "textures/Ryfjallet_cubemap.png",
@@ -42,14 +46,17 @@ const CUBEMAPS: &[(&str, CompressedImageFormats)] = &[
 
 fn main() {
     App::new()
+        //cubemap
         .add_plugins(DefaultPlugins)
         .add_plugin(MaterialPlugin::<CubemapMaterial>::default())
         .add_plugin(MaterialPlugin::<CubemapArrayMaterial>::default())
         
+        //blender
         .add_plugin(BlenderPlugin)
         .add_startup_system(setup_blender_camera)
         .add_system(camera::pan_orbit_camera)
 
+        //cubemap
         .add_startup_system(setup)
         .add_system(cycle_cubemap_asset)
         .add_system(asset_loaded.after(cycle_cubemap_asset))
@@ -58,6 +65,7 @@ fn main() {
         .run();
 }
 
+//cubemap
 struct Cubemap {
     is_loaded: bool,
     index: usize,
@@ -276,6 +284,7 @@ fn animate_light_direction(
     }
 }
 
+//blender
 fn setup_blender_camera(mut commands: Commands, asset_server: ResMut<AssetServer>) {
     // Create and spawn a Blender object using a BlenderObjectBundle
     // This will only spawn the one object
