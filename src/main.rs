@@ -17,6 +17,10 @@ mod cubemap_materials;
 use camera_controller::*;
 use cubemap_materials::*;
 
+use bevy_blender::*;
+// Use pan orbit camera
+mod camera;
+
 const CUBEMAPS: &[(&str, CompressedImageFormats)] = &[
     (
         "textures/Ryfjallet_cubemap.png",
@@ -41,6 +45,11 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_plugin(MaterialPlugin::<CubemapMaterial>::default())
         .add_plugin(MaterialPlugin::<CubemapArrayMaterial>::default())
+        
+        .add_plugin(BlenderPlugin)
+        .add_startup_system(setup_blender_camera)
+        .add_system(camera::pan_orbit_camera)
+
         .add_startup_system(setup)
         .add_system(cycle_cubemap_asset)
         .add_system(asset_loaded.after(cycle_cubemap_asset))
@@ -61,6 +70,7 @@ fn setup(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
+    //cubemap code:
     // a grid of spheres with different metallicity and roughness values
     let mesh_handle = meshes.add(Mesh::from(shape::Icosphere {
         radius: 0.45,
@@ -264,4 +274,60 @@ fn animate_light_direction(
     for mut transform in &mut query {
         transform.rotate_y(time.delta_seconds() * 0.5);
     }
+}
+
+fn setup_blender_camera(mut commands: Commands, asset_server: ResMut<AssetServer>) {
+    // Create and spawn a Blender object using a BlenderObjectBundle
+    // This will only spawn the one object
+    // This example is included for completeness, but it is recommended to use spawn_blender_object instead
+    let mut suzanne = BlenderObjectBundle::new(&asset_server, "demo.blend", "Suzanne").unwrap();
+    suzanne.transform = Transform::from_translation(Vec3::new(-4.0, 0.0, 0.0));
+    commands.spawn_bundle(suzanne);
+
+    // Spawn Blender object with children
+    // The parent object's transform is taken from Blender
+    spawn_blender_object(
+        &mut commands,
+        &asset_server,
+        "demo.blend",
+        "TransformCube",
+        true,
+        None,
+    );
+
+    // Spawn Blender object with children
+    // The parent object's transform is provided
+    spawn_blender_object(
+        &mut commands,
+        &asset_server,
+        "demo.blend",
+        "Suzanne",
+        true,
+        Some(Transform::from_matrix(
+            Mat4::from_scale_rotation_translation(
+                Vec3::new(0.5, 0.5, 0.5),
+                Quat::IDENTITY,
+                Vec3::new(4.0, 0.0, 0.0),
+            ),
+        )),
+    );
+
+    // Light and camera
+    commands.spawn_bundle(PointLightBundle {
+        transform: Transform::from_translation(Vec3::new(4.0, 8.0, 4.0)),
+        ..Default::default()
+    });
+
+    let translation = Vec3::new(5.0, 5.0, 5.0);
+    let radius = translation.length();
+
+    commands
+        .spawn_bundle(Camera3dBundle {
+            transform: Transform::from_translation(translation).looking_at(Vec3::ZERO, Vec3::Y),
+            ..Default::default()
+        })
+        .insert(camera::PanOrbitCamera {
+            radius,
+            ..Default::default()
+        });
 }
