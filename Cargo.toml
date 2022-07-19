@@ -1,3 +1,6 @@
+#cargo +nightly run --example=object
+#cargo +nightly run 
+
 [package]
 name = "default_plane"
 version = "0.1.0"
@@ -9,5 +12,6 @@ edition = "2021"
 # bevy = {git = "https://github.com/bevyengine/bevy.git"}
 # web-sys = "0.3.58"
 
- bevy = "0.5.0"
- bevy_blender = "0.1" #{git = "https://github.com/paxsethorld/bevy_blender.git"}
+ bevy = "0.7.0"
+ #bevy = {git = "https://github.com/paxsethorld/bevy.git"}
+ bevy_blender = {git = "https://github.com/paxsethorld/bevy_blender.git"}
