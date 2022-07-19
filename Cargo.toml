@@ -6,4 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = "0.7.0"
+bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "cubemap-example"}
+#bevy = "0.7"
+web-sys = "0.3.58"
