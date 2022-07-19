@@ -15,3 +15,4 @@ edition = "2021"
  #bevy = "0.7.0"
  bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "pax"}
  bevy_blender = {git = "https://github.com/paxsethorld/bevy_blender.git", branch = "updated"}
+ #camera not working with new bevy/bevy_blender 
