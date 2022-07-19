@@ -1297,6 +1297,7 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "bevy_blender",
+ "web-sys",
 ]
 
 [[package]]
