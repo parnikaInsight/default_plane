@@ -10,8 +10,8 @@ edition = "2021"
 
 [dependencies]
  #bevy = {git = "https://github.com/bevyengine/bevy.git"}
- web-sys = "0.3.53"
+ web-sys = "0.3.58"
 
- bevy = "0.7.0"
- #bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "pax"}
- bevy_blender = {git = "https://github.com/paxsethorld/bevy_blender.git"}
+ #bevy = "0.7.0"
+ bevy = {git = "https://github.com/paxsethorld/bevy.git", branch = "pax"}
+ bevy_blender = {git = "https://github.com/paxsethorld/bevy_blender.git", branch = "updated"}
