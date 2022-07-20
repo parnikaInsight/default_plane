@@ -4,16 +4,6 @@ use bevy::input::mouse::{MouseMotion, MouseWheel};
 use bevy::prelude::*;
 use bevy::render::camera::PerspectiveProjection;
 use bevy_blender::*;
-// use bevy::{
-//     asset::LoadState,
-//     prelude::*,
-//     render::{
-//         render_resource::{TextureViewDescriptor, TextureViewDimension},
-//         renderer::RenderDevice,
-//         texture::CompressedImageFormats,
-//         view::EnvironmentMap,
-//     },
-// };
 
 /// Tags an entity as capable of panning and orbiting.
 #[derive(Component)]
