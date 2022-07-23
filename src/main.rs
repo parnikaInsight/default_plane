@@ -1,9 +1,14 @@
 use bevy::prelude::*;
 
+mod camera;
+use camera::pan_orbit;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
+        .add_plugins(bevy_mod_picking::DefaultPickingPlugins)
+        .add_startup_system(pan_orbit::spawn_camera)
         .add_startup_system(setup)
+        .add_system(pan_orbit::pan_orbit_camera)
         .run();
 }
 
@@ -37,8 +42,8 @@ fn setup(
         ..default()
     });
     // camera
-    commands.spawn_bundle(PerspectiveCameraBundle {
-        transform: Transform::from_xyz(-2.0, 2.5, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
-        ..default()
-    });
+    // commands.spawn_bundle(PerspectiveCameraBundle {
+    //     transform: Transform::from_xyz(-2.0, 2.5, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
+    //     ..default()
+    // });
 }
