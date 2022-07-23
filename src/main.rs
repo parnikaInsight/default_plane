@@ -2,6 +2,12 @@ use bevy::prelude::*;
 
 mod camera;
 use camera::pan_orbit;
+
+mod pcg_city;
+use pcg_city::buildings;
+
+mod math;
+
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
@@ -9,6 +15,7 @@ fn main() {
         .add_startup_system(pan_orbit::spawn_camera)
         .add_startup_system(setup)
         .add_system(pan_orbit::pan_orbit_camera)
+        .add_system(buildings::spawn_buildings)
         .run();
 }
 
@@ -24,13 +31,13 @@ fn setup(
         material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
         ..default()
     });
-    // cube
-    commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
-        material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-        transform: Transform::from_xyz(0.0, 0.5, 0.0),
-        ..default()
-    });
+    // // cube
+    // commands.spawn_bundle(PbrBundle {
+    //     mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+    //     material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+    //     transform: Transform::from_xyz(0.0, 0.5, 0.0),
+    //     ..default()
+    // });
     // light
     commands.spawn_bundle(PointLightBundle {
         point_light: PointLight {
@@ -41,9 +48,4 @@ fn setup(
         transform: Transform::from_xyz(4.0, 8.0, 4.0),
         ..default()
     });
-    // camera
-    // commands.spawn_bundle(PerspectiveCameraBundle {
-    //     transform: Transform::from_xyz(-2.0, 2.5, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
-    //     ..default()
-    // });
 }

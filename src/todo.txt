@@ -1,0 +1,14 @@
+PCG World
+- pcg city w/ colliders (building architecture)
+- pcg city around my creation
+- pcg city based on my creation
+
+PCG Must-Haves
+- deterministic
+- stateless/ order independent (get 75th # in sequence)
+- OS independent
+- variation (100 bowls of oatmeal)
+
+PCG Players
+PCG Level Generation
+PCG from Drawing and Description
