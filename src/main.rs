@@ -1,21 +1,23 @@
 use bevy::prelude::*;
 
 mod camera;
-use camera::pan_orbit;
-
 mod pcg_city;
-use pcg_city::buildings;
-
 mod math;
 
 fn main() {
     App::new()
+    //Plugins
         .add_plugins(DefaultPlugins)
         .add_plugins(bevy_mod_picking::DefaultPickingPlugins)
-        .add_startup_system(pan_orbit::spawn_camera)
+    //Resources
+        .init_resource::<math::city_perlin::HeightNoiseFn>()
+    //Startup system
+        .add_startup_system(camera::pan_orbit::spawn_camera)
         .add_startup_system(setup)
-        .add_system(pan_orbit::pan_orbit_camera)
-        .add_system(buildings::spawn_buildings)
+        //.add_startup_system(perlin::setup_noise)
+    //Systems
+        .add_system(camera::pan_orbit::pan_orbit_camera)
+        .add_system(pcg_city::buildings::spawn_buildings)
         .run();
 }
 
@@ -27,17 +29,10 @@ fn setup(
 ) {
     // plane
     commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Plane { size: 5.0 })),
+        mesh: meshes.add(Mesh::from(shape::Plane { size: 4.0 })),
         material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
         ..default()
     });
-    // // cube
-    // commands.spawn_bundle(PbrBundle {
-    //     mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
-    //     material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-    //     transform: Transform::from_xyz(0.0, 0.5, 0.0),
-    //     ..default()
-    // });
     // light
     commands.spawn_bundle(PointLightBundle {
         point_light: PointLight {

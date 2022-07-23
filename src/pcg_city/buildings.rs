@@ -1,4 +1,4 @@
-use crate::math::random;
+use crate::math::{random, city_perlin, grid};
 use bevy::prelude::*;
 use std::{thread, time};
 
@@ -26,7 +26,8 @@ pub fn spawn_buildings(
     commands.spawn_bundle(PbrBundle {
         mesh: meshes.add(Mesh::from(shape::Cube { size: dimension.x })),
         material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-        transform: Transform::from_xyz(location.x * 14.0, 0.0, 0.0),
+        //transform: Transform::from_xyz(location.x * 14.0, 0.0, 0.0),
+        transform: Transform::from_xyz(0.0, 0.0, 0.0),
         ..default()
     });
     //thread::sleep(delay);

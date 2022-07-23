@@ -11,3 +11,8 @@ is moving towards)
 - must be seed based, deterministic, order independent: noise function
 
 - OS independent: no floating point?
+
+- same noise/hash function, same seeds but each seed is for diff feature (height, width, # of levels, 
+shape of windows for top half of building, etc.)
+
+- map 2d plane grid position to position input for noise function
