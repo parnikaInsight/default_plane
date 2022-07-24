@@ -1,5 +1,5 @@
 use crate::{
-    camera::pan_orbit::PanOrbitCamera,
+    camera::{pan_orbit::PanOrbitCamera, camera_controller::{CameraController, self}},
     math::{city_perlin, grid, random},
 };
 use bevy::prelude::*;
@@ -14,8 +14,8 @@ fn get_camera(world: &mut World) -> Vec3 {
 pub fn spawn_buildings(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
-    mut query: Query<(&mut PanOrbitCamera, &mut Transform, &PerspectiveProjection)>,
-    //camera: ResMut<PanOrbitCamera>,
+    //mut query: Query<(&mut Transform, &mut CameraController), With<Camera>>,
+    mut query: Query<(&mut Transform, &mut Camera, &mut CameraController)>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     let delay = time::Duration::from_secs(3);
@@ -23,12 +23,24 @@ pub fn spawn_buildings(
     //instantiate height noise function
     let height_noise_fn = city_perlin::HeightNoiseFn::default();
 
-    for (mut pan_orbit, mut transform, projection) in query.iter_mut() {
+    if let Ok((mut transform, mut camera, mut options)) = query.get_single_mut() {
+        // let (yaw, pitch, roll) = transform.rotation.to_euler(EulerRot::YXZ);
+        // let coord = grid::Coordinate {
+        //     x: yaw as f64,
+        //     y: pitch as f64,
+        //     z: roll as f64,
+        // };
+        let vector: Vec3 = transform.translation;
+
+        //let vector: Vec3 = transform.forward();
         let coord = grid::Coordinate {
-            x: pan_orbit.focus.x as f64,
-            y: pan_orbit.focus.y as f64,
-            z: pan_orbit.focus.z as f64,
+            x: vector.x as f64,
+            y: vector.y as f64,
+            z: vector.z as f64,
+            //z: (vector.z + 15.0) as f64,
         };
+
+        println!("{:?}", coord);
 
         let height = height_noise_fn.function.get([coord.x, coord.z]);
         let dimension = random::Random {
@@ -41,7 +53,7 @@ pub fn spawn_buildings(
             mesh: meshes.add(Mesh::from(shape::Cube { size: size })),
             material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
             //transform: Transform::from_xyz(location.x * 14.0, 0.0, 0.0),
-            transform: Transform::from_xyz(coord.x as f32, coord.y as f32, coord.z as f32),
+            transform: Transform::from_xyz((coord.x * 10.0) as f32, 0.0 as f32, coord.z as f32),
             ..default()
         });
         println!("created cube {}", size);

@@ -12,11 +12,11 @@ fn main() {
     //Resources
         .init_resource::<math::city_perlin::HeightNoiseFn>()
     //Startup system
-        .add_startup_system(camera::pan_orbit::spawn_camera)
+        //.add_startup_system(camera::pan_orbit::spawn_camera)
         .add_startup_system(setup)
-        //.add_startup_system(perlin::setup_noise)
     //Systems
-        .add_system(camera::pan_orbit::pan_orbit_camera)
+        .add_system(camera::camera_controller::camera_controller)
+        //.add_system(camera::pan_orbit::pan_orbit_camera)
         .add_system(pcg_city::buildings::spawn_buildings)
         .run();
 }
@@ -43,4 +43,14 @@ fn setup(
         transform: Transform::from_xyz(4.0, 8.0, 4.0),
         ..default()
     });
+    // camera
+    let translation = Vec3::new(-2.0, 2.5, 5.0);
+    commands
+        .spawn_bundle(PerspectiveCameraBundle {
+            transform: Transform::from_translation(translation).looking_at(Vec3::ZERO, Vec3::Y),
+            ..Default::default()
+        })
+        .insert_bundle((
+            camera::camera_controller::CameraController::default(),
+        ));
 }

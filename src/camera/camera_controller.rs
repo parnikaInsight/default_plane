@@ -54,6 +54,7 @@ pub fn camera_controller(
     key_input: Res<Input<KeyCode>>,
     mut move_toggled: Local<bool>,
     mut query: Query<(&mut Transform, &mut CameraController), With<Camera>>,
+
 ) {
     let dt = time.delta_seconds();
 

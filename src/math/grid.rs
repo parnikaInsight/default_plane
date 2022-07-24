@@ -5,6 +5,8 @@ use std::collections::HashMap;
 
 
 const PLANE_LENGTH: i32 = 15;
+
+#[derive(Debug)]
 pub struct Coordinate{
     pub x: f64,
     pub y: f64,
