@@ -1279,6 +1279,8 @@ dependencies = [
  "bevy",
  "bevy_mod_picking",
  "bevy_mod_raycast",
+ "dolly",
+ "glam 0.21.2",
  "noise",
  "rand 0.8.5",
 ]
@@ -1304,6 +1306,14 @@ name = "dispatch"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bd0c93bb4b0c6d9b77f4435b0ae98c24d17f1c45b2ff844c6151a07256ca923b"
+
+[[package]]
+name = "dolly"
+version = "0.1.4"
+source = "git+https://github.com/BlackPhlox/dolly.git#6e58310b690b101ebd8d9b127bccfd5180d76db3"
+dependencies = [
+ "glam 0.20.5",
+]
 
 [[package]]
 name = "downcast-rs"

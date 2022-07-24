@@ -1,10 +1,12 @@
 use crate::{
-    camera::{pan_orbit::PanOrbitCamera, camera_controller::{CameraController, self}},
+    camera::{dolly_free, pan_orbit::PanOrbitCamera, camera_controller::{CameraController, self}},
     math::{city_perlin, grid, random},
 };
 use bevy::prelude::*;
 use noise::{NoiseFn, Perlin, Seedable};
 use std::{thread, time};
+use dolly::prelude::*;
+
 
 fn get_camera(world: &mut World) -> Vec3 {
     let camera_focus_vector: Vec3 = world.get_resource_mut::<PanOrbitCamera>().unwrap().focus;
@@ -15,7 +17,9 @@ pub fn spawn_buildings(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     //mut query: Query<(&mut Transform, &mut CameraController), With<Camera>>,
-    mut query: Query<(&mut Transform, &mut Camera, &mut CameraController)>,
+    //mut query: Query<(&mut Transform, &mut Camera, &mut CameraController)>,
+    mut query: Query<(&mut Transform, &mut Camera)>,
+    mut query_rig: Query<&mut dolly_free::MyCameraRig>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     let delay = time::Duration::from_secs(3);
@@ -23,7 +27,7 @@ pub fn spawn_buildings(
     //instantiate height noise function
     let height_noise_fn = city_perlin::HeightNoiseFn::default();
 
-    if let Ok((mut transform, mut camera, mut options)) = query.get_single_mut() {
+    if let Ok((mut transform, mut camera)) = query.get_single_mut() {
         //let vector: Vec3 = transform.forward();
         let vector: Vec3 = transform.translation;
         let coord = grid::Coordinate {
