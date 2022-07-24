@@ -4,7 +4,7 @@ pub const HEIGHT_SEED: u32 = 1; // for building height
 pub const WIDTH_SEED: u32 = 116; // for building width
 
 pub struct HeightNoiseFn{
-    function: Perlin,
+    pub function: Perlin,
 }
 
 impl Default for HeightNoiseFn{
