@@ -24,20 +24,12 @@ pub fn spawn_buildings(
     let height_noise_fn = city_perlin::HeightNoiseFn::default();
 
     if let Ok((mut transform, mut camera, mut options)) = query.get_single_mut() {
-        // let (yaw, pitch, roll) = transform.rotation.to_euler(EulerRot::YXZ);
-        // let coord = grid::Coordinate {
-        //     x: yaw as f64,
-        //     y: pitch as f64,
-        //     z: roll as f64,
-        // };
-        let vector: Vec3 = transform.translation;
-
         //let vector: Vec3 = transform.forward();
+        let vector: Vec3 = transform.translation;
         let coord = grid::Coordinate {
             x: vector.x as f64,
             y: vector.y as f64,
             z: vector.z as f64,
-            //z: (vector.z + 15.0) as f64,
         };
 
         println!("{:?}", coord);
@@ -53,7 +45,8 @@ pub fn spawn_buildings(
             mesh: meshes.add(Mesh::from(shape::Cube { size: size })),
             material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
             //transform: Transform::from_xyz(location.x * 14.0, 0.0, 0.0),
-            transform: Transform::from_xyz((coord.x * 10.0) as f32, 0.0 as f32, coord.z as f32),
+            //transform: Transform::from_xyz((coord.x * 10.0) as f32, 0.0 as f32, (coord.z * 10.0) as f32),
+            transform: Transform::from_xyz((coord.x * 10.0) as f32, 0.0 as f32, (coord.z - 10.0) as f32),
             ..default()
         });
         println!("created cube {}", size);
