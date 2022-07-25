@@ -41,10 +41,10 @@ enum MoveAction {
     RotateRight,
 }
 
-struct DollyPosCtrlConfig {
-    enabled: bool,
-    speed: f32,
-    position: Vec3,
+pub struct DollyPosCtrlConfig {
+    pub enabled: bool,
+    pub speed: f32,
+    pub position: Vec3,
 }
 
 impl Default for DollyPosCtrlConfig {
