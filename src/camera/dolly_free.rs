@@ -18,6 +18,7 @@ pub fn setup(
         ..Default::default()
     });
 
+    //let translation = [-2.0f32, 2.0f32, 5.0f32];
     let translation = [-2.0f32, 2.0f32, 5.0f32];
     let transform = Transform::from_translation(bevy::math::Vec3::from_slice(&translation))
         .looking_at(bevy::math::Vec3::ZERO, bevy::math::Vec3::Y);

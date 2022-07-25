@@ -6,9 +6,6 @@ mod math;
 mod pcg_city;
 mod camera;
 
-#[derive(Component)]
-struct MainCamera;
-
 fn main() {
     App::new()
         .insert_resource(Msaa { samples: 4 })
