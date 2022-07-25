@@ -1,5 +1,7 @@
+//uses bevy 0.7
+
 use crate::{
-    camera::{dolly_free, pan_orbit::PanOrbitCamera, camera_controller::{CameraController, self}},
+    camera::{dolly_look_around, pan_orbit::PanOrbitCamera, camera_controller::{CameraController, self}},
     math::{city_perlin, grid, random},
 };
 use bevy::prelude::*;

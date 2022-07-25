@@ -10,8 +10,8 @@ fn main() {
         .insert_resource(Msaa { samples: 4 })
         .add_plugins(DefaultPlugins)
         .add_plugin(DollyCursorGrab)
-        .add_startup_system(setup)
-        .add_system(update_camera)
+        .add_startup_system(setup.system())
+        .add_system(update_camera.system())
         .run();
 }
 
@@ -57,7 +57,7 @@ fn setup(
             })
             .with(Rotation { rotation })
             .with(yaw_pitch)
-            .with(Smooth::new_position_rotation(1.0, 1.0))
+            .with(Smooth::new_position_rotation(1.0, 0.1))
             .build(),
     );
 
@@ -73,6 +73,9 @@ fn setup(
         transform: Transform::from_xyz(4.0, 8.0, 4.0),
         ..Default::default()
     });
+
+    info!("Use W, A, S, D for movement");
+    info!("Use Shift to go fast");
 }
 
 fn update_camera(
@@ -125,6 +128,11 @@ fn update_camera(
 
     let mut q1 = query.q1();
     let mut rig = q1.single_mut();
+
+    let (mut euler, a) = rig.final_transform.rotation.to_axis_angle();
+    euler.x = 0.;
+    euler.z = 0.;
+    rig.final_transform.rotation = Quat::from_axis_angle(euler, a);
 
     let move_vec =
         rig.final_transform.rotation * move_vec.clamp_length_max(1.0) * boost_mult.powf(boost);
