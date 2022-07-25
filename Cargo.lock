@@ -345,7 +345,7 @@ name = "bevy_dolly"
 version = "0.0.1"
 dependencies = [
  "bevy",
- "dolly",
+ "dolly 0.2.0",
  "leafwing-input-manager",
 ]
 
@@ -515,6 +515,26 @@ checksum = "20288df0f70ff258bbaffaf55209f1271a7436438591bbffc3d81e4d84b423f2"
 dependencies = [
  "bevy_reflect",
  "glam 0.20.5",
+]
+
+[[package]]
+name = "bevy_mod_picking"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee28e69e9bcd2990273c0d2a976ea0d5b499d154a15c6990864f85fbb6bbee9e"
+dependencies = [
+ "bevy",
+ "bevy_mod_raycast",
+]
+
+[[package]]
+name = "bevy_mod_raycast"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b84a8d57fb1f20aca8c6e3d96e724e54f0ec58ba1d8e8a0989ce3e52d52e2d23"
+dependencies = [
+ "bevy",
+ "float-ord",
 ]
 
 [[package]]
@@ -1268,6 +1288,8 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "bevy_dolly",
+ "bevy_mod_picking",
+ "dolly 0.3.1",
  "glam 0.21.2",
  "noise",
  "rand 0.8.5",
@@ -1311,6 +1333,15 @@ name = "dolly"
 version = "0.2.0"
 dependencies = [
  "bevy",
+]
+
+[[package]]
+name = "dolly"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c2ae35fe7c2f8550eb2e84dd8251cbaba660d167315daff50c800aee4013da32"
+dependencies = [
+ "glam 0.21.2",
 ]
 
 [[package]]
@@ -1385,6 +1416,12 @@ name = "fixedbitset"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0ce7134b9999ecaf8bcd65542e436736ef32ddca1b3e06094cb6ec5755203b80"
+
+[[package]]
+name = "float-ord"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ce81f49ae8a0482e4c55ea62ebbd7e5a686af544c00b9d090bba3ff9be97b3d"
 
 [[package]]
 name = "fnv"
