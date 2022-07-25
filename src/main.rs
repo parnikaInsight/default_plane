@@ -20,7 +20,7 @@ fn main() {
         .add_system(pcg_city::buildings::spawn_buildings)
 
         .run();
-}
+  }
 
 /// set up a simple 3D scene
 fn setup(
