@@ -2,9 +2,6 @@ use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
 use bevy_dolly::prelude::*;
 
-mod math;
-mod pcg_city;
-
 #[derive(Component)]
 struct MainCamera;
 
@@ -15,18 +12,15 @@ fn main() {
         .add_plugin(DollyCursorGrab)
         .add_startup_system(setup)
         .add_system(update_camera)
-
-        .init_resource::<math::city_perlin::HeightNoiseFn>()
-        .add_system(pcg_city::buildings::spawn_buildings)
-
         .run();
-  }
+}
 
 /// set up a simple 3D scene
 fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    asset_server: Res<AssetServer>,
 ) {
     // plane
     commands.spawn_bundle(PbrBundle {
@@ -34,6 +28,19 @@ fn setup(
         material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
         ..Default::default()
     });
+
+    commands
+        .spawn_bundle((
+            Transform {
+                translation: bevy::math::Vec3::new(0., 0.2, 0.),
+                ..Default::default()
+            },
+            GlobalTransform::identity(),
+        ))
+        .with_children(|cell| {
+            cell.spawn_scene(asset_server.load("poly_dolly.gltf#Scene0"));
+        })
+        .id();
 
     let translation = [-2.0f32, 2.0f32, 5.0f32];
     let transform = Transform::from_translation(bevy::math::Vec3::from_slice(&translation))

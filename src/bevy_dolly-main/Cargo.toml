@@ -1,0 +1,41 @@
+[package]
+name = "bevy_dolly"
+version = "0.0.1"
+authors = ["Black Phlox <bphlox@gmail.com>"]
+license = "MIT OR Apache-2.0"
+edition = "2021"
+readme = "README.md"
+repository = "https://github.com/BlackPhlox/bevy_dolly"
+documentation = "https://docs.rs/bevy_dolly"
+description = "TBA"
+keywords = ["gamedev", "bevy", "camera", "fps", "3d", ]
+categories = ["game-development", "game-engines", ]
+exclude = [
+    "assets/*",
+    ".github/*",
+]
+resolver = "2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "bevy_dolly"
+
+[dependencies]
+dolly = { path = "dolly" }
+leafwing-input-manager = "0.4.1"
+
+[dependencies.bevy]
+version = "0.7.0"
+features = ["render"]
+default-features = false
+
+[dev-dependencies.bevy]
+version = "0.7.0"
+features = ["bevy_winit", "bevy_gltf"]
+default-features = false
+
+[target.'cfg(target_os = "linux")'.dev-dependencies.bevy]
+version = "0.7.0"
+features = ["x11", "wayland"]
+default-features = false

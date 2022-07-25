@@ -1,0 +1,18 @@
+- block creation shouldn't overlap: location/grid based
+
+- block creation (timing and location) should be based on camera location 
+
+- block creation should be bounded by region (camera fov) and plane size
+
+- blocks should be created near each other (should propagate from center along axis perpendicular
+to the camera's line of sight, and it shoudl propagate outwards in the direction that camera 
+is moving towards)
+
+- must be seed based, deterministic, order independent: noise function
+
+- OS independent: no floating point?
+
+- same noise/hash function, same seeds but each seed is for diff feature (height, width, # of levels, 
+shape of windows for top half of building, etc.)
+
+- map 2d plane grid position to position input for noise function

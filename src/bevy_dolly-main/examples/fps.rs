@@ -2,9 +2,6 @@ use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
 use bevy_dolly::prelude::*;
 
-mod math;
-mod pcg_city;
-
 #[derive(Component)]
 struct MainCamera;
 
@@ -13,20 +10,17 @@ fn main() {
         .insert_resource(Msaa { samples: 4 })
         .add_plugins(DefaultPlugins)
         .add_plugin(DollyCursorGrab)
-        .add_startup_system(setup)
-        .add_system(update_camera)
-
-        .init_resource::<math::city_perlin::HeightNoiseFn>()
-        .add_system(pcg_city::buildings::spawn_buildings)
-
+        .add_startup_system(setup.system())
+        .add_system(update_camera.system())
         .run();
-  }
+}
 
 /// set up a simple 3D scene
 fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    asset_server: Res<AssetServer>,
 ) {
     // plane
     commands.spawn_bundle(PbrBundle {
@@ -34,6 +28,19 @@ fn setup(
         material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
         ..Default::default()
     });
+
+    commands
+        .spawn_bundle((
+            Transform {
+                translation: bevy::math::Vec3::new(0., 0.2, 0.),
+                ..Default::default()
+            },
+            GlobalTransform::identity(),
+        ))
+        .with_children(|cell| {
+            cell.spawn_scene(asset_server.load("poly_dolly.gltf#Scene0"));
+        })
+        .id();
 
     let translation = [-2.0f32, 2.0f32, 5.0f32];
     let transform = Transform::from_translation(bevy::math::Vec3::from_slice(&translation))
@@ -50,7 +57,7 @@ fn setup(
             })
             .with(Rotation { rotation })
             .with(yaw_pitch)
-            .with(Smooth::new_position_rotation(1.0, 1.0))
+            .with(Smooth::new_position_rotation(1.0, 0.1))
             .build(),
     );
 
@@ -66,6 +73,9 @@ fn setup(
         transform: Transform::from_xyz(4.0, 8.0, 4.0),
         ..Default::default()
     });
+
+    info!("Use W, A, S, D for movement");
+    info!("Use Shift to go fast");
 }
 
 fn update_camera(
@@ -118,6 +128,11 @@ fn update_camera(
 
     let mut q1 = query.p1();
     let mut rig = q1.single_mut();
+
+    let (mut euler, a) = rig.final_transform.rotation.to_axis_angle();
+    euler.x = 0.;
+    euler.z = 0.;
+    rig.final_transform.rotation = Quat::from_axis_angle(euler, a);
 
     let move_vec =
         rig.final_transform.rotation * move_vec.clamp_length_max(1.0) * boost_mult.powf(boost);

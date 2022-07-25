@@ -7,3 +7,10 @@ edition = "2021"
 
 [dependencies]
 bevy = "0.7.0"
+rand = "0.8.5"
+noise = "0.7.0"
+glam = "0.21.2"
+bevy_dolly = {path = "./src/bevy_dolly-main"}
+
+[profile.dev.package."*"]
+opt-level = 3
