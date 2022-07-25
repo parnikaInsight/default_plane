@@ -89,6 +89,7 @@ pub fn camera_move_free(
     if query_rig.is_player {
         query_rig.yellow_pos += delta_pos;
     } else {
+        println!("changed position");
         query_rig.camera_transform.position.x += delta_pos.x;
         query_rig.camera_transform.position.y += delta_pos.y;
         query_rig.camera_transform.position.z += delta_pos.z;
@@ -118,6 +119,7 @@ pub fn camera_move_free(
         println!("in query cam");
         cam.translation = camera_xform.position;
         cam.rotation = camera_xform.rotation;
+        print!("translation: {}", cam.translation);
     }
 }
 
