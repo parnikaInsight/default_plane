@@ -3,17 +3,35 @@
 
 use std::collections::HashMap;
 
-
 const PLANE_LENGTH: i32 = 15;
 
+pub struct MyGrid {
+    //index = z, value = vector of x coordinates
+    pub coordinate_system: HashMap<Vec<i32>, bool> ,
+}
+
+impl Default for MyGrid {
+    fn default() -> Self {
+        let mut grid_occupied: HashMap<Vec<i32>, bool> = HashMap::new();
+        for i in -7..8{
+            for j in -7..8{
+                grid_occupied.insert(vec![i, j], false);
+            }
+        }
+        MyGrid {
+            coordinate_system: grid_occupied
+        }
+    }
+}
+
 #[derive(Debug)]
-pub struct Coordinate{
+pub struct Coordinate {
     pub x: f64,
     pub y: f64,
     pub z: f64,
 }
 
-pub struct Index{
+pub struct Index {
     pub index: i32,
 }
 
@@ -24,11 +42,7 @@ pub fn index_to_coord(index: Index) -> Coordinate {
     let divide: i32 = index.index / PLANE_LENGTH;
     let z: f64 = (((PLANE_LENGTH - 1) * -1 / 2) + divide).into();
 
-    Coordinate{
-        x,
-        y: 0.0,
-        z,
-    }
+    Coordinate { x, y: 0.0, z }
 }
 
 fn convert(x: f64) -> i32 {
@@ -36,9 +50,16 @@ fn convert(x: f64) -> i32 {
 }
 
 pub fn coord_to_index(coord: Coordinate) -> Index {
-    let mut mods: HashMap<i32, Vec<i32>> =  HashMap::new();
-    mods.insert(0, vec![0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210]);
+    let mut mods: HashMap<i32, Vec<i32>> = HashMap::new();
+    //still have to complete
+    mods.insert(
+        0,
+        vec![
+            0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210,
+        ],
+    );
 
+    //still have to complete
     let mut quotients: HashMap<i32, Vec<i32>> = HashMap::new();
     quotients.insert(0, vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
 
@@ -58,7 +79,5 @@ pub fn coord_to_index(coord: Coordinate) -> Index {
         }
     }
 
-    Index{
-        index
-    }
+    Index { index }
 }

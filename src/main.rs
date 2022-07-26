@@ -2,12 +2,15 @@ use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
 use bevy_dolly::prelude::*;
 
+
 mod math;
+use math::grid::MyGrid;
 mod pcg_city;
 mod camera;
 
 fn main() {
     App::new()
+        .init_resource::<MyGrid>()
         .insert_resource(Msaa { samples: 4 })
         .add_plugins(DefaultPlugins)
         .add_plugin(DollyCursorGrab)

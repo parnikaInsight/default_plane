@@ -1,6 +1,9 @@
 use bevy::input::mouse::MouseMotion;
-use bevy::prelude::*;
 use bevy_dolly::prelude::*;
+
+use bevy::{prelude::*, window::PresentMode};
+
+
 
 #[derive(Component)]
 pub struct MainCamera;
@@ -11,6 +14,7 @@ pub fn setup(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
+
     // plane
     commands.spawn_bundle(PbrBundle {
         mesh: meshes.add(Mesh::from(shape::Plane { size: 15.0 })),
@@ -44,6 +48,7 @@ pub fn setup(
             ..Default::default()
         })
         .insert(MainCamera);
+
 
     // light
     commands.spawn_bundle(PointLightBundle {
