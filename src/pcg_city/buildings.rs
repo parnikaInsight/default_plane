@@ -18,6 +18,35 @@ fn convert_two(x: f64) -> i32 {
     x as i32
 }
 
+pub fn my_creation(
+    mut commands: Commands,
+    mut grid: ResMut<MyGrid>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    let size = 0.5;
+    let x = 0.0;
+    let y = size / 2.0;
+    let z = 0.0;
+
+    commands
+        .spawn_bundle(PbrBundle {
+            mesh: meshes.add(Mesh::from(shape::Cube { size: 0.50 })),
+            material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+            transform: Transform::from_xyz(x, y, z),
+            ..default()
+        })
+        .insert(RigidBody::Fixed)
+        .insert(Collider::cuboid(size / 2.0, size / 2.0, size / 2.0)) //half the cube size
+        .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+
+    // if let Some(b) = grid.coordinate_system.get_mut(&vec![x as i32, z as i32]) {
+    //     if *b == false {
+    //         *b = true;
+    //     }
+    // }
+}
+
 pub fn spawn_buildings(
     mut commands: Commands,
     mut grid: ResMut<MyGrid>,
@@ -32,16 +61,17 @@ pub fn spawn_buildings(
     let height_noise_fn = city_perlin::HeightNoiseFn::default();
 
     if let Ok(mut rig) = query.p1().get_single_mut() {
-        commands
-            .spawn_bundle(PbrBundle {
-                mesh: meshes.add(Mesh::from(shape::Cube { size: 0.50 })),
-                material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-                transform: Transform::from_xyz(0.0 as f32, 5.0 as f32, 0.0 as f32),
-                ..default()
-            })
-            .insert(RigidBody::Dynamic)
-            .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
-            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+        // // testing rapier
+        // commands
+        //     .spawn_bundle(PbrBundle {
+        //         mesh: meshes.add(Mesh::from(shape::Cube { size: 0.50 })),
+        //         material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+        //         transform: Transform::from_xyz(0.0 as f32, 5.0 as f32, 0.0 as f32),
+        //         ..default()
+        //     })
+        //     .insert(RigidBody::Dynamic)
+        //     .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
+        //     .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
         let transform = rig.final_transform;
 

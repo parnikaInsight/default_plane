@@ -20,11 +20,7 @@ pub fn setup(
             ..Default::default()
         })
         .insert(RigidBody::Fixed)
-        .insert(Collider::cuboid(0.40, 0.40, 0.40))  //half the cube size
-        .insert(ExternalForce {
-            force: Vec3::new(0.0, 9.81, 0.0),
-            ..Default::default()
-        })
+        .insert(Collider::cuboid(7.50, 0.0, 7.50))  //half the cube size
         .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     //let translation = [-2.0f32, 2.0f32, 5.0f32];
