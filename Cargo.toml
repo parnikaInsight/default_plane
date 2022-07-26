@@ -15,5 +15,11 @@ dolly = "0.3.1"
 bevy_mod_picking = "0.7.0"
 bevy_rapier3d = "0.15.0"
 
+bevy_backroll = "0.4.0"
+backroll_transport_udp = "0.4.0"
+tracing-subscriber = "0.3.15"
+bitflags = "1.2.1"
+bytemuck = {version = "1.5.1", features = ["derive"]}
+
 [profile.dev.package."*"]
 opt-level = 3
