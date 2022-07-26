@@ -32,15 +32,27 @@ pub fn spawn_buildings(
 
         let vector: Vec3 = transform.translation;
 
-        let x_right_bound: i32 = convert(vector.x + 2.0);
-        let x_left_bound: i32 = convert(vector.x - 2.0);
+        let mut x_right_bound: i32 = convert(vector.x + 2.0);
+        if x_right_bound > 7 {
+            x_right_bound = 8;
+        }
+        let mut x_left_bound: i32 = convert(vector.x - 2.0);
+        if x_left_bound < -7 {
+            x_left_bound = -8;
+        }
 
-        let z_front_bound: i32 = convert(vector.z + 2.0);
-        let z_back_bound: i32 = convert(vector.z - 2.0);
-        let mut count = 0;
+        let mut z_front_bound: i32 = convert(vector.z + 2.0);
+        if z_front_bound > 7 {
+            z_front_bound = 8;
+        }
+        
+        let mut z_back_bound: i32 = convert(vector.z - 2.0);
+        if z_back_bound < -7 {
+            z_back_bound = -8;
+        }
+
         for x_iter in x_left_bound..x_right_bound {
             for z_iter in z_back_bound..z_front_bound {
-                count += 1;
                 let x: f32 = x_iter as f32;
                 let z = z_iter as f32;
                 let cam_vec = Vec2::new(vector.x, vector.z);
@@ -100,6 +112,5 @@ pub fn spawn_buildings(
                 }
             }
         }
-        println!("count {}", count);
     }
 }
