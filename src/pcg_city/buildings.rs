@@ -6,11 +6,15 @@ use crate::math::random::{get_block_dimensions, get_block_location};
 use crate::math::{city_perlin, grid, random};
 use bevy::prelude::*;
 use bevy_dolly::prelude::*;
+use bevy_rapier3d::prelude::*;
 use noise::{NoiseFn, Perlin, Seedable};
 use std::{thread, time};
-use bevy_rapier3d::prelude::*;
 
 fn convert(x: f32) -> i32 {
+    x as i32
+}
+
+fn convert_two(x: f64) -> i32 {
     x as i32
 }
 
@@ -27,8 +31,18 @@ pub fn spawn_buildings(
     //instantiate height noise function
     let height_noise_fn = city_perlin::HeightNoiseFn::default();
 
-    // if let Ok((mut transform, mut camera)) = query.p0().get_single_mut() {
     if let Ok(mut rig) = query.p1().get_single_mut() {
+        commands
+            .spawn_bundle(PbrBundle {
+                mesh: meshes.add(Mesh::from(shape::Cube { size: 0.50 })),
+                material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+                transform: Transform::from_xyz(0.0 as f32, 5.0 as f32, 0.0 as f32),
+                ..default()
+            })
+            .insert(RigidBody::Dynamic)
+            .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
+            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+
         let transform = rig.final_transform;
 
         let vector: Vec3 = transform.translation;
@@ -73,27 +87,27 @@ pub fn spawn_buildings(
                             let height =
                                 height_noise_fn.function.get([coord.x / 7.0, coord.z / 7.0]);
                             let dimension = random::Random {
-                                number: height + 1.0,
+                                number: (convert_two((height + 1.0) * 100.0) as f64) / 100.0,
                             };
 
                             // cube
                             let size: f32 = dimension.number as f32;
                             println!("Size: {:?}", size);
 
-                            // commands
-                            //     .spawn_bundle(PbrBundle {
-                            //         mesh: meshes.add(Mesh::from(shape::Cube { size: 0.80 })),
-                            //         material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-                            //         transform: Transform::from_xyz(
-                            //             (coord.x) as f32,
-                            //             -0.3 as f32,
-                            //             (coord.z) as f32,
-                            //         ),
-                            //         ..default()
-                            //     })
-                            //     .insert(RigidBody::Dynamic)
-                            //     .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
-                            //     .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+                            commands
+                                .spawn_bundle(PbrBundle {
+                                    mesh: meshes.add(Mesh::from(shape::Cube { size: 0.80 })),
+                                    material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+                                    transform: Transform::from_xyz(
+                                        (coord.x) as f32,
+                                        -0.3 as f32,
+                                        (coord.z) as f32,
+                                    ),
+                                    ..default()
+                                })
+                                .insert(RigidBody::Fixed)
+                                .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
+                                .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
                             let mut height = 0.1;
 
@@ -102,19 +116,24 @@ pub fn spawn_buildings(
                             let mut part_height = (size / 2.0) as f32;
                             while height < size {
                                 commands
-                                .spawn_bundle(PbrBundle {
-                                    mesh: meshes.add(Mesh::from(shape::Cube { size: part_height })),
-                                    material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-                                    transform: Transform::from_xyz(
-                                        coord.x as f32,
-                                        height + part_height / 2.0 as f32,
-                                        coord.z as f32,
-                                    ),
-                                    ..default()
-                                })
-                                .insert(RigidBody::Dynamic)
-                                .insert(Collider::cuboid(part_height / 2.0, part_height / 2.0, part_height / 2.0)) //half the cube size
-                                .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+                                    .spawn_bundle(PbrBundle {
+                                        mesh: meshes
+                                            .add(Mesh::from(shape::Cube { size: part_height })),
+                                        material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+                                        transform: Transform::from_xyz(
+                                            coord.x as f32,
+                                            height + part_height / 2.0 as f32,
+                                            coord.z as f32,
+                                        ),
+                                        ..default()
+                                    })
+                                    .insert(RigidBody::Fixed)
+                                    .insert(Collider::cuboid(
+                                        part_height / 2.0,
+                                        part_height / 2.0,
+                                        part_height / 2.0,
+                                    )) //half the cube size
+                                    .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
                                 height += part_height;
 

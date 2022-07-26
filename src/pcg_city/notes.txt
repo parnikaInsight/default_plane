@@ -1,3 +1,10 @@
+- block creation and also despawning for path for players
+
+- each 1x1 block should be split into many blocks to help with creating despawn path, use another seed
+for each mini block and another seed for despawning for path 
+
+----------------------------------------------------------------
+
 - block creation shouldn't overlap: location/grid based
 
 - block creation (timing and location) should be based on camera location 

@@ -1,9 +1,7 @@
 use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
-
+use bevy_rapier3d::prelude::*;
 use bevy::{prelude::*, window::PresentMode};
-
-
 
 #[derive(Component)]
 pub struct MainCamera;
@@ -14,13 +12,20 @@ pub fn setup(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
-
     // plane
-    commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Plane { size: 15.0 })),
-        material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
-        ..Default::default()
-    });
+    commands
+        .spawn_bundle(PbrBundle {
+            mesh: meshes.add(Mesh::from(shape::Plane { size: 15.0 })),
+            material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+            ..Default::default()
+        })
+        .insert(RigidBody::Fixed)
+        .insert(Collider::cuboid(0.40, 0.40, 0.40))  //half the cube size
+        .insert(ExternalForce {
+            force: Vec3::new(0.0, 9.81, 0.0),
+            ..Default::default()
+        })
+        .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     //let translation = [-2.0f32, 2.0f32, 5.0f32];
     let translation = [-2.0f32, 2.0f32, 5.0f32];
@@ -48,7 +53,6 @@ pub fn setup(
             ..Default::default()
         })
         .insert(MainCamera);
-
 
     // light
     commands.spawn_bundle(PointLightBundle {
