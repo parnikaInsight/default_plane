@@ -1,7 +1,7 @@
 //uses bevy 0.7
 
 use crate::camera::dolly_free;
-use crate::math::random::get_block_location;
+use crate::math::random::{get_block_location, get_block_dimensions};
 use crate::math::{city_perlin, grid, random};
 use bevy::prelude::*;
 use bevy_dolly::prelude::*;
@@ -54,34 +54,41 @@ pub fn spawn_buildings(
 
                     let height = height_noise_fn.function.get([coord.x / 7.0, coord.z / 7.0]);
                     let dimension = random::Random {
-                        number: (height + 0.5),
+                        number: (height + 1.0) * 2.0,
                     };
 
                     // cube
                     let size: f32 = dimension.number as f32;
-                    println!("{:?}", size);
-
-                    let rand_shift_one = get_block_location() * 0.1;
-                    let rand_shift_two = get_block_location() * 0.1;
-                    println!("one: {:?} two: {:?} ", coord.x + rand_shift_one, coord.z + rand_shift_two);
+                    println!("Size: {:?}", size);
 
                     commands.spawn_bundle(PbrBundle {
                         mesh: meshes.add(Mesh::from(shape::Cube { size: 0.60 })),
                         material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
                         transform: Transform::from_xyz((coord.x) as f32, 
-                                                        0.30 as f32, 
+                                                        -0.2 as f32, 
                                                         (coord.z) as f32),
                         ..default()
                     });
 
-                    commands.spawn_bundle(PbrBundle {
-                        mesh: meshes.add(Mesh::from(shape::Cube { size: size })),
-                        material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-                        transform: Transform::from_xyz((coord.x + rand_shift_one) as f32, 
-                                                    0.6 + size / 2.0 as f32, 
-                                                    (coord.z + rand_shift_two) as f32),
-                        ..default()
-                    });
+                    let mut height = 0.1;
+                    let rand_shift_one = get_block_location() / 8.0;
+                    let rand_shift_two = get_block_location() / 8.0;
+
+                    while height < size{
+                        let part_height = (get_block_dimensions() / 2.0) as f32;
+                        println!("part: {}", part_height);
+
+                        commands.spawn_bundle(PbrBundle {
+                            mesh: meshes.add(Mesh::from(shape::Cube { size: part_height})),
+                            material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
+                            transform: Transform::from_xyz(coord.x as f32, 
+                                                        height + part_height / 2.0 as f32, 
+                                                        coord.z as f32),
+                            ..default()
+                        });
+
+                        height += part_height;
+                    }
                 }
             }
         }
