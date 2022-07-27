@@ -17,8 +17,11 @@ use std::env;
 use std::{hash::Hash, net::SocketAddr};
 use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
 
+use bevy_inspector_egui::RegisterInspectable;
+use bevy_inspector_egui::{widgets::ResourceInspector, Inspectable, InspectorPlugin};
+use bevy_inspector_egui::{WorldInspectorParams, WorldInspectorPlugin};
 
-#[derive(Default, Component)]
+#[derive(Default, Component, Inspectable)]
 pub struct Player {
     pub handle: usize,
 }
@@ -39,12 +42,3 @@ pub struct FrameCount {
     pub frame: u32,
 }
 
-pub fn print_events(mut events: EventReader<PickingEvent>) {
-    for event in events.iter() {
-        match event {
-            PickingEvent::Selection(e) => info!("A selection event happened: {:?}", e),
-            PickingEvent::Hover(e) => info!("Hover! {:?}", e),
-            PickingEvent::Clicked(e) => info!("Click! {:?}", e),
-        }
-    }
-}

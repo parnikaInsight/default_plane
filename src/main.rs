@@ -20,6 +20,10 @@ mod players;
 use players::{info, movement, interact};
 use ggrs_rollback::{network, ggrs_camera};
 
+use bevy_inspector_egui::RegisterInspectable;
+use bevy_inspector_egui::{widgets::ResourceInspector, Inspectable, InspectorPlugin};
+use bevy_inspector_egui::{WorldInspectorParams, WorldInspectorPlugin};
+
 const FPS: usize = 60;
 const ROLLBACK_DEFAULT: &str = "rollback_default";  
 
@@ -84,6 +88,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
         .add_system(pcg_city::buildings::spawn_buildings)//not updating in rollback
+
+        // .register_inspectable::<info::Player>()
+        // .insert_resource(WorldInspectorParams {
+        //     despawnable_entities: true,
+        //     highlight_changes: true,
+        //     ..Default::default()
+        // })
+        .add_plugin(WorldInspectorPlugin::new())
 
         .run();
 
