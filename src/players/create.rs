@@ -6,6 +6,7 @@ use bytemuck::{Pod, Zeroable};
 use std::collections::HashMap;
 use std::net::SocketAddr;
 use std::ops::Deref;
+use backroll::*;
 
 use crate::players::{info, movement};
 use crate::backroll::network_config;
@@ -16,6 +17,8 @@ pub fn spawn_players(
     pool: Res<IoTaskPool>,
     //materials: Res<info::Materials>,
 ) {
+    //println!("world id: {:?}", world.id());
+
     println!("spawning players");
     //peerid needs to go here
     let socket = UdpManager::bind(pool.deref().deref().clone(), config.bind).unwrap();
@@ -76,8 +79,17 @@ pub fn spawn_players(
         });
     println!("check 4"); 
 
-    let MyP2PSession = builder.start(pool.deref().deref().clone()).unwrap();
-    commands.start_backroll_session(MyP2PSession);
+   //let MyP2PSession = bevy_backroll::backroll::P2PSession::clone();
+    //let MyP2PSession = builder.start(pool.deref().deref().clone()).unwrap();
+    //let MyP2PSession = HereP2PSession();
+    //commands.start_backroll_session(MyP2PSession);
+    //commands.insert_resource(MyP2PSession);
+   // commands.start_backroll_session(new_internal(builder, pool));
+    //commands.start_backroll_session(backroll::P2PSession::<BevyBackrollConfig<movement::PlayerInputFrame>>::new_internal(builder, pool));
+    
+    commands.start_backroll_session(builder.start(pool.deref().deref().clone()).unwrap());
+        //problem is here
+        
     println!("check 5"); 
 }
 

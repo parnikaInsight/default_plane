@@ -2,8 +2,10 @@ use std::net::SocketAddr;
 
 use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
+use bevy_backroll::{backroll::*, *};
 use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
+use std::env;
 
 #[macro_use]
 extern crate bitflags;
@@ -77,58 +79,71 @@ fn start_app(player_num: usize) -> (usize, SocketAddr, SocketAddr) {
 //         .run();
 // }
 
-// fn main() {
-//     let mut args = std::env::args();
-//     let base = args.next().unwrap();
-//     if let Some(player_num) = args.next() {
-//         println!("many worlds pring created?");
-//         let (player_num, bind_addr, remote_addr) = start_app(player_num.parse().unwrap());
-//         App::new()
-//         .add_startup_system(network_config::setup_game)
-//         //.add_startup_system(start_app)
-//         //.add_startup_system(create::spawn_players)
-//         .add_startup_stage("game_setup", SystemStage::single(create::spawn_players))
+fn main() {
+    let mut args = std::env::args();
+    let base = args.next().unwrap();
+    if let Some(player_num) = args.next() {
+        println!("many worlds pring created?");
+        let (player_num, bind_addr, remote_addr) = start_app(player_num.parse().unwrap());
+        App::new()
+            .add_startup_system(network_config::setup_game)
+            //.add_startup_system(start_app)
+            //.add_startup_system(create::spawn_players)
+            .add_startup_stage("game_setup", SystemStage::single(create::spawn_players))
+            .add_plugins(DefaultPlugins)
+            .add_plugin(network_config::OurBackrollPlugin)
+            .insert_resource(network_config::StartupNetworkConfig {
+                client: player_num,
+                bind: bind_addr,
+                remote: remote_addr,
+            })
+            .add_rollback_system(movement::player_movement)
+            .run();
+    } else {
+        println!("in else");
+        let mut child_1 = std::process::Command::new(base.clone())
+            .args(&["0"])
+            .spawn()
+            .unwrap();
+        let mut child_2 = std::process::Command::new(base)
+            .args(&["1"])
+            .spawn()
+            .unwrap();
+        child_1.wait().unwrap();
+        child_2.wait().unwrap();
+    }
+}
 
+// fn main() {
+//    // env::set_var("RUST_BACKTRACE", "1");
+
+//     let (player_num, bind_addr, remote_addr) = start_app(2); //works w/ more than 2
+//     let mut app = App::new();
+//     app
 //         .add_plugins(DefaultPlugins)
 //         .add_plugin(network_config::OurBackrollPlugin)
+
+//         .add_startup_system(network_config::setup_game);
+//         //.add_startup_system(start_app)
+
+//     app.add_startup_system(create::spawn_players);
+//         //.add_startup_stage("game_setup", SystemStage::single(create::spawn_players))
+
+//     app.add_rollback_system(movement::player_movement);
+
+//     //println!("after spawning");
+//     app
 //         .insert_resource(network_config::StartupNetworkConfig {
 //             client: player_num,
 //             bind: bind_addr,
 //             remote: remote_addr,
-//         })
+//         });
 
-//         .add_system(movement::player_movement)
+//     //println!("after inserting resource");
+//     //app.with_rollback_system::<BevyBackrollConfig, _>(movement::player_movement.system());
+//     //app.add_system(movement::player_movement);
 
+//     //println!("after movement");
+//     app
 //         .run();
-//     } else {
-//         let mut child_1 = std::process::Command::new(base.clone())
-//             .args(&["0"])
-//             .spawn()
-//             .unwrap();
-//         let mut child_2 = std::process::Command::new(base)
-//             .args(&["1"])
-//             .spawn()
-//             .unwrap();
-//         child_1.wait().unwrap();
-//         child_2.wait().unwrap();
-//     }
 // }
-
-fn main() {
-    let (player_num, bind_addr, remote_addr) = start_app(0);
-    App::new()
-        .add_plugin(network_config::OurBackrollPlugin)
-        .add_startup_system(network_config::setup_game)
-        //.add_startup_system(start_app)
-        .add_startup_system(create::spawn_players)
-        //.add_startup_stage("game_setup", SystemStage::single(create::spawn_players))
-        .add_plugins(DefaultPlugins)
-        
-        .insert_resource(network_config::StartupNetworkConfig {
-            client: player_num,
-            bind: bind_addr,
-            remote: remote_addr,
-        })
-        .add_system(movement::player_movement)
-        .run();
-}

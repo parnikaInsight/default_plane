@@ -66,4 +66,5 @@ pub fn player_movement(
             transform.translation.y += 2.;
         }
     }
+    println!("after player_movment in method");
 }
