@@ -19,7 +19,17 @@ bevy_backroll = "0.4.0"
 backroll_transport_udp = "0.4.0"
 tracing-subscriber = "0.3.15"
 bitflags = "1.2.1"
-bytemuck = {version = "1.5.1", features = ["derive"]}
+
+bytemuck = { version = "1.7", features=["derive"]}
+instant = "0.1"
+log = "0.4"
+ggrs = { git = "https://github.com/gschup/ggrs", features=["sync-send"]}
+bevy_ggrs = {git = "https://github.com/gschup/bevy_ggrs"}
+structopt = "0.3"
+serde = "1.0.130"
+serde_json = "1.0"
+bevy_render = "0.7.0"
+bevy_pbr = "0.7.0"
 
 [profile.dev.package."*"]
 opt-level = 3
