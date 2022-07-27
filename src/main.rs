@@ -83,22 +83,40 @@ fn main() {
     let mut args = std::env::args();
     let base = args.next().unwrap();
     if let Some(player_num) = args.next() {
+        let mut app = App::new();
+        println!("created world id: {:?}", app.world.id());
+
         println!("many worlds pring created?");
         let (player_num, bind_addr, remote_addr) = start_app(player_num.parse().unwrap());
-        App::new()
-            .add_startup_system(network_config::setup_game)
-            //.add_startup_system(start_app)
-            //.add_startup_system(create::spawn_players)
-            .add_startup_stage("game_setup", SystemStage::single(create::spawn_players))
+
+        app.add_startup_system(network_config::setup_game);
+        //app.add_startup_system(create::spawn_players.system());
+        println!("world if: {:?}", app.world.id());
+
+        // let mut stage = SystemStage::new();
+        // stage.with_system(create::spawn_players);
+
+        //println!("world if {}", stage.world_id);
+        //with_system
+
+        let stage = SystemStage::single(create::spawn_players);
+        app
+            .add_startup_stage("game_setup", stage)
             .add_plugins(DefaultPlugins)
-            .add_plugin(network_config::OurBackrollPlugin)
+            .add_plugin(BackrollPlugin)
+            .register_rollback_input::<movement::PlayerInputFrame, _>(
+                movement::sample_input.system(), //need .system()
+            )
+            .register_rollback_component::<info::Player>()
             .insert_resource(network_config::StartupNetworkConfig {
                 client: player_num,
                 bind: bind_addr,
                 remote: remote_addr,
             })
-            .add_rollback_system(movement::player_movement)
-            .run();
+            .add_rollback_system(movement::player_movement);
+        
+        println!("world id again: {:?}", app.world.id());
+        app.run();
     } else {
         println!("in else");
         let mut child_1 = std::process::Command::new(base.clone())

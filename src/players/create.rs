@@ -26,11 +26,11 @@ pub fn spawn_players(
 
     commands.insert_resource(socket);
 
-    println!("check 1"); 
+    //println!("check 1"); 
 
     let mut builder = backroll::P2PSession::<BevyBackrollConfig<movement::PlayerInputFrame>>::build();
 
-    println!("check 2"); 
+    //println!("check 2"); 
 
     commands
         .spawn_bundle(SpriteBundle {
@@ -55,7 +55,7 @@ pub fn spawn_players(
             }
         });
 
-    println!("check 3"); 
+    //println!("check 3"); 
 
     commands
         .spawn_bundle(SpriteBundle {
@@ -77,7 +77,7 @@ pub fn spawn_players(
                 handle: builder.add_player(backroll::Player::Remote(peer)),
             }
         });
-    println!("check 4"); 
+    //println!("check 4"); 
 
    //let MyP2PSession = bevy_backroll::backroll::P2PSession::clone();
     //let MyP2PSession = builder.start(pool.deref().deref().clone()).unwrap();
@@ -89,7 +89,7 @@ pub fn spawn_players(
     
     commands.start_backroll_session(builder.start(pool.deref().deref().clone()).unwrap());
         //problem is here
-        
-    println!("check 5"); 
+
+    //println!("check 5"); 
 }
 
