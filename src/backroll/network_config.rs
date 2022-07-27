@@ -35,24 +35,24 @@ const MATCH_UPDATE_LABEL: &str = "MATCH_UPDATE";
 
 const DELTA_TIME: f32 = 1.0 / 60.0; // in ms
 
-pub struct OurBackrollPlugin;
+// pub struct OurBackrollPlugin;
 
-impl Plugin for OurBackrollPlugin {
-    fn build(&self, builder: &mut App) {
-        println!("our backroll plugin");
-        builder
-            .add_plugin(BackrollPlugin)
-            // .with_rollback_run_criteria::<BevyBackrollConfig<movement::PlayerInputFrame>, _>(
-            //     FixedTimestep::step(DELTA_TIME.into()).with_label(MATCH_UPDATE_LABEL),
-            // )
-            .register_rollback_input::<movement::PlayerInputFrame, _>(
-                movement::sample_input.system(), //need .system()
-            );
-            //.with_rollback_system::<BevyBackrollConfig, _>(movement::player_movement.system());
-            //.with_world_save_system::<BevyBackrollConfig, _>(save_world.system());
-            // .with_world_load_system::<BackrollConfig, _>(load_world.system());
-    }
-}
+// impl Plugin for OurBackrollPlugin {
+//     fn build(&self, builder: &mut App) {
+//         println!("our backroll plugin");
+//         builder
+//             .add_plugin(BackrollPlugin)
+//             // .with_rollback_run_criteria::<BevyBackrollConfig<movement::PlayerInputFrame>, _>(
+//             //     FixedTimestep::step(DELTA_TIME.into()).with_label(MATCH_UPDATE_LABEL),
+//             // )
+//             .register_rollback_input::<movement::PlayerInputFrame, _>(
+//                 movement::sample_input.system(), //need .system()
+//             );
+//             //.with_rollback_system::<BevyBackrollConfig, _>(movement::player_movement.system());
+//             //.with_world_save_system::<BevyBackrollConfig, _>(save_world.system());
+//             // .with_world_load_system::<BackrollConfig, _>(load_world.system());
+//     }
+// }
 
 #[derive(Debug)]
 pub struct StartupNetworkConfig {

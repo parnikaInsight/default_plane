@@ -191,9 +191,10 @@ fn start_app(player_num: usize) {
         )
         .add_plugins(DefaultPlugins)
         .add_plugin(BackrollPlugin)
-        .register_rollback_input::<movement::PlayerInputFrame, _>(
-            movement::sample_input.system(), //need .system()
-        )
+        .register_rollback_input(movement::sample_input)
+        // .register_rollback_input::<movement::PlayerInputFrame, _>(
+        //     movement::sample_input.system(), //need .system()
+        // )
         .register_rollback_component::<info::Player>()
 
         .insert_resource(network_config::StartupNetworkConfig {
@@ -207,6 +208,7 @@ fn start_app(player_num: usize) {
 }
 
 fn main() {
+    //env::set_var("RUST_BACKTRACE", "1");
     let mut args = std::env::args();
     let base = args.next().unwrap();
     if let Some(player_num) = args.next() {
