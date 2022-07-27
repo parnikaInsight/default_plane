@@ -15,7 +15,7 @@ mod pcg_city;
 
 mod ggrs_rollback;
 mod players;
-use players::info;
+use players::{info, movement};
 use ggrs_rollback::{network, ggrs_camera};
 
 const FPS: usize = 60;
@@ -36,18 +36,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // define frequency of rollback game logic update
         .with_update_frequency(FPS)
         // define system that returns inputs given a player handle, so GGRS can send the inputs around
-        .with_input_system(network::input)
+        .with_input_system(movement::input)
         // register types of components AND resources you want to be rolled back
         .register_rollback_type::<Transform>()
-        .register_rollback_type::<network::Velocity>()
-        .register_rollback_type::<network::FrameCount>()
+        .register_rollback_type::<info::Velocity>()
+        .register_rollback_type::<info::FrameCount>()
         // these systems will be executed as part of the advance frame update
         .with_rollback_schedule(
             Schedule::default().with_stage(
                 ROLLBACK_DEFAULT,
                 SystemStage::parallel()
-                    .with_system(network::move_cube_system)
-                    .with_system(network::increase_frame_system),
+                    .with_system(movement::move_cube_system)
+                    .with_system(movement::increase_frame_system),
                     //.with_system(pcg_city::buildings::spawn_buildings),
             ),
         )
@@ -69,7 +69,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .insert_resource(SessionType::P2PSession)
 
         // register a resource that will be rolled back
-        .insert_resource(network::FrameCount { frame: 0 })
+        .insert_resource(info::FrameCount { frame: 0 })
 
         //my code
         .add_plugin(DollyCursorGrab)

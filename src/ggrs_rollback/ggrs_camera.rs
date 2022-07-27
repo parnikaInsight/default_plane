@@ -1,7 +1,7 @@
 use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
-use bevy::{prelude::*, window::PresentMode};
+use bevy::prelude::*;
 
 #[derive(Component)]
 pub struct MainCamera;
