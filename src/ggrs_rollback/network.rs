@@ -12,8 +12,9 @@ use ggrs::{
     Config, InputStatus, P2PSession, PlayerHandle, PlayerType, SessionBuilder, SpectatorSession,
     SyncTestSession, UdpNonBlockingSocket,
 };
-use std::{hash::Hash, net::SocketAddr};
+use bevy_rapier3d::prelude::*;
 use std::env;
+use std::{hash::Hash, net::SocketAddr};
 
 const BLUE: Color = Color::rgb(0.8, 0.6, 0.2);
 const ORANGE: Color = Color::rgb(0., 0.35, 0.8);
@@ -29,7 +30,7 @@ const INPUT_RIGHT: u8 = 1 << 3;
 const MOVEMENT_SPEED: f32 = 0.005;
 const MAX_SPEED: f32 = 0.05;
 const FRICTION: f32 = 0.9;
-const PLANE_SIZE: f32 = 5.0;
+const PLANE_SIZE: f32 = 15.0;
 const CUBE_SIZE: f32 = 0.2;
 
 #[repr(C)]
@@ -94,11 +95,15 @@ pub fn setup_system(
         .expect("No GGRS session found");
 
     // plane
-    commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Plane { size: PLANE_SIZE })),
-        material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
-        ..Default::default()
-    });
+    commands
+        .spawn_bundle(PbrBundle {
+            mesh: meshes.add(Mesh::from(shape::Plane { size: PLANE_SIZE })),
+            material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+            ..Default::default()
+        })
+        .insert(RigidBody::Fixed)
+        .insert(Collider::cuboid(7.50, 0.0, 7.50)) //half the cube size
+        .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     // player cube - just spawn whatever entity you want, then add a `Rollback` component with a unique id (for example through the `RollbackIdProvider` resource).
     // Every entity that you want to be saved/loaded needs a `Rollback` component with a unique rollback id.
@@ -203,7 +208,6 @@ pub fn move_cube_system(
     }
 }
 
-
 //------------------------------------------------------------------------------------------------
 
 /// You need to define a config struct to bundle all the generics of GGRS. You can safely ignore `State` and leave it as u8 for all GGRS functionality.
@@ -242,10 +246,11 @@ pub fn create_ggrs_session() -> Result<SessionBuilder<GGRSConfig>, Box<dyn std::
     Ok(sess_build)
 }
 
-
-pub fn start_ggrs_session(sess_build:SessionBuilder<GGRSConfig>) -> Result<P2PSession<GGRSConfig>, Box<dyn std::error::Error>>{
+pub fn start_ggrs_session(
+    sess_build: SessionBuilder<GGRSConfig>,
+) -> Result<P2PSession<GGRSConfig>, Box<dyn std::error::Error>> {
     // start the GGRS session
-     
+
     // read cmd line arguments: 0 will be 7000, 1 will be 7001
     let args: Vec<String> = env::args().collect();
     let query = &args[1];
@@ -256,8 +261,7 @@ pub fn start_ggrs_session(sess_build:SessionBuilder<GGRSConfig>) -> Result<P2PSe
     if query == "0" {
         let socket = UdpNonBlockingSocket::bind_to_port(7000)?;
         sess = sess_build.start_p2p_session(socket)?;
-    }
-    else {
+    } else {
         let socket = UdpNonBlockingSocket::bind_to_port(7001)?;
         sess = sess_build.start_p2p_session(socket)?;
     }

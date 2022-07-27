@@ -15,6 +15,7 @@ mod pcg_city;
 
 mod ggrs_rollback;
 mod players;
+use players::info;
 use ggrs_rollback::{network, ggrs_camera};
 
 const FPS: usize = 60;
@@ -47,6 +48,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 SystemStage::parallel()
                     .with_system(network::move_cube_system)
                     .with_system(network::increase_frame_system),
+                    //.with_system(pcg_city::buildings::spawn_buildings),
             ),
         )
         // make it happen in the bevy app
@@ -73,7 +75,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_startup_system(ggrs_camera::setup_camera)
-         .add_system(ggrs_camera::update_camera)
+        .add_system(ggrs_camera::update_camera)
+
+        .init_resource::<MyGrid>()
+        .init_resource::<math::city_perlin::HeightNoiseFn>()
+        .add_system(pcg_city::buildings::spawn_buildings)//not updating in rollback
 
         .run();
 
