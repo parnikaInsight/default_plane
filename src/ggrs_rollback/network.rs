@@ -133,11 +133,11 @@ pub fn setup_system(
         transform: Transform::from_xyz(4.0, 8.0, 4.0),
         ..Default::default()
     });
-    // camera
-    commands.spawn_bundle(PerspectiveCameraBundle {
-        transform: Transform::from_xyz(0.0, 7.5, 0.5).looking_at(Vec3::ZERO, Vec3::Y),
-        ..Default::default()
-    });
+    // // camera
+    // commands.spawn_bundle(PerspectiveCameraBundle {
+    //     transform: Transform::from_xyz(0.0, 7.5, 0.5).looking_at(Vec3::ZERO, Vec3::Y),
+    //     ..Default::default()
+    // });
 }
 
 // Example system, manipulating a resource, will be added to the rollback schedule.

@@ -4,8 +4,18 @@ use bevy::prelude::*;
 use bevy_ggrs::{GGRSPlugin, SessionType};
 use ggrs::{P2PSession, PlayerType, SessionBuilder, UdpNonBlockingSocket};
 
+use bevy::input::mouse::MouseMotion;
+use bevy_dolly::prelude::*;
+use bevy_rapier3d::prelude::*;
+
+mod math;
+use math::grid::MyGrid;
+mod camera;
+mod pcg_city;
+
 mod ggrs_rollback;
-use ggrs_rollback::network;
+mod players;
+use ggrs_rollback::{network, ggrs_camera};
 
 const FPS: usize = 60;
 const ROLLBACK_DEFAULT: &str = "rollback_default";  
@@ -58,6 +68,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         // register a resource that will be rolled back
         .insert_resource(network::FrameCount { frame: 0 })
+
+        //my code
+        .add_plugin(DollyCursorGrab)
+        .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+        .add_startup_system(ggrs_camera::setup_camera)
+         .add_system(ggrs_camera::update_camera)
+
         .run();
 
     Ok(())
