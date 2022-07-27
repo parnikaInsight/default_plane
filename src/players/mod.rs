@@ -1,2 +1,3 @@
 pub mod info;
+pub mod interact;
 pub mod movement;

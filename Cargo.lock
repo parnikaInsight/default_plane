@@ -1534,6 +1534,7 @@ dependencies = [
  "bevy_dolly",
  "bevy_ggrs",
  "bevy_mod_picking",
+ "bevy_mod_raycast",
  "bevy_pbr",
  "bevy_rapier3d",
  "bevy_render",

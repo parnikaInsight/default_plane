@@ -15,6 +15,8 @@ use ggrs::{
 use bevy_rapier3d::prelude::*;
 use std::env;
 use std::{hash::Hash, net::SocketAddr};
+use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
+
 
 #[derive(Default, Component)]
 pub struct Player {
@@ -35,4 +37,14 @@ pub struct Velocity {
 #[reflect(Hash)]
 pub struct FrameCount {
     pub frame: u32,
+}
+
+pub fn print_events(mut events: EventReader<PickingEvent>) {
+    for event in events.iter() {
+        match event {
+            PickingEvent::Selection(e) => info!("A selection event happened: {:?}", e),
+            PickingEvent::Hover(e) => info!("Hover! {:?}", e),
+            PickingEvent::Clicked(e) => info!("Click! {:?}", e),
+        }
+    }
 }

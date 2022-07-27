@@ -15,6 +15,7 @@ use ggrs::{
 use bevy_rapier3d::prelude::*;
 use std::env;
 use std::{hash::Hash, net::SocketAddr};
+use bevy_mod_picking::*;
 
 use crate::players::{movement, info};
 
@@ -76,6 +77,7 @@ pub fn setup_system(
             })
             .insert(info::Player { handle })
             .insert(info::Velocity::default())
+            .insert_bundle(PickableBundle::default())
             // this component indicates bevy_GGRS that parts of this entity should be saved and loaded
             .insert(Rollback::new(rip.next_id()));
     }

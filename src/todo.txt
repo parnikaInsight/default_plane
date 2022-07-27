@@ -27,3 +27,8 @@ and missed who killed--this shoudl be multiple frames)
 not bevy ggrs
 
 - limit the number of clicks per second/frame --later
+----------------------------------------------------------------
+
+- pcg buildings not showing up in backroll; i think spawning can't be in rollback. what i can do is spawn 
+buildings under the plane--but the world doesn't have to look the same for each player--part of the game
+could be a changing world where u never know where building will pop up (even tho this is deterministic)

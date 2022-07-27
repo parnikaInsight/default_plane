@@ -2,6 +2,7 @@ use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
 use bevy::prelude::*;
+use bevy_mod_picking::*;
 
 #[derive(Component)]
 pub struct MainCamera;
@@ -35,6 +36,7 @@ pub fn setup_camera(
             transform,
             ..Default::default()
         })
+        .insert_bundle(PickingCameraBundle::default())
         .insert(MainCamera);
 
     // light

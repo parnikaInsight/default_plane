@@ -7,15 +7,17 @@ use ggrs::{P2PSession, PlayerType, SessionBuilder, UdpNonBlockingSocket};
 use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
+use bevy_mod_picking::*;
 
 mod math;
 use math::grid::MyGrid;
 mod camera;
 mod pcg_city;
+use pcg_city::buildings;
 
 mod ggrs_rollback;
 mod players;
-use players::{info, movement};
+use players::{info, movement, interact};
 use ggrs_rollback::{network, ggrs_camera};
 
 const FPS: usize = 60;
@@ -48,7 +50,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 SystemStage::parallel()
                     .with_system(movement::move_cube_system)
                     .with_system(movement::increase_frame_system),
-                    //.with_system(pcg_city::buildings::spawn_buildings),
+                    //.with_system(pcg_city::buildings::spawn_buildings), //i think spawning can't be done in rollback
             ),
         )
         // make it happen in the bevy app
@@ -72,10 +74,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .insert_resource(info::FrameCount { frame: 0 })
 
         //my code
+        .add_plugins(DefaultPickingPlugins)
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_startup_system(ggrs_camera::setup_camera)
         .add_system(ggrs_camera::update_camera)
+        .add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
 
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
