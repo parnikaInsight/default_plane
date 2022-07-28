@@ -17,11 +17,7 @@ use std::env;
 use std::{hash::Hash, net::SocketAddr};
 use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
 
-use bevy_inspector_egui::RegisterInspectable;
-use bevy_inspector_egui::{widgets::ResourceInspector, Inspectable, InspectorPlugin};
-use bevy_inspector_egui::{WorldInspectorParams, WorldInspectorPlugin};
-
-#[derive(Default, Component, Inspectable)]
+#[derive(Default, Component)]
 pub struct Player {
     pub handle: usize,
 }
@@ -32,6 +28,14 @@ pub struct Velocity {
     pub x: f32,
     pub y: f32,
     pub z: f32,
+}
+
+#[derive(Default, Component)]
+pub struct Information {
+    pub id: String, 
+    pub bounties: u32,
+    pub money: f64, 
+    pub health: f64, 
 }
 
 // You can also register resources. If your Component / Resource implements Hash, you can make use of `#[reflect(Hash)]`

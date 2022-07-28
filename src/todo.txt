@@ -1,34 +1,45 @@
+Today
+- every player should be identifiable by peerid and their info (# of money, # of bounties) -- window should move with them
 - insert acounts struct as startup system and system to overwrite last block to get bounty (everything from networks
 side is immutable--just reinsert resource or insert pointer much cleaner)
-- player input (move as a system), ssytem for what happens in world, bc of that move, transform velocity
-- every player should be identifiable by peerid and their info (# of money, # of bounties)
-- add friends should be very easy
+- add friends should be very easy (rightclick, add as freinds)
+- every time u clikc, if ur in a certain radius, u do -20 damage--everyone starts w/ 100 health
+
+- kademlia address as ggrs socket
+
+- skeletal animation
+- basic objects, multiple people, combat
+
+- pcg world
+- add object to camera, then add raycast to object
+
+----------------------------------------------------------------
+Later
 - easy to identify bounty
 - when bounty is killed, see who kill them (event for killing and being killed in case desynched 
 and missed who killed--this shoudl be multiple frames)
 - resynchronization ("snapshot" state)--he doesn;t need this for blockchain side
 
-- add object to camera, then add raycast to object
-- basic objects, multiple people, combat
-- wasd space left click mouse drag to adjust camera
-
-- every time u clikc, if ur in a certain radius, u do -20 damage--everyone starts w/ 100 health
-- rightclick, add as freinds
+----------------------------------------------------------------
+Other
+- read fault tolerance paper fault vs failure (ex. if game desynchs)
+- bevy backroll (does everything in preupdate and is an actual plugin, shoudl be able to sign moves) 
+not bevy ggrs
 
 - game to networks to database but game doesnt communicate w/ database; communicater: crossbeam channel
 - alr have accounts, bountry
 - sending player input, which friend added, healht damage, to game side network: backroll
 - sending who claimed bounty to insight network: kademlia
 
-----------------------------------------------------------------
-
-- read fault tolerance paper fault vs failure (ex. if game desynchs)
-- bevy backroll (does everything in preupdate and is an actual plugin, shoudl be able to sign moves) 
-not bevy ggrs
-
 - limit the number of clicks per second/frame --later
 ----------------------------------------------------------------
-
+Problems
 - pcg buildings not showing up in backroll; i think spawning can't be in rollback. what i can do is spawn 
 buildings under the plane--but the world doesn't have to look the same for each player--part of the game
 could be a changing world where u never know where building will pop up (even tho this is deterministic)
+
+----------------------------------------------------------------
+Overall
+- pcg 
+- asset loading
+- modular

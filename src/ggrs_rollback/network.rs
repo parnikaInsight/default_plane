@@ -1,8 +1,10 @@
 use bevy::prelude::*;
 use bevy_ggrs::{GGRSPlugin, Rollback, RollbackIdProvider, SessionType};
+use bevy_mod_picking::*;
 use bevy_pbr::PbrBundle;
 use bevy_pbr::PointLightBundle;
 use bevy_pbr::StandardMaterial;
+use bevy_rapier3d::prelude::*;
 use bevy_render::camera::PerspectiveCameraBundle;
 use bevy_render::color::Color;
 use bevy_render::mesh::shape;
@@ -12,12 +14,10 @@ use ggrs::{
     Config, InputStatus, P2PSession, PlayerHandle, PlayerType, SessionBuilder, SpectatorSession,
     SyncTestSession, UdpNonBlockingSocket,
 };
-use bevy_rapier3d::prelude::*;
 use std::env;
 use std::{hash::Hash, net::SocketAddr};
-use bevy_mod_picking::*;
 
-use crate::players::{movement, info};
+use crate::players::{info, movement};
 
 const PLANE_SIZE: f32 = 15.0;
 const CUBE_SIZE: f32 = 0.2;
@@ -77,9 +77,13 @@ pub fn setup_system(
             })
             .insert(info::Player { handle })
             .insert(info::Velocity::default())
+            .insert(info::Information::default())
             .insert_bundle(PickableBundle::default())
             // this component indicates bevy_GGRS that parts of this entity should be saved and loaded
-            .insert(Rollback::new(rip.next_id()));
+            .insert(Rollback::new(rip.next_id()))
+            .insert(RigidBody::Dynamic)
+            .insert(Collider::cuboid(CUBE_SIZE / 2.0, CUBE_SIZE / 2.0, CUBE_SIZE / 2.0)) //half the cube size
+            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
     }
 
     // light

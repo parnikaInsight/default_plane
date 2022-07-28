@@ -103,7 +103,7 @@ pub fn spawn_buildings(
                                 z: z as f64,
                             };
 
-                            println!("{:?}", coord);
+                            //println!("{:?}", coord);
 
                             let height =
                                 height_noise_fn.function.get([coord.x / 7.0, coord.z / 7.0]);
@@ -113,7 +113,7 @@ pub fn spawn_buildings(
 
                             // cube
                             let size: f32 = dimension.number as f32;
-                            println!("Size: {:?}", size);
+                           // println!("Size: {:?}", size);
 
                             commands
                                 .spawn_bundle(PbrBundle {
@@ -161,7 +161,7 @@ pub fn spawn_buildings(
                                 height += part_height;
 
                                 part_height = part_height / 2.0;
-                                println!("part: {}", part_height);
+                               // println!("part: {}", part_height);
                             }
                         }
                     }

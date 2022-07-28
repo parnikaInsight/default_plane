@@ -8,6 +8,7 @@ use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
 use bevy_mod_picking::*;
+use bevy_egui::{egui, EguiContext, EguiPlugin};
 
 mod math;
 use math::grid::MyGrid;
@@ -17,12 +18,9 @@ use pcg_city::buildings;
 
 mod ggrs_rollback;
 mod players;
-use players::{info, movement, interact};
+use players::{info, movement, interact, display};
 use ggrs_rollback::{network, ggrs_camera};
 
-use bevy_inspector_egui::RegisterInspectable;
-use bevy_inspector_egui::{widgets::ResourceInspector, Inspectable, InspectorPlugin};
-use bevy_inspector_egui::{WorldInspectorParams, WorldInspectorPlugin};
 
 const FPS: usize = 60;
 const ROLLBACK_DEFAULT: &str = "rollback_default";  
@@ -81,6 +79,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugins(DefaultPickingPlugins)
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
+        .add_plugin(RapierDebugRenderPlugin::default())
         .add_startup_system(ggrs_camera::setup_camera)
         .add_system(ggrs_camera::update_camera)
         .add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
@@ -89,13 +88,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .init_resource::<math::city_perlin::HeightNoiseFn>()
         .add_system(pcg_city::buildings::spawn_buildings)//not updating in rollback
 
-        // .register_inspectable::<info::Player>()
-        // .insert_resource(WorldInspectorParams {
-        //     despawnable_entities: true,
-        //     highlight_changes: true,
-        //     ..Default::default()
-        // })
-        .add_plugin(WorldInspectorPlugin::new())
+        .add_plugin(EguiPlugin)
+        // Systems that create Egui widgets should be run during the `CoreStage::Update` stage,
+        // or after the `EguiSystem::BeginFrame` system (which belongs to the `CoreStage::PreUpdate` stage).
+        .add_system(display::click_for_display)
+        .add_system(display::ui_example)
 
         .run();
 
