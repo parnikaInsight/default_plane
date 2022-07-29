@@ -21,6 +21,7 @@ use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundl
 pub struct Player {
     pub handle: usize,
     pub money: usize,
+    pub bounties: usize,
 }
 
 // Components that should be saved/loaded need to implement the `Reflect` trait

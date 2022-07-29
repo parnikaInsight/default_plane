@@ -34,35 +34,57 @@ pub fn click_for_display(
             PickingEvent::Hover(e) => {
                 //spawn sprite bundle with transparent sprite background overlaid with text specific to player
                 if matches!(e, HoverEvent::JustEntered(_)) {
-                    
-                    if let HoverEvent::JustEntered(player) = e {
-                        for i in players.iter() {
-                            if i.0.id() == player.id() {
-                                println!("value: {:?}", i.0);
-                            }
-                        }
-                    }
+                    // if let HoverEvent::JustEntered(player) = e {
+                    //     for i in players.iter() {
+                    //         if i.0.id() == player.id() {
+                    //             println!("value: {:?}", i.0);
+                    //         }
+                    //     }
+                    // }
 
                     let font = asset_server.load("fonts/FiraSans-Bold.ttf");
                     let text_style = TextStyle {
                         font,
-                        font_size: 60.0,
+                        font_size: 50.0,
                         color: Color::WHITE,
                     };
                     let text_alignment = TextAlignment {
                         vertical: VerticalAlign::Center,
                         horizontal: HorizontalAlign::Center,
                     };
-                    commands
-                        .spawn_bundle(Text2dBundle {
-                            text: Text::with_section(
-                                "translation",
-                                text_style.clone(),
-                                text_alignment,
-                            ),
-                            ..default()
-                        })
-                        .insert(InfoDisplay);
+
+                    if let HoverEvent::JustEntered(player) = e {
+                        for i in players.iter() {
+                            if i.0.id() == player.id() {
+                                let id: String = i.2.handle.to_string();
+                                let money = i.2.money.to_string();
+                                let bounties = i.2.bounties.to_string();
+                                commands
+                                    .spawn_bundle(Text2dBundle {
+                                        text: Text::with_section(
+                                            String::from("Id: ") + &*id + 
+                                                &*String::from("\nMoney: ") + &*money +
+                                                &*String::from("\nBounties: ") + &*bounties ,
+                                            text_style.clone(),
+                                            text_alignment,
+                                        ),
+                                        ..default()
+                                    })
+                                    .insert(InfoDisplay);
+                            }
+                        }
+                    }
+
+                    // commands
+                    //     .spawn_bundle(Text2dBundle {
+                    //         text: Text::with_section(
+                    //             "translation",
+                    //             text_style.clone(),
+                    //             text_alignment,
+                    //         ),
+                    //         ..default()
+                    //     })
+                    //     .insert(InfoDisplay);
 
                     commands
                         .spawn_bundle(SpriteBundle {
