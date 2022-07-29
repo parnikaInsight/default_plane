@@ -17,9 +17,10 @@ use std::env;
 use std::{hash::Hash, net::SocketAddr};
 use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
 
-#[derive(Default, Component)]
+#[derive(Default, Component, Debug)]
 pub struct Player {
     pub handle: usize,
+    pub money: usize,
 }
 
 // Components that should be saved/loaded need to implement the `Reflect` trait

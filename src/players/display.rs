@@ -9,12 +9,6 @@ use std::{
     thread, time,
 };
 
-pub fn ui_example(mut egui_context: ResMut<EguiContext>) {
-    egui::Window::new("Parnika").show(egui_context.ctx_mut(), |ui| {
-        ui.label("world");
-    });
-}
-
 #[derive(Component)]
 pub struct UICamera;
 
@@ -30,7 +24,8 @@ pub fn click_for_display(
     mut commands: Commands,
     mut events: EventReader<PickingEvent>,
     asset_server: Res<AssetServer>,
-    mut query: Query<(Entity, With <InfoDisplay>)> //there should only be one info display at a time
+    players: Query<(Entity, &Transform, &mut info::Player)>,
+    mut query: Query<(Entity, With<InfoDisplay>)>, //there should only be one info display at a time
 ) {
     let sprite_handle: Handle<Image> = asset_server.load("branding/icon.png");
 
@@ -39,15 +34,52 @@ pub fn click_for_display(
             PickingEvent::Hover(e) => {
                 //spawn sprite bundle with transparent sprite background overlaid with text specific to player
                 if matches!(e, HoverEvent::JustEntered(_)) {
+                    
+                    if let HoverEvent::JustEntered(player) = e {
+                        for i in players.iter() {
+                            if i.0.id() == player.id() {
+                                println!("value: {:?}", i.0);
+                            }
+                        }
+                    }
+
+                    let font = asset_server.load("fonts/FiraSans-Bold.ttf");
+                    let text_style = TextStyle {
+                        font,
+                        font_size: 60.0,
+                        color: Color::WHITE,
+                    };
+                    let text_alignment = TextAlignment {
+                        vertical: VerticalAlign::Center,
+                        horizontal: HorizontalAlign::Center,
+                    };
+                    commands
+                        .spawn_bundle(Text2dBundle {
+                            text: Text::with_section(
+                                "translation",
+                                text_style.clone(),
+                                text_alignment,
+                            ),
+                            ..default()
+                        })
+                        .insert(InfoDisplay);
+
                     commands
                         .spawn_bundle(SpriteBundle {
+                            sprite: Sprite {
+                                color: Color::rgba(0.0, 0.0, 1.0, 0.7),
+                                ..default()
+                            },
                             texture: sprite_handle.clone(),
                             ..default()
                         })
                         .insert(InfoDisplay);
                 } else {
                     //despawn or make invisible
-                    commands.entity(query.single_mut().0).despawn();
+                    for q in query.iter() {
+                        commands.entity(q.0).despawn();
+                        //commands.entity(query.single_mut().0).despawn();
+                    }
                 }
             }
             _ => info!("nothing"),

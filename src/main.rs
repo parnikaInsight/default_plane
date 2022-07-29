@@ -88,13 +88,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .init_resource::<math::city_perlin::HeightNoiseFn>()
         .add_system(pcg_city::buildings::spawn_buildings)//not updating in rollback
 
-        .add_plugin(EguiPlugin)
-        // Systems that create Egui widgets should be run during the `CoreStage::Update` stage,
-        // or after the `EguiSystem::BeginFrame` system (which belongs to the `CoreStage::PreUpdate` stage).
         .add_system(display::click_for_display)
-        //.add_system(display::ui_example)
         .add_startup_system(display::setup_ui_camera)
-        //.add_system(display::switch_cams)
 
         .run();
 
