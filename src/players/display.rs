@@ -39,6 +39,7 @@ pub fn click_for_display(
     asset_server: Res<AssetServer>,
 ) {
     let sprite_handle: Handle<Image> = asset_server.load("branding/icon.png");
+    let mut entity_id = commands.spawn().insert(UICamera).id();
 
     for event in events.iter() {
         match event {
@@ -46,15 +47,17 @@ pub fn click_for_display(
                 //spawn sprite bundle with transparent sprite background overlaid with text specific to player
                 let player: Entity;
                 if matches!(e, HoverEvent::JustEntered(player)) {
-                    commands.spawn_bundle(SpriteBundle {
+                    entity_id = commands.spawn_bundle(SpriteBundle {
                         texture: sprite_handle.clone(),
                         ..default()
-                    });
-
-                    println!("here");
-                    break;
+                    })
+                    .id();
+                    println!("here {:?}", entity_id);
+                    //break;
                 } else {
                     //despawn or make invisible
+                    commands.entity(entity_id).despawn();
+                    println!("bye {:?}", entity_id);
                 }
             }
             _ => info!("nothing"),
