@@ -1,6 +1,6 @@
 Today
-- every player should be identifiable by peerid and their info (# of money, # of bounties) -- window should move with them
 - add friends should be very easy (rightclick, add as freinds)
+
 - every time u clikc, if ur in a certain radius, u do -20 damage--everyone starts w/ 100 health
 
 - kademlia address as ggrs socket

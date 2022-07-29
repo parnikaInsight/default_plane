@@ -75,7 +75,7 @@ pub fn setup_system(
                 transform,
                 ..Default::default()
             })
-            .insert(info::Player { handle, money: 100, bounties: 3 })
+            .insert(info::Player { handle, money: 50, bounties: 3, friends: vec!(), health: 100})
             .insert(info::Velocity::default())
             .insert(info::Information::default())
             .insert_bundle(PickableBundle::default())

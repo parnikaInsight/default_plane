@@ -1,0 +1,2 @@
+- InfoDisplay should move with character or scale according to distance. 
+Should appear only if u hover and u (camera) is within certain distance or clicked "I" or smth

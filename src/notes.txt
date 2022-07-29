@@ -1,3 +1,4 @@
+How It Works
 - hover on player to get info
 - wasd to move player
 - up down left right to move camera

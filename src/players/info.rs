@@ -22,6 +22,8 @@ pub struct Player {
     pub handle: usize,
     pub money: usize,
     pub bounties: usize,
+    pub friends: Vec<usize>,
+    pub health: usize,
 }
 
 // Components that should be saved/loaded need to implement the `Reflect` trait
