@@ -90,6 +90,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         .add_system(display::click_for_display)
         .add_startup_system(display::setup_ui_camera)
+        .add_system(interact::add_friend)
 
         .run();
 

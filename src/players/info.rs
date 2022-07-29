@@ -16,13 +16,14 @@ use bevy_rapier3d::prelude::*;
 use std::env;
 use std::{hash::Hash, net::SocketAddr};
 use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
+use std::collections::HashMap;
 
 #[derive(Default, Component, Debug)]
 pub struct Player {
-    pub handle: usize,
+    pub handle: u32,
     pub money: usize,
     pub bounties: usize,
-    pub friends: Vec<usize>,
+    pub friends: HashMap<u32, u32>,
     pub health: usize,
 }
 

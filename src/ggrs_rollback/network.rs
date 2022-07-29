@@ -9,6 +9,7 @@ use bevy_render::camera::PerspectiveCameraBundle;
 use bevy_render::color::Color;
 use bevy_render::mesh::shape;
 use bevy_render::mesh::Mesh;
+use std::collections::HashMap;
 use bytemuck::{Pod, Zeroable};
 use ggrs::{
     Config, InputStatus, P2PSession, PlayerHandle, PlayerType, SessionBuilder, SpectatorSession,
@@ -58,7 +59,11 @@ pub fn setup_system(
     // When loading entities from the past, this extra id is necessary to connect entities over different game states
     let r = PLANE_SIZE / 4.;
 
-    for handle in 0..num_players {
+    // read cmd line arguments: 0 will be 7000, 1 will be 7001
+    let args: Vec<String> = env::args().collect();
+    let query = &args[1];
+
+    for handle in 0..num_players{
         let rot = handle as f32 / num_players as f32 * 2. * std::f32::consts::PI;
         let x = r * rot.cos();
         let z = r * rot.sin();
@@ -68,22 +73,41 @@ pub fn setup_system(
         transform.translation.y = CUBE_SIZE / 2.;
         transform.translation.z = z;
 
-        commands
+        let entity_id = commands
             .spawn_bundle(PbrBundle {
                 mesh: meshes.add(Mesh::from(shape::Cube { size: CUBE_SIZE })),
                 material: materials.add(PLAYER_COLORS[handle as usize].into()),
                 transform,
                 ..Default::default()
             })
-            .insert(info::Player { handle, money: 50, bounties: 3, friends: vec!(), health: 100})
+            .insert(info::Player {
+                handle: handle as u32,
+                money: 50,
+                bounties: 3,
+                friends: HashMap::new(),
+                health: 100,
+            })
             .insert(info::Velocity::default())
             .insert(info::Information::default())
             .insert_bundle(PickableBundle::default())
             // this component indicates bevy_GGRS that parts of this entity should be saved and loaded
             .insert(Rollback::new(rip.next_id()))
             .insert(RigidBody::Dynamic)
-            .insert(Collider::cuboid(CUBE_SIZE / 2.0, CUBE_SIZE / 2.0, CUBE_SIZE / 2.0)) //half the cube size
-            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+            .insert(Collider::cuboid(
+                CUBE_SIZE / 2.0,
+                CUBE_SIZE / 2.0,
+                CUBE_SIZE / 2.0,
+            )) //half the cube size
+            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)))
+            .id();
+
+        //insert Me
+        let q: usize = query.parse().unwrap();
+        if q == handle {
+            commands
+                .entity(entity_id)
+                .insert(Me);
+        }
     }
 
     // light
@@ -92,6 +116,9 @@ pub fn setup_system(
         ..Default::default()
     });
 }
+
+#[derive(Debug, Component)]
+pub struct Me;
 
 /// You need to define a config struct to bundle all the generics of GGRS. You can safely ignore `State` and leave it as u8 for all GGRS functionality.
 /// TODO: Find a way to hide the state type.
