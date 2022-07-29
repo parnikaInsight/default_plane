@@ -21,41 +21,16 @@ pub struct UICamera;
 /// Spawn the UI camera
 pub fn setup_ui_camera(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
-    //.insert_bundle(PickingCameraBundle::default());
 
-    let font_handle: Handle<Font> = Default::default();
-    let hello_world = Text::with_section(
-        "hello world!".to_string(),
-        TextStyle {
-            font: font_handle.clone(),
-            font_size: 100.0,
-            color: Color::WHITE,
-        },
-        TextAlignment {
-            vertical: VerticalAlign::Center,
-            horizontal: HorizontalAlign::Center,
-        },
-    );
-    commands.spawn_bundle(TextBundle {
-        text: hello_world,
-        ..default()
-    });
+    // let sprite_handle = asset_server.load("branding/icon.png");
 
-    //commands.spawn_bundle(ButtonBundle::default());
+    // commands.spawn_bundle(SpriteBundle {
+    //     texture: sprite_handle.clone(),
+    //     ..default()
+    // });
 
     println!("spawned");
 }
-
-// pub fn switch_cams(keyboard_input: Res<Input<KeyCode>>, active_camera: &mut ActiveCamera<Camera>) {
-//     //let mut active_camera = app.world.get_resource_mut::<ActiveCamera<_>>().unwrap();
-
-//     if keyboard_input.pressed(KeyCode::Escape) {
-//         ActiveCamera::set(active_camera, UICamera);
-//     }
-//     else {
-//         ActiveCamera::set(active_camera, MainCamera);
-//     }
-// }
 
 pub fn click_for_display(
     mut commands: Commands,
@@ -63,24 +38,6 @@ pub fn click_for_display(
     mut meshes: ResMut<Assets<Mesh>>,
     asset_server: Res<AssetServer>,
 ) {
-    // let font_handle: Handle<Font> = Default::default();
-    // let hello_world = Text::with_section(
-    //     "hello world!".to_string(),
-    //     TextStyle {
-    //         font: font_handle.clone(),
-    //         font_size: 100.0,
-    //         color: Color::WHITE,
-    //     },
-    //     TextAlignment {
-    //         vertical: VerticalAlign::Center,
-    //         horizontal: HorizontalAlign::Center,
-    //     },
-    // );
-    // commands.spawn_bundle(Text2dBundle {
-    //     text: hello_world,
-    //     ..default()
-    // });
-
     let sprite_handle: Handle<Image> = asset_server.load("branding/icon.png");
 
     for event in events.iter() {
@@ -91,7 +48,6 @@ pub fn click_for_display(
                 if matches!(e, HoverEvent::JustEntered(player)) {
                     commands.spawn_bundle(SpriteBundle {
                         texture: sprite_handle.clone(),
-                        transform: Transform::from_xyz(0.0, 0.0, -10.0),
                         ..default()
                     });
 
