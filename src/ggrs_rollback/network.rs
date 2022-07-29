@@ -68,7 +68,7 @@ pub fn setup_system(
         transform.translation.y = CUBE_SIZE / 2.;
         transform.translation.z = z;
 
-        commands
+        let id = commands
             .spawn_bundle(PbrBundle {
                 mesh: meshes.add(Mesh::from(shape::Cube { size: CUBE_SIZE })),
                 material: materials.add(PLAYER_COLORS[handle as usize].into()),
@@ -83,7 +83,8 @@ pub fn setup_system(
             .insert(Rollback::new(rip.next_id()))
             .insert(RigidBody::Dynamic)
             .insert(Collider::cuboid(CUBE_SIZE / 2.0, CUBE_SIZE / 2.0, CUBE_SIZE / 2.0)) //half the cube size
-            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+            .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)))
+            .id();
     }
 
     // light

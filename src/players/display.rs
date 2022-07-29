@@ -21,43 +21,33 @@ pub struct UICamera;
 /// Spawn the UI camera
 pub fn setup_ui_camera(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
-
-    // let sprite_handle = asset_server.load("branding/icon.png");
-
-    // commands.spawn_bundle(SpriteBundle {
-    //     texture: sprite_handle.clone(),
-    //     ..default()
-    // });
-
-    println!("spawned");
 }
+
+#[derive(Component)]
+pub struct InfoDisplay;
 
 pub fn click_for_display(
     mut commands: Commands,
     mut events: EventReader<PickingEvent>,
-    mut meshes: ResMut<Assets<Mesh>>,
     asset_server: Res<AssetServer>,
+    mut query: Query<(Entity, With <InfoDisplay>)> //there should only be one info display at a time
 ) {
     let sprite_handle: Handle<Image> = asset_server.load("branding/icon.png");
-    let mut entity_id = commands.spawn().insert(UICamera).id();
 
     for event in events.iter() {
         match event {
             PickingEvent::Hover(e) => {
                 //spawn sprite bundle with transparent sprite background overlaid with text specific to player
-                let player: Entity;
-                if matches!(e, HoverEvent::JustEntered(player)) {
-                    entity_id = commands.spawn_bundle(SpriteBundle {
-                        texture: sprite_handle.clone(),
-                        ..default()
-                    })
-                    .id();
-                    println!("here {:?}", entity_id);
-                    //break;
+                if matches!(e, HoverEvent::JustEntered(_)) {
+                    commands
+                        .spawn_bundle(SpriteBundle {
+                            texture: sprite_handle.clone(),
+                            ..default()
+                        })
+                        .insert(InfoDisplay);
                 } else {
                     //despawn or make invisible
-                    commands.entity(entity_id).despawn();
-                    println!("bye {:?}", entity_id);
+                    commands.entity(query.single_mut().0).despawn();
                 }
             }
             _ => info!("nothing"),
