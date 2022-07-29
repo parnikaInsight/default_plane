@@ -1,7 +1,5 @@
 Today
 - every player should be identifiable by peerid and their info (# of money, # of bounties) -- window should move with them
-- insert acounts struct as startup system and system to overwrite last block to get bounty (everything from networks
-side is immutable--just reinsert resource or insert pointer much cleaner)
 - add friends should be very easy (rightclick, add as freinds)
 - every time u clikc, if ur in a certain radius, u do -20 damage--everyone starts w/ 100 health
 
@@ -15,9 +13,14 @@ side is immutable--just reinsert resource or insert pointer much cleaner)
 
 ----------------------------------------------------------------
 Later
+
+- insert acounts struct as startup system and system to overwrite last block to get bounty (everything from networks
+side is immutable--just reinsert resource or insert pointer much cleaner)
+
 - easy to identify bounty
 - when bounty is killed, see who kill them (event for killing and being killed in case desynched 
 and missed who killed--this shoudl be multiple frames)
+
 - resynchronization ("snapshot" state)--he doesn;t need this for blockchain side
 
 ----------------------------------------------------------------

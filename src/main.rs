@@ -92,7 +92,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // Systems that create Egui widgets should be run during the `CoreStage::Update` stage,
         // or after the `EguiSystem::BeginFrame` system (which belongs to the `CoreStage::PreUpdate` stage).
         .add_system(display::click_for_display)
-        .add_system(display::ui_example)
+        //.add_system(display::ui_example)
+        .add_startup_system(display::setup_ui_camera)
+        //.add_system(display::switch_cams)
 
         .run();
 

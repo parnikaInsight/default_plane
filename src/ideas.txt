@@ -1,1 +1,3 @@
 - drag and drop asset files onto character to change skin/ texture
+- spawn sprite bundle with transparent sprite background overlaid with text specific to player
+only if hover and u (camera) is within certain distance or clikced "I" or smth
