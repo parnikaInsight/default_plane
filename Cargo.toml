@@ -12,16 +12,17 @@ noise = "0.7.0"
 glam = "0.21.2"
 bevy_dolly = {path = "./src/crates/bevy_dolly"} #updated for bevy 0.8
 dolly = "0.3.1"
-bevy_mod_picking = "0.7.0"
-bevy_mod_raycast = "0.5.0"
+bevy_mod_picking = {git = "https://github.com/paxsethorld/bevy_mod_picking.git", branch = "main"} #updated for bevy 0.8
+bevy_mod_raycast = { git = "https://github.com/paxsethorld/bevy_mod_raycast.git", branch = "main" } #updated for bevy 0.8
 bevy_rapier3d = "0.15.0"
+#web-sys = "0.3.59"
 #bevy_egui = "0.14"
 
 bytemuck = { version = "1.7", features=["derive"]}
 instant = "0.1"
 log = "0.4"
 ggrs = "0.9.1" #{ git = "https://github.com/gschup/ggrs", features=["sync-send"]}
-bevy_ggrs = {git = "https://github.com/gschup/bevy_ggrs"}
+bevy_ggrs = {git = "https://github.com/paxsethorld/bevy_ggrs.git"}#updated for bevy 0.8
 structopt = "0.3"
 serde = "1.0.130"
 serde_json = "1.0"
