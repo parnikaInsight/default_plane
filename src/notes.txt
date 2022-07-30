@@ -3,3 +3,4 @@ How It Works
 - wasd to move player
 - up down left right to move camera
 - Esc to toggle between camera having control of mouse and u having control
+- click to add friend

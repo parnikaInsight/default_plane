@@ -17,6 +17,7 @@ use ggrs::{
 };
 use std::env;
 use std::{hash::Hash, net::SocketAddr};
+use std::collections::HashSet;
 
 use crate::players::{info, movement};
 
@@ -84,7 +85,7 @@ pub fn setup_system(
                 handle: handle as u32,
                 money: 50,
                 bounties: 3,
-                friends: HashMap::new(),
+                friends: HashSet::new(),
                 health: 100,
             })
             .insert(info::Velocity::default())

@@ -3,6 +3,9 @@ use crate::ggrs_rollback::network;
 use bevy::prelude::*;
 use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
 use std::env;
+use std::vec::Vec;
+
+use super::info::Player;
 
 pub fn print_events(mut events: EventReader<PickingEvent>) {
     for event in events.iter() {
@@ -16,7 +19,7 @@ pub fn print_events(mut events: EventReader<PickingEvent>) {
 
 pub fn add_friend(
     mut events: EventReader<PickingEvent>,
-    players: Query<(Entity, &Transform, &mut info::Player)>,
+    mut players: Query<(Entity, &Transform, &mut info::Player)>,
     mut me: Query<(Entity, &network::Me)>,
 ) {
     //i need to do this better
@@ -32,44 +35,35 @@ pub fn add_friend(
                 let mut id: u32 = 90;
                 //spawn sprite bundle with transparent sprite background overlaid with text specific to player
                 
-                for i in players.iter() {
-                    //if entity is the clicked one
-                    if i.0.id() == e.id() {
-                        id = i.2.handle;
-                        println!("id{:?}", id);
+                for (entity, transform, mut player) in players.iter_mut() {
+                    //if entity is the clicked one and isn't me
+                    if entity.id() == e.id() && entity.id() != me.single_mut().0.id(){
+                        id = player.handle;
                         added = true;
                     }
-                    // let me: u32 = my_handle.parse().unwrap(); //wrong how do I get my own entity id (!= handle)
-                    // let the_id: u32 = i.0.id().into();
-                    // println!("me {:?} the_id {:?}", me, the_id);
-                    
                     //if entity is me
-                    if i.0.id() == me.single_mut().0.id() && added == true{
-                        println!("frines hey {:?}", i.2.friends);
-                        let mut my_friends = i.2.friends.clone(); 
-                        my_friends.insert(id, 88);
-                        println!("gogo{:?}", my_friends);
-                        // *i.2.friends = *my_friends.as_slice();
-
-                        // let mut new_friends = i.2.friends.clone();
-                        // new_friends.insert(id, 0);
-                        // *(i.2).friends = new_friends;
+                    if entity.id() == me.single_mut().0.id() && added == true{
+                        player.add_a_friend(id.to_owned());
+                        added = false;
+                        println!("added friend: {:?}", id);
                     }
                 }
                 // do again in case u passed urself before passing friend, do better
-                for i in players.iter() {
-                    if i.0.id() == e.id() {
-                        id = i.2.handle;
+                for (entity, transform, mut player) in players.iter_mut() {
+                    //if entity is the clicked one
+                    if entity.id() == e.id() && entity.id() != me.single_mut().0.id(){
+                        id = player.handle;
+                        added = true;
                     }
-                    let me: u32 = my_handle.parse().unwrap();
-                    let the_id: u32 = i.0.id().into();
-                    if the_id == me && added == true{
-                        println!("frines {:?}", i.2.friends);
-                        //i.2.friends.push(id);
+                    //if entity is me
+                    if entity.id() == me.single_mut().0.id() && added == true{
+                        player.add_a_friend(id.to_owned());
+                        added = false;
+                        println!("added friend: {:?}", id);
                     }
                 }
             }
-            _ => info!("nothing"),
+            _ => info!(""),
         }
     }
 }

@@ -16,15 +16,22 @@ use bevy_rapier3d::prelude::*;
 use std::env;
 use std::{hash::Hash, net::SocketAddr};
 use bevy_mod_picking::{DefaultPickingPlugins, PickableBundle, PickingCameraBundle, PickingEvent};
-use std::collections::HashMap;
+use std::collections::HashSet;
+use std::vec::Vec;
 
 #[derive(Default, Component, Debug)]
 pub struct Player {
     pub handle: u32,
     pub money: usize,
     pub bounties: usize,
-    pub friends: HashMap<u32, u32>,
+    pub friends: HashSet<u32>,
     pub health: usize,
+}
+
+impl Player {
+    pub fn add_a_friend(&mut self, friend: u32) {
+        self.friends.insert(friend);
+    }
 }
 
 // Components that should be saved/loaded need to implement the `Reflect` trait

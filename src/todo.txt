@@ -1,9 +1,4 @@
 Today
-- add friends should be very easy (rightclick, add as freinds)
-
-- every time u clikc, if ur in a certain radius, u do -20 damage--everyone starts w/ 100 health
-
-- kademlia address as ggrs socket
 
 - skeletal animation
 - basic objects, multiple people, combat
@@ -14,9 +9,12 @@ Today
 ----------------------------------------------------------------
 Later
 
+- kademlia address as ggrs socket
+
 - insert acounts struct as startup system and system to overwrite last block to get bounty (everything from networks
 side is immutable--just reinsert resource or insert pointer much cleaner)
 
+- add bounty to info as bool and make true based on hash of block
 - easy to identify bounty
 - when bounty is killed, see who kill them (event for killing and being killed in case desynched 
 and missed who killed--this shoudl be multiple frames)
@@ -30,7 +28,7 @@ Other
 not bevy ggrs
 
 - game to networks to database but game doesnt communicate w/ database; communicater: crossbeam channel
-- alr have accounts, bountry
+- alr have accounts, bounty
 - sending player input, which friend added, healht damage, to game side network: backroll
 - sending who claimed bounty to insight network: kademlia
 

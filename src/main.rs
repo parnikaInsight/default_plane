@@ -18,7 +18,7 @@ use pcg_city::buildings;
 
 mod ggrs_rollback;
 mod players;
-use players::{info, movement, interact, display};
+use players::{info, movement, interact, display, fight};
 use ggrs_rollback::{network, ggrs_camera};
 
 
@@ -82,7 +82,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugin(RapierDebugRenderPlugin::default())
         .add_startup_system(ggrs_camera::setup_camera)
         .add_system(ggrs_camera::update_camera)
-        .add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
+        //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
 
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
@@ -91,6 +91,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(display::click_for_display)
         .add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
+        .add_system(fight::fight)
 
         .run();
 
