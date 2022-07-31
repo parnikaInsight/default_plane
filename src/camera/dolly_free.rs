@@ -44,7 +44,7 @@ pub fn setup(
     );
 
     commands
-        .spawn_bundle(PerspectiveCameraBundle {
+        .spawn_bundle(Camera3dBundle {
             transform,
             ..Default::default()
         })

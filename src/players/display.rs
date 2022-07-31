@@ -1,9 +1,8 @@
 use crate::{camera::dolly_free::MainCamera, players::info};
 use bevy::prelude::*;
-use bevy_egui::{egui, EguiContext, EguiPlugin};
+//use bevy_egui::{egui, EguiContext, EguiPlugin};
 use bevy_mod_picking::*;
 use bevy_mod_picking::{HoverEvent, PickingEvent};
-use bevy_render::camera::ActiveCamera;
 use std::{
     marker::{PhantomData, PhantomPinned},
     thread, time,
@@ -14,7 +13,7 @@ pub struct UICamera;
 
 /// Spawn the UI camera
 pub fn setup_ui_camera(mut commands: Commands) {
-    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
+    commands.spawn_bundle(Camera2dBundle::default());
 }
 
 #[derive(Component)]
@@ -54,21 +53,20 @@ pub fn click_for_display(
                                 let health = i.2.health.to_string();
                                 commands
                                     .spawn_bundle(Text2dBundle {
-                                        text: Text::with_section(
+                                        text: Text::from_section(
                                             String::from("Id: ") + &*id + 
                                                 &*String::from("\nHealth: ") + &*health +
                                                 &*String::from("\nMoney: $") + &*money +
                                                 &*String::from("\nBounties: ") + &*bounties ,
                                             text_style.clone(),
-                                            text_alignment,
-                                        ),
+                                        ).with_alignment(text_alignment),
                                         ..default()
                                     })
                                     .insert(InfoDisplay);
                             }
                         }
                     }
-
+                    println!("spawning sprite");
                     commands
                         .spawn_bundle(SpriteBundle {
                             sprite: Sprite {

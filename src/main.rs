@@ -8,7 +8,7 @@ use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
 use bevy_mod_picking::*;
-use bevy_egui::{egui, EguiContext, EguiPlugin};
+//use bevy_egui::{egui, EguiContext, EguiPlugin};
 
 mod math;
 use math::grid::MyGrid;
@@ -89,7 +89,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(pcg_city::buildings::spawn_buildings)//not updating in rollback
 
         .add_system(display::click_for_display)
-        .add_startup_system(display::setup_ui_camera)
+        //.add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
         .add_system(fight::fight)
 

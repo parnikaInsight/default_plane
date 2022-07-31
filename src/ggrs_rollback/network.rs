@@ -5,7 +5,6 @@ use bevy_pbr::PbrBundle;
 use bevy_pbr::PointLightBundle;
 use bevy_pbr::StandardMaterial;
 use bevy_rapier3d::prelude::*;
-use bevy_render::camera::PerspectiveCameraBundle;
 use bevy_render::color::Color;
 use bevy_render::mesh::shape;
 use bevy_render::mesh::Mesh;

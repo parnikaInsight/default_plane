@@ -32,9 +32,13 @@ pub fn setup_camera(
     );
 
     commands
-        .spawn_bundle(PerspectiveCameraBundle {
+        .spawn_bundle(Camera3dBundle {
             transform,
             ..Default::default()
+        })
+        .insert(UiCameraConfig { //idk why not displaying
+            show_ui: true,
+            ..default()
         })
         .insert_bundle(PickingCameraBundle::default())
         .insert(MainCamera);
