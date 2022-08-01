@@ -1,0 +1,4 @@
+Display
+- Display sprite when hovering working w/ 0.7 but not appearing w/ bevy 0.8
+- Only 1 camera needs to be spawned in 0.8, which is Camera3dBundle in ggrs_camera
+- In 0.7, I had to have a separate UI camera
