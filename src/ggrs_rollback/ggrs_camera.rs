@@ -4,7 +4,6 @@ use bevy_rapier3d::prelude::*;
 use bevy::prelude::*;
 use bevy_mod_picking::*;
 
-use crate::cubemap::cubemap_setup;
 
 #[derive(Component)]
 pub struct MainCamera;
@@ -34,7 +33,6 @@ pub fn setup_camera(
             .build(),
     );
 
-    let skybox_handle = asset_server.load(cubemap_setup::CUBEMAPS[0].0);
     commands
         .spawn_bundle(Camera3dBundle {
             transform,
@@ -46,11 +44,6 @@ pub fn setup_camera(
         })
 
         .insert_bundle(PickingCameraBundle::default())
-        .insert_bundle((
-            EnvironmentMap {
-                handle: skybox_handle.clone(),
-            },
-        ))
         .insert(MainCamera);
 
     // light

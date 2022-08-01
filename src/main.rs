@@ -10,8 +10,6 @@ use bevy_mod_picking::*;
 use bevy_rapier3d::prelude::*;
 //use bevy_egui::{egui, EguiContext, EguiPlugin};
 
-mod cubemap;
-use cubemap::{cubemap_setup, cubemap_materials};
 mod math;
 use math::grid::MyGrid;
 mod camera;
@@ -89,13 +87,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //.add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
         .add_system(fight::fight);
-
-    app.add_plugin(MaterialPlugin::<cubemap_materials::CubemapMaterial>::default())
-        .add_plugin(MaterialPlugin::<cubemap_materials::CubemapArrayMaterial>::default())
-        .add_startup_system(cubemap_setup::setup)
-        .add_system(cubemap_setup::cycle_cubemap_asset)
-        .add_system(cubemap_setup::asset_loaded.after(cubemap_setup::cycle_cubemap_asset))
-        .add_system(cubemap_setup::animate_light_direction);
 
     app.run();
 
