@@ -4,12 +4,15 @@ use bevy_rapier3d::prelude::*;
 use bevy::prelude::*;
 use bevy_mod_picking::*;
 
+use crate::cubemap::cubemap_setup;
+
 #[derive(Component)]
 pub struct MainCamera;
 
 /// set up a simple 3D scene
 pub fn setup_camera(
     mut commands: Commands,
+    asset_server: Res<AssetServer>,
 ) {
     //let translation = [-2.0f32, 2.0f32, 5.0f32];
     let translation = [-2.0f32, 2.0f32, 5.0f32];
@@ -31,6 +34,7 @@ pub fn setup_camera(
             .build(),
     );
 
+    let skybox_handle = asset_server.load(cubemap_setup::CUBEMAPS[0].0);
     commands
         .spawn_bundle(Camera3dBundle {
             transform,
@@ -40,7 +44,13 @@ pub fn setup_camera(
             show_ui: true,
             ..default()
         })
+
         .insert_bundle(PickingCameraBundle::default())
+        .insert_bundle((
+            EnvironmentMap {
+                handle: skybox_handle.clone(),
+            },
+        ))
         .insert(MainCamera);
 
     // light
