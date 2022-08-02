@@ -14,7 +14,7 @@ bevy_dolly = {path = "./src/crates/bevy_dolly"} #updated for bevy 0.8
 dolly = "0.3.1"
 bevy_mod_picking = {git = "https://github.com/paxsethorld/bevy_mod_picking.git", branch = "main"} #updated for bevy 0.8
 bevy_mod_raycast = { git = "https://github.com/paxsethorld/bevy_mod_raycast.git", branch = "main" } #updated for bevy 0.8
-bevy_rapier3d = { git = "https://github.com/devil-ira/bevy_rapier", branch = "update-to-bevy-0.8" }
+bevy_rapier3d = "0.16.0" #https://github.com/devil-ira/bevy_rapier", branch = "update-to-bevy-0.8" }
 #web-sys = "0.3.59"
 #bevy_egui = "0.14"
 

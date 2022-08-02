@@ -615,8 +615,9 @@ checksum = "d92d5679e89602a18682a37846573dcd1979410179e14204280460ba9fb8713a"
 
 [[package]]
 name = "bevy_rapier3d"
-version = "0.15.0"
-source = "git+https://github.com/devil-ira/bevy_rapier?branch=update-to-bevy-0.8#2228c1b5e3cd92dac64322acd7c2b8d560079027"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d6a7e920b88d792baddfd06a4429d9ecf018db7af4e5fc714b4a8b154d36fe9d"
 dependencies = [
  "bevy",
  "bitflags",
@@ -2370,8 +2371,9 @@ dependencies = [
 
 [[package]]
 name = "nalgebra"
-version = "0.31.0"
-source = "git+https://github.com/dimforge/nalgebra#d0d88f1e82eb8d65857d520eb9755ceb8b1d6f32"
+version = "0.31.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e9e0a04ce089f9401aac565c740ed30c46291260f27d4911fdbaa6ca65fa3044"
 dependencies = [
  "approx",
  "glam",
@@ -2387,7 +2389,8 @@ dependencies = [
 [[package]]
 name = "nalgebra-macros"
 version = "0.1.0"
-source = "git+https://github.com/dimforge/nalgebra#d0d88f1e82eb8d65857d520eb9755ceb8b1d6f32"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01fcc0b8149b4632adc89ac3b7b31a12fb6099a0317a4eb2ebff574ef7de7218"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3978,3 +3981,8 @@ name = "xi-unicode"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a67300977d3dc3f8034dae89778f502b6ba20b269527b3223ba59c0cf393bb8a"
+
+[[patch.unused]]
+name = "nalgebra"
+version = "0.31.0"
+source = "git+https://github.com/dimforge/nalgebra#d0d88f1e82eb8d65857d520eb9755ceb8b1d6f32"
