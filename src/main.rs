@@ -6,10 +6,6 @@ use bevy::prelude::*;
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        // .insert_resource(AmbientLight {
-        //     color: Color::WHITE,
-        //     brightness: 1.0,
-        // })
 
         //fox
         .add_startup_system(setup_fox)
@@ -21,8 +17,8 @@ fn main() {
             brightness: 1.0 / 5.0f32,
         })
         //helmet
-        .add_startup_system(setup_helmet)
-        .add_system(animate_light_direction)
+        // .add_startup_system(setup_helmet)
+        // .add_system(animate_light_direction)
 
         .run();
 }
@@ -35,11 +31,34 @@ fn setup_fox(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
+    commands.spawn_bundle(Camera3dBundle {
+        transform: Transform::from_xyz(0.7, 0.7, 1.0).looking_at(Vec3::new(0.0, 0.3, 0.0), Vec3::Y),
+        ..default()
+    });
+    const HALF_SIZE: f32 = 1.0;
+    commands.spawn_bundle(DirectionalLightBundle {
+        directional_light: DirectionalLight {
+            shadow_projection: OrthographicProjection {
+                left: -HALF_SIZE,
+                right: HALF_SIZE,
+                bottom: -HALF_SIZE,
+                top: HALF_SIZE,
+                near: -10.0 * HALF_SIZE,
+                far: 10.0 * HALF_SIZE,
+                ..default()
+            },
+            shadows_enabled: true,
+            ..default()
+        },
+        ..default()
+    });
+
     // Insert a resource with the current scene information
     commands.insert_resource(Animations(vec![
-        asset_server.load("models/animated/Fox.glb#Animation2"),
-        asset_server.load("models/animated/Fox.glb#Animation1"),
-        asset_server.load("models/animated/Fox.glb#Animation0"),
+        // asset_server.load("models/animated/Fox.glb#Animation2"),
+        // asset_server.load("models/animated/Fox.glb#Animation1"),
+        // asset_server.load("models/animated/Fox.glb#Animation0"),
+        asset_server.load("models/cube/cube.gltf#Animation0"),
     ]));
 
     // Camera
@@ -73,7 +92,8 @@ fn setup_fox(
 
     // Fox
     commands.spawn_bundle(SceneBundle {
-        scene: asset_server.load("models/animated/Fox.glb#Scene0"),
+       // scene: asset_server.load("models/animated/Fox.glb#Scene0"),
+        scene: asset_server.load("models/cube/cube.gltf#Scene0"),
         ..default()
     });
 
@@ -157,31 +177,31 @@ fn keyboard_animation_control(
 // }
 
 fn setup_helmet(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.spawn_bundle(Camera3dBundle {
-        transform: Transform::from_xyz(0.7, 0.7, 1.0).looking_at(Vec3::new(0.0, 0.3, 0.0), Vec3::Y),
-        ..default()
-    });
-    const HALF_SIZE: f32 = 1.0;
-    commands.spawn_bundle(DirectionalLightBundle {
-        directional_light: DirectionalLight {
-            shadow_projection: OrthographicProjection {
-                left: -HALF_SIZE,
-                right: HALF_SIZE,
-                bottom: -HALF_SIZE,
-                top: HALF_SIZE,
-                near: -10.0 * HALF_SIZE,
-                far: 10.0 * HALF_SIZE,
-                ..default()
-            },
-            shadows_enabled: true,
-            ..default()
-        },
-        ..default()
-    });
-    commands.spawn_bundle(SceneBundle {
-        scene: asset_server.load("models/FlightHelmet/FlightHelmet.gltf#Scene0"),
-        ..default()
-    });
+    // commands.spawn_bundle(Camera3dBundle {
+    //     transform: Transform::from_xyz(0.7, 0.7, 1.0).looking_at(Vec3::new(0.0, 0.3, 0.0), Vec3::Y),
+    //     ..default()
+    // });
+    // const HALF_SIZE: f32 = 1.0;
+    // commands.spawn_bundle(DirectionalLightBundle {
+    //     directional_light: DirectionalLight {
+    //         shadow_projection: OrthographicProjection {
+    //             left: -HALF_SIZE,
+    //             right: HALF_SIZE,
+    //             bottom: -HALF_SIZE,
+    //             top: HALF_SIZE,
+    //             near: -10.0 * HALF_SIZE,
+    //             far: 10.0 * HALF_SIZE,
+    //             ..default()
+    //         },
+    //         shadows_enabled: true,
+    //         ..default()
+    //     },
+    //     ..default()
+    // });
+    // commands.spawn_bundle(SceneBundle {
+    //     scene: asset_server.load("models/FlightHelmet/FlightHelmet.gltf#Scene0"),
+    //     ..default()
+    // });
 }
 
 fn animate_light_direction(
