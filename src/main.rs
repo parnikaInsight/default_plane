@@ -15,6 +15,8 @@ use math::grid::MyGrid;
 mod camera;
 mod pcg_city;
 use pcg_city::buildings;
+mod gltf;
+use gltf::fox;
 
 mod ggrs_rollback;
 mod players;
@@ -82,11 +84,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
-        .add_system(pcg_city::buildings::spawn_buildings) //not updating in rollback
+       // .add_system(pcg_city::buildings::spawn_buildings) //not updating in rollback
         .add_system(display::click_for_display)
         //.add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
         .add_system(fight::fight);
+
+        //fox
+    app.add_startup_system(fox::setup_fox)
+        .add_system(fox::setup_scene_once_loaded)
+
+        .insert_resource(AmbientLight {
+            color: Color::WHITE,
+            brightness: 1.0 / 5.0f32,
+        });
+        //helmet
+        //.add_startup_system(fox::setup_helmet)
+        //.add_system(fox::animate_light_direction);
 
     app.run();
 
