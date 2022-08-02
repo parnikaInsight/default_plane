@@ -16,7 +16,7 @@ mod camera;
 mod pcg_city;
 use pcg_city::buildings;
 mod gltf;
-use gltf::fox;
+use gltf::character;
 
 mod ggrs_rollback;
 mod players;
@@ -50,7 +50,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             Schedule::default().with_stage(
                 ROLLBACK_DEFAULT,
                 SystemStage::parallel()
-                    .with_system(movement::move_cube_system)
+                    .with_system(network::move_setup_scene_once_loaded)
+                    //.with_system(movement::move_cube_system)
                     .with_system(movement::increase_frame_system),
                 //.with_system(pcg_city::buildings::spawn_buildings), //i think spawning can't be done in rollback
             ),
@@ -64,7 +65,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             //must come before default plugin
             width: 720.,
             height: 720.,
-            title: "GGRS Box Game".to_owned(),
+            title: "Insight".to_owned(),
             ..Default::default()
         })
         .add_plugins(DefaultPlugins)
@@ -91,16 +92,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(fight::fight);
 
         //fox
-    app.add_startup_system(fox::setup_fox)
-        .add_system(fox::setup_scene_once_loaded)
+    app
+        // .add_startup_system(character::setup_character)
+        // .add_system(character::setup_scene_once_loaded)
+        //.add_system(network::move_setup_scene_once_loaded)
 
         .insert_resource(AmbientLight {
             color: Color::WHITE,
             brightness: 1.0 / 5.0f32,
         });
-        //helmet
-        //.add_startup_system(fox::setup_helmet)
-        //.add_system(fox::animate_light_direction);
 
     app.run();
 

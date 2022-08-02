@@ -2,3 +2,6 @@
 Should appear only if u hover and u (camera) is within certain distance or clicked "I" or smth
 - adding a friend should have apparent UI (rn just print statement)
 - when fighting, damage must also occur when bullet's pos == opponent's pos (not just radius like now)
+
+Mixamo
+- go to animation, upload character, download fbx, import into blender, export as glb to use in bevy as asset
