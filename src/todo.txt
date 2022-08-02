@@ -6,6 +6,8 @@ Today
 - pcg world
 - add object to camera, then add raycast to object
 
+- path finding in world
+
 ----------------------------------------------------------------
 Later
 
