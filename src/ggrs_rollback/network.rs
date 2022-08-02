@@ -134,7 +134,6 @@ pub fn setup_system(
     });
 }
 
-
 #[derive(Debug, Component)]
 pub struct Me;
 
@@ -204,33 +203,36 @@ pub struct Animations(Vec<Handle<AnimationClip>>); // breaks when in character.r
 pub fn move_setup_scene_once_loaded(
     animations: Res<Animations>,
     mut player: Query<&mut AnimationPlayer>,
-    keyboard_input: Res<Input<KeyCode>>,
-    mut query: Query<(&mut Transform, &info::Player, &Me), With<Rollback>>,
+    inputs: Res<Vec<(movement::BoxInput, InputStatus)>>,
+    mut query: Query<(&mut Transform, &info::Player), With<Rollback>>,
 ) {
-    let (mut t, p, me) = query.single_mut();
-    if keyboard_input.pressed(KeyCode::W) {
-        if let Ok(mut player) = player.get_single_mut() {
-            player.play(animations.0[0].clone_weak());
+    for (mut t, p) in query.iter_mut() {
+        let input = inputs[p.handle as usize].0.inp;
+        // set velocity through key presses
+        if input & INPUT_UP != 0 && input & INPUT_DOWN == 0 {
+            if let Ok(mut player) = player.get_single_mut() {
+                player.play(animations.0[0].clone_weak());
+            }
+            t.translation.z -= 1.0;
         }
-        t.translation.z -= 1.0;
-    }
-    if keyboard_input.pressed(KeyCode::A) {
-        if let Ok(mut player) = player.get_single_mut() {
-            player.play(animations.0[0].clone_weak());
+        if input & INPUT_UP == 0 && input & INPUT_DOWN != 0 {
+            if let Ok(mut player) = player.get_single_mut() {
+                player.play(animations.0[0].clone_weak());
+            }
+            t.translation.z += 1.0;
         }
-        t.translation.x -= 1.0;
-    }
-    if keyboard_input.pressed(KeyCode::S) {
-        if let Ok(mut player) = player.get_single_mut() {
-            player.play(animations.0[0].clone_weak());
+        if input & INPUT_LEFT != 0 && input & INPUT_RIGHT == 0 {
+            if let Ok(mut player) = player.get_single_mut() {
+                player.play(animations.0[0].clone_weak());
+            }
+            t.translation.x -= 1.0;
         }
-        t.translation.z += 1.0;
-    }
-    if keyboard_input.pressed(KeyCode::D) {
-        if let Ok(mut player) = player.get_single_mut() {
-            player.play(animations.0[0].clone_weak());
+        if input & INPUT_LEFT == 0 && input & INPUT_RIGHT != 0 {
+            if let Ok(mut player) = player.get_single_mut() {
+                player.play(animations.0[0].clone_weak());
+            }
+            t.translation.x += 1.0;
         }
-        t.translation.x += 1.0;
     }
 }
 
@@ -238,28 +240,3 @@ const INPUT_UP: u8 = 1 << 0;
 const INPUT_DOWN: u8 = 1 << 1;
 const INPUT_LEFT: u8 = 1 << 2;
 const INPUT_RIGHT: u8 = 1 << 3;
-
-#[repr(C)]
-#[derive(Copy, Clone, PartialEq, Pod, Zeroable)]
-pub struct BoxInput {
-    pub inp: u8,
-}
-
-pub fn input(_handle: In<PlayerHandle>, keyboard_input: Res<Input<KeyCode>>) -> BoxInput {
-    let mut input: u8 = 0;
-
-    if keyboard_input.pressed(KeyCode::W) {
-        input |= INPUT_UP;
-    }
-    if keyboard_input.pressed(KeyCode::A) {
-        input |= INPUT_LEFT;
-    }
-    if keyboard_input.pressed(KeyCode::S) {
-        input |= INPUT_DOWN;
-    }
-    if keyboard_input.pressed(KeyCode::D) {
-        input |= INPUT_RIGHT;
-    }
-
-    BoxInput { inp: input }
-}
