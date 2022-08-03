@@ -9,7 +9,6 @@ use bevy_rapier3d::prelude::*;
 use bevy_render::color::Color;
 use bevy_render::mesh::shape;
 use bevy_render::mesh::Mesh;
-use bevy::input::mouse::MouseMotion;
 
 use bevy_dolly::prelude::*;
 
@@ -144,48 +143,45 @@ pub fn setup_system(
             println!("added me");
             commands.entity(entity_id).insert(Me);
 
-            let mut yaw_pitch = YawPitch::new();
-            yaw_pitch.set_rotation_quat(Quat::default());
+            // let mut yaw_pitch = YawPitch::new();
+            // yaw_pitch.set_rotation_quat(Quat::default());
 
-            let t = Vec3::new(handle as f32, 0.0, 0.0);
-            let camera = CameraRig::builder()
-                .with(Position::new(t))
-                .with(Rotation::new(Quat::default()))
-                .with(Smooth::new_position(1.25).predictive(true))
-                .with(Arm::new(Vec3::new(0.0, 1.5, -3.5)))
-                .with(Smooth::new_position(2.5))
-                .with(yaw_pitch)
-                .with(
-                    LookAt::new(t + Vec3::Y)
-                        .tracking_smoothness(1.25)
-                        .tracking_predictive(true),
-                )
-                .build();
+            // let t = Vec3::new(handle as f32, 0.0, 0.0);
+            // let camera = CameraRig::builder()
+            //     .with(Position::new(t))
+            //     .with(Rotation::new(Quat::default()))
+            //     .with(Smooth::new_position(1.25).predictive(true))
+            //     .with(Arm::new(Vec3::new(0.0, 1.5, -3.5)))
+            //     .with(Smooth::new_position(2.5))
+            //     .with(yaw_pitch)
+            //     .with(
+            //         LookAt::new(t + Vec3::Y)
+            //             .tracking_smoothness(1.25)
+            //             .tracking_predictive(true),
+            //     )
+            //     .build();
 
-            commands.spawn().insert(camera).insert(Rig);
+            // commands.spawn().insert(camera).insert(Rig);
 
-            let t_cam = Vec3::new(handle as f32, 2.0, 5.0);
-            commands
-                .spawn_bundle(Camera3dBundle {
-                    transform: Transform {
-                        translation: t_cam,
-                        ..default()
-                    },
-                    ..Default::default()
-                })
-                .insert(UiCameraConfig {
-                    //idk why not displaying
-                    show_ui: true,
-                    ..default()
-                })
-                .insert_bundle(PickingCameraBundle::default())
-                .insert(MainCamera);
+            // let t_cam = Vec3::new(handle as f32, 2.0, 5.0);
+            // commands
+            //     .spawn_bundle(Camera3dBundle {
+            //         transform: Transform{translation: t_cam, ..default()},
+            //         ..Default::default()
+            //     })
+            //     .insert(UiCameraConfig {
+            //         //idk why not displaying
+            //         show_ui: true,
+            //         ..default()
+            //     })
+            //     .insert_bundle(PickingCameraBundle::default())
+            //     .insert(MainCamera);
 
-            // light
-            commands.spawn_bundle(PointLightBundle {
-                transform: Transform::from_xyz(4.0, 8.0, 4.0),
-                ..Default::default()
-            });
+            // // light
+            // commands.spawn_bundle(PointLightBundle {
+            //     transform: Transform::from_xyz(4.0, 8.0, 4.0),
+            //     ..Default::default()
+            // });
         }
     }
 
@@ -277,10 +273,8 @@ pub fn animate(animations: Res<Animations>, mut player: Query<&mut AnimationPlay
 }
 // Once the scene is loaded, start the animation
 pub fn move_player(
-    time: Res<Time>,
     animations: Res<Animations>,
     mut player: Query<&mut AnimationPlayer>,
-    mut mouse_motion_events: EventReader<MouseMotion>,
     inputs: Res<Vec<(movement::BoxInput, InputStatus)>>,
     mut query: Query<(&mut Transform, &info::Player), With<Rollback>>,
 ) {
@@ -288,19 +282,13 @@ pub fn move_player(
         let input = inputs[p.handle as usize].0.inp;
         // set velocity through key presses
 
-        let mut move_vec = Vec3::ZERO;
-        let time_delta_seconds: f32 = time.delta_seconds();
-        let boost_mult = 5.0f32;
-        let sensitivity = Vec2::splat(1.0);
-
         // W
         if input & INPUT_UP != 0 && input & INPUT_DOWN == 0 {
             // for mut player in &mut player {
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            //t.translation.z += 0.1;
-            move_vec.z -= 1.0;
+            t.translation.z += 0.1;
             //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.75, 0.0, 0.0));
         }
         // S
@@ -309,8 +297,7 @@ pub fn move_player(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            //t.translation.z -= 0.1;
-            move_vec.z -= 1.0;
+            t.translation.z -= 0.1;
         }
         // A
         if input & INPUT_LEFT != 0 && input & INPUT_RIGHT == 0 {
@@ -318,8 +305,7 @@ pub fn move_player(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            //t.translation.x += 0.1;
-            move_vec.x -= 1.0;
+            t.translation.x += 0.1;
             //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0));
         }
         // D
@@ -328,18 +314,9 @@ pub fn move_player(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            //t.translation.x -= 0.1;
-            move_vec.x += 1.0;
+            t.translation.x -= 0.1;
             //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0));
         }
-
-        let mut delta = Vec2::ZERO;
-        for event in mouse_motion_events.iter() {
-            delta += event.delta;
-        }
-
-        let move_vec = t.rotation * move_vec.clamp_length_max(1.0);
-        t.translation += move_vec * time_delta_seconds * 10.0;
     }
 }
 

@@ -81,8 +81,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_plugin(RapierDebugRenderPlugin::default())
-        // .add_startup_system(ggrs_camera::setup_camera)
-        // .add_system(ggrs_camera::update_camera)
+        .add_startup_system(ggrs_camera::setup_camera)
+        .add_system(ggrs_camera::update_camera)
         //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
@@ -93,7 +93,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(fight::fight);
 
         //fox
-    app
+    //app
         // .add_startup_system(character::setup_character)
         // .add_system(character::setup_scene_once_loaded)
         //.add_system(network::move_setup_scene_once_loaded)
@@ -102,8 +102,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // .add_startup_system(
         //     follow_me::setup_follow_camera
         //     .after(network::setup_system))
-        .add_system(follow_me::update_camera) //puts camera behind player
-        .add_system(follow_me::frame); //follows player
+
+        // .add_system(follow_me::update_camera) //puts camera behind player
+        // .add_system(follow_me::frame); //follows player
 
     app.run();
 
