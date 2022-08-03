@@ -1,3 +1,4 @@
+use bevy::math::Quat;
 use bevy::prelude::*;
 use bevy_ggrs::{GGRSPlugin, Rollback, RollbackIdProvider, SessionType};
 use bevy_mod_picking::*;
@@ -8,7 +9,11 @@ use bevy_rapier3d::prelude::*;
 use bevy_render::color::Color;
 use bevy_render::mesh::shape;
 use bevy_render::mesh::Mesh;
+
+use bevy_dolly::prelude::*;
+
 use bytemuck::{Pod, Zeroable};
+use core::ops::Add;
 use ggrs::{
     Config, InputStatus, P2PSession, PlayerHandle, PlayerType, SessionBuilder, SpectatorSession,
     SyncTestSession, UdpNonBlockingSocket,
@@ -39,6 +44,17 @@ pub fn setup_system(
     synctest_session: Option<Res<SyncTestSession<GGRSConfig>>>,
     spectator_session: Option<Res<SpectatorSession<GGRSConfig>>>,
 ) {
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Cube { size: CUBE_SIZE })),
+        material: materials.add(PLAYER_COLORS[0.0 as usize].into()),
+        transform: Transform {
+            translation: Vec3::new(0.0, 0.0, -10.0),
+            ..default()
+        },
+        ..Default::default()
+    });
+
+    println!("started setup system");
     let num_players = p2p_session
         .map(|s| s.num_players())
         .or_else(|| synctest_session.map(|s| s.num_players()))
@@ -124,7 +140,43 @@ pub fn setup_system(
         //insert Me
         let q: usize = query.parse().unwrap();
         if q == handle {
+            println!("added me");
             commands.entity(entity_id).insert(Me);
+
+            let t = Vec3::new(handle as f32, 0.0, 0.0);
+            let camera = CameraRig::builder()
+                .with(Position::new(t))
+                .with(Rotation::new(Quat::default()))
+                .with(Smooth::new_position(1.25).predictive(true))
+                .with(Arm::new(Vec3::new(0.0, 1.5, -3.5)))
+                .with(Smooth::new_position(2.5))
+                .with(
+                    LookAt::new(t + Vec3::Y)
+                        .tracking_smoothness(1.25)
+                        .tracking_predictive(true),
+                )
+                .build();
+
+            commands.spawn().insert(camera).insert(Rig);
+
+            commands
+                .spawn_bundle(Camera3dBundle {
+                    transform: Transform{translation: t, ..default()},
+                    ..Default::default()
+                })
+                .insert(UiCameraConfig {
+                    //idk why not displaying
+                    show_ui: true,
+                    ..default()
+                })
+                .insert_bundle(PickingCameraBundle::default())
+                .insert(MainCamera);
+
+            // light
+            commands.spawn_bundle(PointLightBundle {
+                transform: Transform::from_xyz(4.0, 8.0, 4.0),
+                ..Default::default()
+            });
         }
     }
 
@@ -133,7 +185,15 @@ pub fn setup_system(
         transform: Transform::from_xyz(4.0, 8.0, 4.0),
         ..Default::default()
     });
+
+    println!("finished setup system");
 }
+
+#[derive(Component)]
+pub struct Rig;
+
+#[derive(Component)]
+pub struct MainCamera;
 
 #[derive(Debug, Component)]
 pub struct Me;
@@ -200,9 +260,7 @@ pub fn start_ggrs_session(
 //movement-------------------------------------------------------------------
 pub struct Animations(Vec<Handle<AnimationClip>>); // breaks when in character.rs says resource not found, need to clean this file
 
-pub fn animate(
-    animations: Res<Animations>,
-    mut player: Query<&mut AnimationPlayer>,){
+pub fn animate(animations: Res<Animations>, mut player: Query<&mut AnimationPlayer>) {
     for mut player in &mut player {
         player.play(animations.0[0].clone_weak()).repeat();
         println!("Player animation from separate fn")
@@ -218,28 +276,41 @@ pub fn move_setup_scene_once_loaded(
     for (mut t, p) in query.iter_mut() {
         let input = inputs[p.handle as usize].0.inp;
         // set velocity through key presses
+
         // W
         if input & INPUT_UP != 0 && input & INPUT_DOWN == 0 {
+            // for mut player in &mut player {
+            //     player.play(animations.0[0].clone_weak());
+            //     println!("Player animation")
+            // }
             t.translation.z -= 0.1;
-           // t.rotation += Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0);
+            //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.75, 0.0, 0.0));
         }
         // S
         if input & INPUT_UP == 0 && input & INPUT_DOWN != 0 {
-            for mut player in &mut player {
-                player.play(animations.0[0].clone_weak());
-                println!("Player animation")
-            }
+            // for mut player in &mut player {
+            //     player.play(animations.0[0].clone_weak());
+            //     println!("Player animation")
+            // }
             t.translation.z += 0.1;
         }
         // A
         if input & INPUT_LEFT != 0 && input & INPUT_RIGHT == 0 {
+            // for mut player in &mut player {
+            //     player.play(animations.0[0].clone_weak());
+            //     println!("Player animation")
+            // }
             t.translation.x -= 0.1;
-            t.rotate(default());
+            //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, -0.25, 0.0, 0.0));
         }
-        // S
+        // D
         if input & INPUT_LEFT == 0 && input & INPUT_RIGHT != 0 {
+            // for mut player in &mut player {
+            //     player.play(animations.0[0].clone_weak());
+            //     println!("Player animation")
+            // }
             t.translation.x += 0.1;
-            t.rotate(default());
+            //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0));
         }
     }
 }

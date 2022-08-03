@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 use bevy_ggrs::{GGRSPlugin, SessionType};
+use camera::follow_me;
 use ggrs::{P2PSession, PlayerType, SessionBuilder, UdpNonBlockingSocket};
 use std::env;
 use std::net::SocketAddr;
@@ -80,8 +81,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
         .add_plugin(RapierDebugRenderPlugin::default())
-        .add_startup_system(ggrs_camera::setup_camera)
-        .add_system(ggrs_camera::update_camera)
+        // .add_startup_system(ggrs_camera::setup_camera)
+        // .add_system(ggrs_camera::update_camera)
         //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
@@ -98,10 +99,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //.add_system(network::move_setup_scene_once_loaded)
         //.add_system(network::animate)
 
-        .insert_resource(AmbientLight {
-            color: Color::WHITE,
-            brightness: 1.0 / 5.0f32,
-        });
+        // .add_startup_system(
+        //     follow_me::setup_follow_camera
+        //     .after(network::setup_system))
+        .add_system(follow_me::frame);
 
     app.run();
 

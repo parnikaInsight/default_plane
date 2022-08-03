@@ -1,12 +1,23 @@
 Today
 
-- skeletal animation
+- skeletal animation: rotate wasd, mesh colliders, other animations
 - basic objects, multiple people, combat
 
-- pcg world
+- follow dolly
 - add object to camera, then add raycast to object
 
+- rose skybox
+
+- terrain generation
+- country slice grass
+- rose water
+
+- microsoft flight simulation
+
+- pcg world
 - path finding in world
+
+- pcg creatures
 
 ----------------------------------------------------------------
 Later
