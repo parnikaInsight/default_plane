@@ -1,4 +1,5 @@
 use bevy_dolly::prelude::*;
+use bevy::input::mouse::MouseMotion;
 use bevy::prelude::*;
 use bevy_ggrs::Rollback;
 use bevy_mod_picking::*;
@@ -22,7 +23,7 @@ pub fn update_camera(
     time: Res<Time>,
     keys: Res<Input<KeyCode>>,
     windows: Res<Windows>,
-   // mut mouse_motion_events: EventReader<MouseMotion>,
+    mut mouse_motion_events: EventReader<MouseMotion>,
     mut query: ParamSet<(
         Query<(&mut Transform, With<network::MainCamera>)>,
         Query<&mut CameraRig>,
@@ -62,9 +63,9 @@ pub fn update_camera(
     };
 
     let mut delta = Vec2::ZERO;
-    // for event in mouse_motion_events.iter() {
-    //     delta += event.delta;
-    // }
+    for event in mouse_motion_events.iter() {
+        delta += event.delta;
+    }
 
     let mut q1 = query.p1();
     let mut rig = q1.single_mut();
