@@ -73,7 +73,7 @@ pub fn update_camera(
         move_vec.z -= 1.0;
     }
     if keys.pressed(KeyCode::Down) {
-        move_vec.z -= 1.0;
+        move_vec.z += 1.0;
     }
     if keys.pressed(KeyCode::Left) {
         move_vec.x -= 1.0;

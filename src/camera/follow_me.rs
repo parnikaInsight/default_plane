@@ -12,7 +12,7 @@ pub fn frame(
     mut me: Query<(&mut Transform, &info::Player, &network::Me), With<Rollback>>,
 ) {
     let (mut t, p, m) = me.single_mut();
-    println!("Me: {:?}", t);
+    //println!("Me: {:?}", t);
     let (mut camera, rig) = q.single_mut();
     camera.driver_mut::<Position>().translation = t.translation;
     camera.driver_mut::<Rotation>().rotation = t.rotation;
@@ -36,18 +36,18 @@ pub fn update_camera(
     let mut move_vec = Vec3::ZERO;
 
     // Q: Is dolly left-handed so z is flipped?
-    // if keys.pressed(KeyCode::Up) {
-    //     move_vec.z -= 1.0;
-    // }
-    // if keys.pressed(KeyCode::Down) {
-    //     move_vec.z += 1.0;
-    // }
-    // if keys.pressed(KeyCode::Left) {
-    //     move_vec.x -= 1.0;
-    // }
-    // if keys.pressed(KeyCode::Right) {
-    //     move_vec.x += 1.0;
-    // }
+    if keys.pressed(KeyCode::W) {
+        move_vec.z -= 1.0;
+    }
+    if keys.pressed(KeyCode::S) {
+        move_vec.z += 1.0;
+    }
+    if keys.pressed(KeyCode::A) {
+        move_vec.x -= 1.0;
+    }
+    if keys.pressed(KeyCode::D) {
+        move_vec.x += 1.0;
+    }
 
     if keys.pressed(KeyCode::E) || keys.pressed(KeyCode::Space) {
         move_vec.y += 1.0;
@@ -66,6 +66,7 @@ pub fn update_camera(
     for event in mouse_motion_events.iter() {
         delta += event.delta;
     }
+    println!("delta: {}", delta);
 
     let mut q1 = query.p1();
     let mut rig = q1.single_mut();
