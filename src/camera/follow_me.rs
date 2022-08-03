@@ -66,7 +66,7 @@ pub fn update_camera(
     for event in mouse_motion_events.iter() {
         delta += event.delta;
     }
-    println!("delta: {}", delta);
+    //println!("delta: {}", delta);
 
     let mut q1 = query.p1();
     let mut rig = q1.single_mut();

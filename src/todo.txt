@@ -1,3 +1,9 @@
+Current: 
+- both players become animated
+- glitchy camera + movement
+- pressing W for long makes player fly up
+
+
 Today
 
 - skeletal animation: rotate wasd, mesh colliders, other animations

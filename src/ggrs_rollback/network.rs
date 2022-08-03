@@ -86,9 +86,9 @@ pub fn setup_system(
     commands.insert_resource(Animations(vec![
         asset_server.load("mixamo/from_blender.glb#Animation0"),
         asset_server.load("mixamo/walk_forward.glb#Animation0"),
-        asset_server.load("mixamo/walk_backward.glb#Animation0"),
-        asset_server.load("mixamo/left_crouch_forward.glb#Animation0"),
-        asset_server.load("mixamo/right_crouch_forward.glb#Animation0"),
+        asset_server.load("mixamo/backward.glb#Animation0"),
+        asset_server.load("mixamo/left.glb#Animation0"),
+        asset_server.load("mixamo/right_crouch.glb#Animation0"),
     ]));
     let player_handle = asset_server.load("mixamo/walk_forward.glb#Scene0");
 
@@ -298,7 +298,7 @@ pub fn move_player(
             let mut count = 0;
             for mut player in &mut player {
                 player.play(animations.0[1].clone_weak());
-                println!("Player animation");
+                println!("Player animation W");
                 count += 1;
             }
             if count == player.iter().len() {
@@ -306,29 +306,29 @@ pub fn move_player(
             }
         }
         // S
-        println!("pressed S");
         if input & INPUT_UP == 0 && input & INPUT_DOWN != 0 {
+            println!("pressed S");
             for mut player in &mut player {
                 player.play(animations.0[2].clone_weak());
-                println!("Player animation")
+                println!("Player animation S")
             }
             t.translation.z -= 0.1;
         }
         // A
-        println!("pressed A");
         if input & INPUT_LEFT != 0 && input & INPUT_RIGHT == 0 {
+            println!("pressed A");
             for mut player in &mut player {
                 player.play(animations.0[3].clone_weak());
-                println!("Player animation")
+                println!("Player animation A")
             }
             t.translation.x += 0.1;
          }
         // D
-        println!("pressed D");
         if input & INPUT_LEFT == 0 && input & INPUT_RIGHT != 0 {
+            println!("pressed D");
             for mut player in &mut player {
                 player.play(animations.0[4].clone_weak());
-                println!("Player animation")
+                println!("Player animation D")
             }
             t.translation.x -= 0.1;
          }
