@@ -7,3 +7,4 @@ Mixamo
 - go to animation, upload character, download fbx, import into blender, export as glb to use in bevy as asset
 - for some reason I have to quit blender every time i want to upload a new animation, else it just downloads
 the previous animation even tho I can see the new one in blender
+- test with: https://sandbox.babylonjs.com

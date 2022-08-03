@@ -1,5 +1,6 @@
 Current: 
 - both players become animated
+- extent of movement of animation not aligned with movement of keys
 - glitchy camera + movement
 - pressing W for long makes player fly up
 
