@@ -96,6 +96,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // .add_startup_system(character::setup_character)
         // .add_system(character::setup_scene_once_loaded)
         //.add_system(network::move_setup_scene_once_loaded)
+        //.add_system(network::animate)
 
         .insert_resource(AmbientLight {
             color: Color::WHITE,

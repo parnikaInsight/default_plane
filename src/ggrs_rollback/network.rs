@@ -69,6 +69,7 @@ pub fn setup_system(
     commands.insert_resource(Animations(vec![
         asset_server.load("mixamo/from_blender.glb#Animation0")
     ]));
+    let player_handle = asset_server.load("mixamo/from_blender.glb#Scene0");
 
     for handle in 0..num_players {
         let rot = handle as f32 / num_players as f32 * 2. * std::f32::consts::PI;
@@ -95,7 +96,7 @@ pub fn setup_system(
                     translation: Vec3::new(handle as f32, 0.0, 0.0),
                     ..default()
                 },
-                scene: asset_server.load("mixamo/from_blender.glb#Scene0"),
+                scene: player_handle.clone(),
                 ..default()
             })
             .insert(info::Player {
@@ -199,6 +200,14 @@ pub fn start_ggrs_session(
 //movement-------------------------------------------------------------------
 pub struct Animations(Vec<Handle<AnimationClip>>); // breaks when in character.rs says resource not found, need to clean this file
 
+pub fn animate(
+    animations: Res<Animations>,
+    mut player: Query<&mut AnimationPlayer>,){
+    for mut player in &mut player {
+        player.play(animations.0[0].clone_weak()).repeat();
+        println!("Player animation from separate fn")
+    }
+}
 // Once the scene is loaded, start the animation
 pub fn move_setup_scene_once_loaded(
     animations: Res<Animations>,
@@ -209,29 +218,28 @@ pub fn move_setup_scene_once_loaded(
     for (mut t, p) in query.iter_mut() {
         let input = inputs[p.handle as usize].0.inp;
         // set velocity through key presses
+        // W
         if input & INPUT_UP != 0 && input & INPUT_DOWN == 0 {
-            if let Ok(mut player) = player.get_single_mut() {
-                player.play(animations.0[0].clone_weak());
-            }
-            t.translation.z -= 1.0;
+            t.translation.z -= 0.1;
+           // t.rotation += Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0);
         }
+        // S
         if input & INPUT_UP == 0 && input & INPUT_DOWN != 0 {
-            if let Ok(mut player) = player.get_single_mut() {
+            for mut player in &mut player {
                 player.play(animations.0[0].clone_weak());
+                println!("Player animation")
             }
-            t.translation.z += 1.0;
+            t.translation.z += 0.1;
         }
+        // A
         if input & INPUT_LEFT != 0 && input & INPUT_RIGHT == 0 {
-            if let Ok(mut player) = player.get_single_mut() {
-                player.play(animations.0[0].clone_weak());
-            }
-            t.translation.x -= 1.0;
+            t.translation.x -= 0.1;
+            t.rotate(default());
         }
+        // S
         if input & INPUT_LEFT == 0 && input & INPUT_RIGHT != 0 {
-            if let Ok(mut player) = player.get_single_mut() {
-                player.play(animations.0[0].clone_weak());
-            }
-            t.translation.x += 1.0;
+            t.translation.x += 0.1;
+            t.rotate(default());
         }
     }
 }
