@@ -1,6 +1,5 @@
 //uses bevy 0.7
-
-use crate::camera::dolly_free;
+use crate::ggrs_rollback::network;
 use crate::math::grid::MyGrid;
 use crate::math::random::{get_block_dimensions, get_block_location};
 use crate::math::{city_perlin, grid, random};
@@ -54,7 +53,7 @@ pub fn spawn_buildings(
     mut rip: ResMut<RollbackIdProvider>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut query: ParamSet<(
-        Query<(&mut Transform, With<dolly_free::MainCamera>)>,
+        Query<(&mut Transform, With<network::MainCamera>)>,
         Query<&mut CameraRig>,
     )>,
     mut materials: ResMut<Assets<StandardMaterial>>,

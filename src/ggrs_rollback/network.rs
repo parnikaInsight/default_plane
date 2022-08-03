@@ -143,6 +143,9 @@ pub fn setup_system(
             println!("added me");
             commands.entity(entity_id).insert(Me);
 
+            let mut yaw_pitch = YawPitch::new();
+            yaw_pitch.set_rotation_quat(Quat::default());
+
             let t = Vec3::new(handle as f32, 0.0, 0.0);
             let camera = CameraRig::builder()
                 .with(Position::new(t))
@@ -150,6 +153,7 @@ pub fn setup_system(
                 .with(Smooth::new_position(1.25).predictive(true))
                 .with(Arm::new(Vec3::new(0.0, 1.5, -3.5)))
                 .with(Smooth::new_position(2.5))
+                .with(yaw_pitch)
                 .with(
                     LookAt::new(t + Vec3::Y)
                         .tracking_smoothness(1.25)
@@ -159,9 +163,10 @@ pub fn setup_system(
 
             commands.spawn().insert(camera).insert(Rig);
 
+            let t_cam = Vec3::new(handle as f32, 2.0, 5.0);
             commands
                 .spawn_bundle(Camera3dBundle {
-                    transform: Transform{translation: t, ..default()},
+                    transform: Transform{translation: t_cam, ..default()},
                     ..Default::default()
                 })
                 .insert(UiCameraConfig {
@@ -267,7 +272,7 @@ pub fn animate(animations: Res<Animations>, mut player: Query<&mut AnimationPlay
     }
 }
 // Once the scene is loaded, start the animation
-pub fn move_setup_scene_once_loaded(
+pub fn move_player(
     animations: Res<Animations>,
     mut player: Query<&mut AnimationPlayer>,
     inputs: Res<Vec<(movement::BoxInput, InputStatus)>>,
@@ -283,7 +288,7 @@ pub fn move_setup_scene_once_loaded(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            t.translation.z -= 0.1;
+            t.translation.z += 0.1;
             //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.75, 0.0, 0.0));
         }
         // S
@@ -292,7 +297,7 @@ pub fn move_setup_scene_once_loaded(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            t.translation.z += 0.1;
+            t.translation.z -= 0.1;
         }
         // A
         if input & INPUT_LEFT != 0 && input & INPUT_RIGHT == 0 {
@@ -300,8 +305,8 @@ pub fn move_setup_scene_once_loaded(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            t.translation.x -= 0.1;
-            //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, -0.25, 0.0, 0.0));
+            t.translation.x += 0.1;
+            t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0));
         }
         // D
         if input & INPUT_LEFT == 0 && input & INPUT_RIGHT != 0 {
@@ -309,7 +314,7 @@ pub fn move_setup_scene_once_loaded(
             //     player.play(animations.0[0].clone_weak());
             //     println!("Player animation")
             // }
-            t.translation.x += 0.1;
+            t.translation.x -= 0.1;
             //t.rotation = Add::add(t.rotation, Quat::from_euler(EulerRot::YZX, 0.25, 0.0, 0.0));
         }
     }
