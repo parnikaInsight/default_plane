@@ -1,5 +1,6 @@
 Today
 
+- scale orbs
 - put orbs within orbs, main orb (def plane) is heaven orb
 - heaven and space orbs
 - portal to travel between orbs : superdump/bevy portal-demo branch
