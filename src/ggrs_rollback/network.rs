@@ -284,7 +284,7 @@ pub fn move_player(
     time: Res<Time>,
     animations: Res<Animations>,
     mut player: Query<&mut AnimationPlayer>,
-    //player: Query<Entity, With<AnimationPlayer>>,
+    //mut player: Query<&mut AnimationPlayer, With<Me>>,
     mut mouse_motion_events: EventReader<MouseMotion>,
     inputs: Res<Vec<(movement::BoxInput, InputStatus)>>,
     mut query: Query<(&mut Transform, &info::Player), With<Rollback>>,
