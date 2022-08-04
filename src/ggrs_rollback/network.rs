@@ -284,6 +284,7 @@ pub fn move_player(
     time: Res<Time>,
     animations: Res<Animations>,
     mut player: Query<&mut AnimationPlayer>,
+    //player: Query<Entity, With<AnimationPlayer>>,
     mut mouse_motion_events: EventReader<MouseMotion>,
     inputs: Res<Vec<(movement::BoxInput, InputStatus)>>,
     mut query: Query<(&mut Transform, &info::Player), With<Rollback>>,
@@ -339,3 +340,45 @@ const INPUT_UP: u8 = 1 << 0;
 const INPUT_DOWN: u8 = 1 << 1;
 const INPUT_LEFT: u8 = 1 << 2;
 const INPUT_RIGHT: u8 = 1 << 3;
+
+
+// #[derive(Debug, Component)]
+// pub struct AnimationHelperSetup;
+
+// pub fn setup_helpers(
+//     mut commands: Commands,
+//     to_setup: Query<Entity, With<AnimationHelperSetup>>,
+//     children: Query<&Children>,
+//     players: Query<&AnimationPlayer>,
+// ) {
+//     for host_entity in to_setup.iter() {
+//         if let Some(animation_player) =
+//             find_animation_player_entity(host_entity, &children, &players)
+//         {
+//             commands
+//                 .entity(host_entity)
+//                 .remove::<AnimationHelperSetup>()
+//                 .insert(AnimationHelper::new(animation_player)); // This is how I find it later and  what I query for
+//         }
+//     }
+// }
+
+// fn find_animation_player_entity(
+//     parent: Entity,
+//     children: &Query<&Children>,
+//     players: &Query<&AnimationPlayer>,
+// ) -> Option<Entity> {
+//     if let Ok(candidates) = children.get(parent) {
+//         let mut next_candidates: Vec<Entity> = candidates.iter().map(|e| e.to_owned()).collect();
+//         while !next_candidates.is_empty() {
+//             for candidate in next_candidates.drain(..).collect::<Vec<Entity>>() {
+//                 if players.get(candidate).is_ok() {
+//                     return Some(candidate);
+//                 } else if let Ok(new) = children.get(candidate) {
+//                     next_candidates.extend(new.iter());
+//                 }
+//             }
+//         }
+//     }
+//     None
+// }
