@@ -14,7 +14,7 @@ pub fn setup_camera(
     asset_server: Res<AssetServer>,
 ) {
     //let translation = [-2.0f32, 2.0f32, 5.0f32];
-    let translation = [0.0f32, 50.0f32, 50.0f32];
+    let translation = [0.0f32, 20.0f32, 40.0f32];
     let transform = Transform::from_translation(bevy::math::Vec3::from_slice(&translation))
         .looking_at(bevy::math::Vec3::ZERO, bevy::math::Vec3::Y);
 
@@ -52,16 +52,15 @@ pub fn setup_camera(
     //     ..Default::default()
     // });
 
-    // Light
+    // directional 'sun' light
     commands.spawn_bundle(DirectionalLightBundle {
-        transform: Transform::from_rotation(Quat::from_euler(
-            EulerRot::ZYX,
-            0.0,
-            1.0,
-            -std::f32::consts::FRAC_PI_4,
-        )),
         directional_light: DirectionalLight {
-            shadows_enabled: true,
+            illuminance: 32000.0,
+            ..default()
+        },
+        transform: Transform {
+            translation: Vec3::new(0.0, 2.0, 0.0),
+            rotation: Quat::from_rotation_x(-std::f32::consts::FRAC_PI_4),
             ..default()
         },
         ..default()

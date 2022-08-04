@@ -2,42 +2,6 @@ use bevy::prelude::*;
 
 pub struct Animations(Vec<Handle<AnimationClip>>);
 
-pub fn create_land(mut commands: Commands, asset_server: Res<AssetServer>) {
-    //bright green grass
-    let player_handle2: Handle<Scene> = asset_server.load("sketchfab/grass2/scene.gltf#Scene0");
-    commands.spawn_bundle(SceneBundle {
-        transform: Transform {
-            translation: Vec3::new(25.0, 0.5, 60.0),
-            ..default()
-        },
-        scene: player_handle2.clone(),
-        ..default()
-    });
-
-    commands.insert_resource(Animations(vec![
-        asset_server.load("sketchfab/grass2/scene.gltf#Animation0")
-    ]));
-
-    //let player_handle = asset_server.load("kronos/glTF/Sponza.gltf#Scene0");
-}
-
-pub fn create_water(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let player_handle2: Handle<Scene> = asset_server.load("sketchfab/ocean/scene.gltf#Scene0");
-    commands.spawn_bundle(SceneBundle {
-        transform: Transform {
-            translation: Vec3::new(40.0, 0.0, -20.0),
-            ..default()
-        },
-        scene: player_handle2.clone(),
-        ..default()
-    });
-    
-    commands.insert_resource(Animations(vec![
-        asset_server.load("sketchfab/ocean/scene.gltf#Animation0"),
-    ]));
-}
-
-
 // pub fn create_architecture(mut commands: Commands, asset_server: Res<AssetServer>) {
 //     let player_handle: Handle<Scene> = asset_server.load("sketchfab/landscape/scene.gltf#Scene0");
 //     commands.spawn_bundle(SceneBundle {
