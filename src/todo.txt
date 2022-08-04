@@ -1,5 +1,11 @@
 Today
 
+- put orbs within orbs, main orb (def plane) is heaven orb
+- heaven and space orbs
+- portal to travel between orbs : superdump/bevy portal-demo branch
+- don't focus on architecture--it gets too heavy and slow, instead use orbs and focus on portal
+
+----------------------------------------------------------------
 - skeletal animation: rotate wasd, mesh colliders, other animations
 - basic objects, multiple people, combat
 

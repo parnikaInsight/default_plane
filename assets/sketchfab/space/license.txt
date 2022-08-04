@@ -1,0 +1,11 @@
+Model Information:
+* title:	Night Sky Visible Spectrum Monochromatic
+* source:	https://sketchfab.com/3d-models/night-sky-visible-spectrum-monochromatic-cfb156f03a7341b8a0a0ba0445ca742d
+* author:	commonfactory (https://sketchfab.com/commonfactory)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Night Sky Visible Spectrum Monochromatic" (https://sketchfab.com/3d-models/night-sky-visible-spectrum-monochromatic-cfb156f03a7341b8a0a0ba0445ca742d) by commonfactory (https://sketchfab.com/commonfactory) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

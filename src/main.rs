@@ -64,8 +64,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     app.insert_resource(Msaa { samples: 4 })
         .insert_resource(WindowDescriptor {
             //must come before default plugin
-            width: 720.,
-            height: 720.,
+            width: 1700.,
+            height: 1000.,
             title: "Insight".to_owned(),
             ..Default::default()
         })

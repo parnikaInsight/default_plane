@@ -18,7 +18,7 @@ pub fn play_scene(
 }
 
 pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let player_handle3: Handle<Scene> = asset_server.load("sketchfab/wanderers/scene.gltf#Scene0");
+    let player_handle3: Handle<Scene> = asset_server.load("sketchfab/temple/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 5.0, 12.0),
@@ -29,6 +29,7 @@ pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
     });
 
     commands.insert_resource(Animations(vec![
-        asset_server.load("sketchfab/wanderers/scene.gltf#Animation0"),
+        asset_server.load("sketchfab/temple/scene.gltf#Animation0"),
     ]));
+
 }
