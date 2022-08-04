@@ -1,0 +1,11 @@
+Model Information:
+* title:	Grass
+* source:	https://sketchfab.com/3d-models/grass-e58b89ba5b5047338210dbcf730f7b05
+* author:	Epic_Tree_Store (https://sketchfab.com/johngreenstone)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Grass" (https://sketchfab.com/3d-models/grass-e58b89ba5b5047338210dbcf730f7b05) by Epic_Tree_Store (https://sketchfab.com/johngreenstone) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

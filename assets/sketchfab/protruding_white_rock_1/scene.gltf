@@ -1,0 +1,311 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 59500,
+      "max": [
+        18.24203872680664,
+        19.515005111694336,
+        5.0315165519714355
+      ],
+      "min": [
+        -19.47705841064453,
+        -21.079904556274414,
+        -2.685824394226074
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 714000,
+      "componentType": 5126,
+      "count": 59500,
+      "max": [
+        0.9980301856994629,
+        0.9999368786811829,
+        0.999999463558197
+      ],
+      "min": [
+        -0.9999572038650513,
+        -0.999987781047821,
+        -0.9976232051849365
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 59500,
+      "max": [
+        0.9999977350234985,
+        0.9999988675117493,
+        0.9998682737350464,
+        1.0
+      ],
+      "min": [
+        -0.9999735951423645,
+        -0.9999998211860657,
+        -0.9998844861984253,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 59500,
+      "max": [
+        0.9980077743530273,
+        0.9987670183181763
+      ],
+      "min": [
+        0.0009985555661842227,
+        0.0009878771379590034
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 476000,
+      "componentType": 5126,
+      "count": 59500,
+      "max": [
+        0.9980077743530273,
+        0.9987670183181763
+      ],
+      "min": [
+        0.0009985555661842227,
+        0.0009878771379590034
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 281637,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "3dhdscan (https://sketchfab.com/3dhdscan)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/protruding-white-rock-1-36c36166730a423396e42546ae0d346a",
+      "title": "Protruding white rock 1"
+    },
+    "generator": "Sketchfab-12.67.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 1126548,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 952000,
+      "byteOffset": 1126548,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1428000,
+      "byteOffset": 2078548,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 952000,
+      "byteOffset": 3506548,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 4458548,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/sutr31_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/sutr31_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/sutr31_normal.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "sutr31",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        },
+        "roughnessFactor": 0.9738948170731707
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "sutr31_sutr31_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.009480530396103859,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.105100626282632e-18,
+        -0.009480530396103859,
+        0.0,
+        0.0,
+        0.009480530396103859,
+        2.105100626282632e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "sutr31.FBX"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        4.3711389952072466e-07,
+        -5.551115123125783e-16,
+        9.999999999999991,
+        0.0,
+        9.999999999999991,
+        1.1102230246251565e-15,
+        -4.3711390007583617e-07,
+        0.0,
+        -1.6653345369377348e-15,
+        10.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "sutr31"
+    },
+    {
+      "mesh": 0,
+      "name": "sutr31_sutr31_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 33071,
+      "wrapT": 33071
+    },
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 1,
+      "source": 1
+    },
+    {
+      "sampler": 1,
+      "source": 2
+    }
+  ]
+}

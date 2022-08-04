@@ -1,0 +1,11 @@
+Model Information:
+* title:	Northumberlandia land sculpture
+* source:	https://sketchfab.com/3d-models/northumberlandia-land-sculpture-1beab497b6924e06adff8b407991f2ed
+* author:	Chris Bibb (https://sketchfab.com/chrisbibb)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Northumberlandia land sculpture" (https://sketchfab.com/3d-models/northumberlandia-land-sculpture-1beab497b6924e06adff8b407991f2ed) by Chris Bibb (https://sketchfab.com/chrisbibb) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

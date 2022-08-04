@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ocean Wave -  w/Maya
+* source:	https://sketchfab.com/3d-models/ocean-wave-wmaya-03f0559f6b7646ea9014e2e72f71b198
+* author:	Twin Dragon Studios (https://sketchfab.com/RHALL)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ocean Wave -  w/Maya" (https://sketchfab.com/3d-models/ocean-wave-wmaya-03f0559f6b7646ea9014e2e72f71b198) by Twin Dragon Studios (https://sketchfab.com/RHALL) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

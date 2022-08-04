@@ -92,9 +92,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(interact::add_friend)
         .add_system(fight::fight);
 
-        
+
+    //art
     app
-        .add_startup_system(imported::create_sponza);
+       // .add_startup_system(imported::create_land)
+       // .add_startup_system(imported::create_water)
+       // .add_startup_system(imported::create_rocks)
+        .add_startup_system(imported::create_architecture)
+        .add_system(imported::play_scene);
         // .add_startup_system(character::setup_character)
         // .add_system(character::setup_scene_once_loaded)
         //.add_system(network::move_setup_scene_once_loaded)
