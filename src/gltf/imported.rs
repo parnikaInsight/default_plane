@@ -2,22 +2,6 @@ use bevy::prelude::*;
 
 pub struct Animations(Vec<Handle<AnimationClip>>);
 
-// pub fn create_architecture(mut commands: Commands, asset_server: Res<AssetServer>) {
-//     let player_handle: Handle<Scene> = asset_server.load("sketchfab/landscape/scene.gltf#Scene0");
-//     commands.spawn_bundle(SceneBundle {
-//         transform: Transform {
-//             translation: Vec3::new(0.0, 0.0, 0.0),
-//             ..default()
-//         },
-//         scene: player_handle.clone(),
-//         ..default()
-//     });
-
-//     commands.insert_resource(Animations(vec![
-//         asset_server.load("sketchfab/landscape/scene.gltf#Animation0"),
-//     ]));
-// }
-
 pub fn play_scene(
     animations: Res<Animations>,
     mut player: Query<&mut AnimationPlayer>,
@@ -32,10 +16,9 @@ pub fn play_scene(
         }
     }
 }
-//----------------------------------------------------------------
 
-pub fn create_terrain(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let player_handle3: Handle<Scene> = asset_server.load("terrain/arisaig_ns_part_ii/scene.gltf#Scene0");
+pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
+    let player_handle3: Handle<Scene> = asset_server.load("sketchfab/wanderers/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 5.0, 12.0),
@@ -46,6 +29,6 @@ pub fn create_terrain(mut commands: Commands, asset_server: Res<AssetServer>) {
     });
 
     commands.insert_resource(Animations(vec![
-        asset_server.load("terrain/arisaig_ns_part_ii/scene.gltf#Animation0"),
+        asset_server.load("sketchfab/wanderers/scene.gltf#Animation0"),
     ]));
 }

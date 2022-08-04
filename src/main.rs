@@ -95,18 +95,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     //art
     app
-        .add_startup_system(imported::create_terrain)
+        .add_startup_system(imported::create_space)
         .add_system(imported::play_scene);
-       // .add_startup_system(imported::create_architecture)
-        
-        // .add_startup_system(character::setup_character)
-        // .add_system(character::setup_scene_once_loaded)
-        //.add_system(network::move_setup_scene_once_loaded)
-        //.add_system(network::animate)
-
-        // .add_startup_system(
-        //     follow_me::setup_follow_camera
-        //     .after(network::setup_system))
 
         // .add_system(follow_me::update_camera) //puts camera behind player
         // .add_system(follow_me::frame); //follows player
