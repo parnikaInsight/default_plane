@@ -1,6 +1,5 @@
 //uses bevy 0.7
-
-use crate::camera::dolly_free;
+use crate::ggrs_rollback::network;
 use crate::math::grid::MyGrid;
 use crate::math::random::{get_block_dimensions, get_block_location};
 use crate::math::{city_perlin, grid, random};
@@ -9,6 +8,7 @@ use bevy_dolly::prelude::*;
 use bevy_rapier3d::prelude::*;
 use noise::{NoiseFn, Perlin, Seedable};
 use std::{thread, time};
+use bevy_ggrs::{GGRSPlugin, Rollback, RollbackIdProvider, SessionType};
 
 fn convert(x: f32) -> i32 {
     x as i32
@@ -50,9 +50,10 @@ pub fn my_creation(
 pub fn spawn_buildings(
     mut commands: Commands,
     mut grid: ResMut<MyGrid>,
+    mut rip: ResMut<RollbackIdProvider>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut query: ParamSet<(
-        Query<(&mut Transform, With<dolly_free::MainCamera>)>,
+        Query<(&mut Transform, With<network::MainCamera>)>,
         Query<&mut CameraRig>,
     )>,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -61,18 +62,7 @@ pub fn spawn_buildings(
     let height_noise_fn = city_perlin::HeightNoiseFn::default();
 
     if let Ok(mut rig) = query.p1().get_single_mut() {
-        // // testing rapier
-        // commands
-        //     .spawn_bundle(PbrBundle {
-        //         mesh: meshes.add(Mesh::from(shape::Cube { size: 0.50 })),
-        //         material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-        //         transform: Transform::from_xyz(0.0 as f32, 5.0 as f32, 0.0 as f32),
-        //         ..default()
-        //     })
-        //     .insert(RigidBody::Dynamic)
-        //     .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
-        //     .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
-
+    
         let transform = rig.final_transform;
 
         let vector: Vec3 = transform.translation;
@@ -112,7 +102,7 @@ pub fn spawn_buildings(
                                 z: z as f64,
                             };
 
-                            println!("{:?}", coord);
+                            //println!("{:?}", coord);
 
                             let height =
                                 height_noise_fn.function.get([coord.x / 7.0, coord.z / 7.0]);
@@ -122,7 +112,7 @@ pub fn spawn_buildings(
 
                             // cube
                             let size: f32 = dimension.number as f32;
-                            println!("Size: {:?}", size);
+                           // println!("Size: {:?}", size);
 
                             commands
                                 .spawn_bundle(PbrBundle {
@@ -137,7 +127,8 @@ pub fn spawn_buildings(
                                 })
                                 .insert(RigidBody::Fixed)
                                 .insert(Collider::cuboid(0.40, 0.40, 0.40)) //half the cube size
-                                .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+                                .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)))
+                                .insert(Rollback::new(rip.next_id()));
 
                             let mut height = 0.1;
 
@@ -163,12 +154,13 @@ pub fn spawn_buildings(
                                         part_height / 2.0,
                                         part_height / 2.0,
                                     )) //half the cube size
-                                    .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+                                    .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)))
+                                    .insert(Rollback::new(rip.next_id()));
 
                                 height += part_height;
 
                                 part_height = part_height / 2.0;
-                                println!("part: {}", part_height);
+                               // println!("part: {}", part_height);
                             }
                         }
                     }
