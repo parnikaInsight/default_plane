@@ -44,16 +44,6 @@ pub fn setup_system(
     synctest_session: Option<Res<SyncTestSession<GGRSConfig>>>,
     spectator_session: Option<Res<SpectatorSession<GGRSConfig>>>,
 ) {
-    commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Cube { size: CUBE_SIZE })),
-        material: materials.add(PLAYER_COLORS[0.0 as usize].into()),
-        transform: Transform {
-            translation: Vec3::new(0.0, 0.0, -10.0),
-            ..default()
-        },
-        ..Default::default()
-    });
-
     println!("started setup system");
     let num_players = p2p_session
         .map(|s| s.num_players())
@@ -85,7 +75,7 @@ pub fn setup_system(
     commands.insert_resource(Animations(vec![
         asset_server.load("mixamo/from_blender.glb#Animation0")
     ]));
-    let player_handle = asset_server.load("mixamo/from_blender.glb#Scene0");
+   // let player_handle = asset_server.load("mixamo/from_blender.glb#Scene0");
 
     for handle in 0..num_players {
         let rot = handle as f32 / num_players as f32 * 2. * std::f32::consts::PI;
@@ -112,7 +102,7 @@ pub fn setup_system(
                     translation: Vec3::new(handle as f32, 0.0, 0.0),
                     ..default()
                 },
-                scene: player_handle.clone(),
+                //scene: player_handle.clone(),
                 ..default()
             })
             .insert(info::Player {

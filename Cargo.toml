@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = "0.8.0" # with default-features = false, cursor grab panicks bc calls unwrap on None
+bevy = {version = "0.8.0", features = ["jpeg"]} # with default-features = false, cursor grab panicks bc calls unwrap on None
 rand = "0.8.5"
 noise = "0.7.0"
 glam = "0.21.2"

@@ -17,7 +17,7 @@ mod camera;
 mod pcg_city;
 use pcg_city::buildings;
 mod gltf;
-use gltf::character;
+use gltf::{character, imported};
 
 mod ggrs_rollback;
 mod players;
@@ -86,14 +86,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
-        .add_system(pcg_city::buildings::spawn_buildings) //not updating in rollback
+        //.add_system(pcg_city::buildings::spawn_buildings) //not updating in rollback
         .add_system(display::click_for_display)
         //.add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
         .add_system(fight::fight);
 
-        //fox
-    //app
+        
+    app
+        .add_startup_system(imported::create_sponza);
         // .add_startup_system(character::setup_character)
         // .add_system(character::setup_scene_once_loaded)
         //.add_system(network::move_setup_scene_once_loaded)
