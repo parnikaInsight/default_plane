@@ -1,0 +1,11 @@
+Model Information:
+* title:	Imaginary city I
+* source:	https://sketchfab.com/3d-models/imaginary-city-i-f6b1fae536c8490ca09b28db95586b1c
+* author:	Tom (https://sketchfab.com/trbaker)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Imaginary city I" (https://sketchfab.com/3d-models/imaginary-city-i-f6b1fae536c8490ca09b28db95586b1c) by Tom (https://sketchfab.com/trbaker) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -99,7 +99,7 @@ pub fn setup_system(
             // })
             .spawn_bundle(SceneBundle {
                 transform: Transform {
-                    translation: Vec3::new(handle as f32, 0.0, 0.0),
+                    translation: Vec3::new(handle as f32, 0.0, -5.0),
                     ..default()
                 },
                 //scene: player_handle.clone(),

@@ -5,3 +5,7 @@ Should appear only if u hover and u (camera) is within certain distance or click
 
 Mixamo
 - go to animation, upload character, download fbx, import into blender, export as glb to use in bevy as asset
+
+camera
+ - if first person pov, put collider on camera/ character entity
+ - else, don't let camera move outside of a certain radius so it stays in earth
