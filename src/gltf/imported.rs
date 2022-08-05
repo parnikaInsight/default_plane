@@ -21,8 +21,8 @@ pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
     let player_handle1: Handle<Scene> = asset_server.load("sketchfab/space/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
-            translation: Vec3::new(0.0, 5.0, 12.0),
-            scale: Vec3::new(20.0, 20.0, 20.0),
+            translation: Vec3::new(0.0, -15.0, 12.0),
+            scale: Vec3::new(0.1, 0.1, 0.1),
             ..default()
         },
         scene: player_handle1.clone(),
@@ -32,30 +32,20 @@ pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
     let player_handle4: Handle<Scene> = asset_server.load("sketchfab/fake_space/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
-            translation: Vec3::new(-100.0, 100.0, 25.0),
-            scale: Vec3::new(0.01, 0.01, 0.01),
+            translation: Vec3::new(-20.0, 10.0, -25.0),
+            scale: Vec3::new(0.001, 0.001, 0.001),
             ..default()
         },
         scene: player_handle4.clone(),
         ..default()
     });
 
-    let player_handle5: Handle<Scene> = asset_server.load("sketchfab/inside_the_space_jellyfish/scene.gltf#Scene0");
-    commands.spawn_bundle(SceneBundle {
-        transform: Transform {
-            translation: Vec3::new(100.0, 80.0, 45.0),
-           // scale: Vec3::new(0.1, 0.1, 0.1),
-            ..default()
-        },
-        scene: player_handle5.clone(),
-        ..default()
-    });
-
+    //not a sphere
     // let player_handle6: Handle<Scene> = asset_server.load("sketchfab/timetunnel/scene.gltf#Scene0");
     // commands.spawn_bundle(SceneBundle {
     //     transform: Transform {
-    //         translation: Vec3::new(100.0, -20.0, 35.0),
-    //        // scale: Vec3::new(0.1, 0.1, 0.1),
+    //         translation: Vec3::new(20.0, -20.0, 5.0),
+    //         scale: Vec3::new(0.1, 0.1, 0.1),
     //         ..default()
     //     },
     //     scene: player_handle6.clone(),
@@ -65,19 +55,41 @@ pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
     // let player_handle7: Handle<Scene> = asset_server.load("sketchfab/fibonacci_sphere/scene.gltf#Scene0");
     // commands.spawn_bundle(SceneBundle {
     //     transform: Transform {
-    //         translation: Vec3::new(-100.0, -100.0, 35.0),
-    //        // scale: Vec3::new(2.0, 2.0, 2.0),
+    //         translation: Vec3::new(20.0, -20.0, 5.0),
+    //         scale: Vec3::new(0.05, 0.05, 0.05),
     //         ..default()
     //     },
     //     scene: player_handle7.clone(),
     //     ..default()
     // });
 
+    let player_handle7: Handle<Scene> = asset_server.load("sketchfab/floating_island/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(-5.0, -10.0, 35.0),
+            scale: Vec3::new(10.0, 10.0, 10.0),
+            ..default()
+        },
+        scene: player_handle7.clone(),
+        ..default()
+    });
+
+    let player_handle7: Handle<Scene> = asset_server.load("sketchfab/floating_castle/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(20.0, 0.0, 35.0),
+            scale: Vec3::new(0.5, 0.5, 0.5),
+            ..default()
+        },
+        scene: player_handle7.clone(),
+        ..default()
+    });
+
     let player_handle2: Handle<Scene> = asset_server.load("sketchfab/heaven/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 5.0, 12.0),
-           // scale: Vec3::new(0.5, 0.5, 0.5),
+            scale: Vec3::new(2.0, 2.0, 2.0),
             ..default()
         },
         scene: player_handle2.clone(),
@@ -110,7 +122,50 @@ pub fn create_space(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 5.0, 5.0),
-            scale: Vec3::new(0.1, 0.1, 0.1),
+            scale: Vec3::new(0.05, 0.05, 0.05),
+            ..default()
+        },
+        scene: player_handle3.clone(),
+        ..default()
+    });
+
+    let player_handle3: Handle<Scene> = asset_server.load("spheres/sphere/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(-20.0, -5.0, 5.0),
+            scale: Vec3::new(0.2, 0.2, 0.2),
+            ..default()
+        },
+        scene: player_handle3.clone(),
+        ..default()
+    });
+
+    let player_handle3: Handle<Scene> = asset_server.load("villages/abandoned_factory/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(-20.0, -2.0, 5.0),
+            scale: Vec3::new(0.2, 0.2, 0.2),
+            ..default()
+        },
+        scene: player_handle3.clone(),
+        ..default()
+    });
+
+    let player_handle3: Handle<Scene> = asset_server.load("spheres/sphere/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(20.0, -15.0, 5.0),
+            scale: Vec3::new(0.2, 0.2, 0.2),
+            ..default()
+        },
+        scene: player_handle3.clone(),
+        ..default()
+    });
+    let player_handle3: Handle<Scene> = asset_server.load("villages/baker_and_the_bridge/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(20.0, -12.0, 5.0),
+            scale: Vec3::new(0.05, 0.05, 0.05),
             ..default()
         },
         scene: player_handle3.clone(),

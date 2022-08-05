@@ -1,0 +1,11 @@
+Model Information:
+* title:	Спиральная лестница (армирование)
+* source:	https://sketchfab.com/3d-models/d6eb5255d34041ca822ad637a4cdfa12
+* author:	ScriptСonstruction (https://sketchfab.com/ScriptConstruction)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Спиральная лестница (армирование)" (https://sketchfab.com/3d-models/d6eb5255d34041ca822ad637a4cdfa12) by ScriptСonstruction (https://sketchfab.com/ScriptConstruction) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

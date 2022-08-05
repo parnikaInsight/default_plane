@@ -1,0 +1,11 @@
+Model Information:
+* title:	Abandoned factory
+* source:	https://sketchfab.com/3d-models/abandoned-factory-e510537c72a848879171cbbb1ec2f648
+* author:	Rixael (https://sketchfab.com/rixael)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Abandoned factory" (https://sketchfab.com/3d-models/abandoned-factory-e510537c72a848879171cbbb1ec2f648) by Rixael (https://sketchfab.com/rixael) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

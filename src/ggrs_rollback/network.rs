@@ -59,7 +59,7 @@ pub fn setup_system(
             ..Default::default()
         })
         .insert(RigidBody::Fixed)
-        .insert(Collider::cuboid(50.0, 0.0, 50.0)) //half the cube size
+        .insert(Collider::cuboid(100.0, 0.0, 100.0)) //half the cube size
         .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     // player cube - just spawn whatever entity you want, then add a `Rollback` component with a unique id (for example through the `RollbackIdProvider` resource).

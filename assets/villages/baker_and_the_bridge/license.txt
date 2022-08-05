@@ -1,0 +1,11 @@
+Model Information:
+* title:	Baker and the Bridge
+* source:	https://sketchfab.com/3d-models/baker-and-the-bridge-da3f6e7b85ed44b7aa8bb5571e365abc
+* author:	ConradJustin (https://sketchfab.com/ConradJustin)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Baker and the Bridge" (https://sketchfab.com/3d-models/baker-and-the-bridge-da3f6e7b85ed44b7aa8bb5571e365abc) by ConradJustin (https://sketchfab.com/ConradJustin) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

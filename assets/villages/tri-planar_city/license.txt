@@ -1,0 +1,11 @@
+Model Information:
+* title:	Tri-Planar City
+* source:	https://sketchfab.com/3d-models/tri-planar-city-6c11167cdec04e8a9ea1bb9a7d19d0a9
+* author:	d880 (https://sketchfab.com/distance880)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Tri-Planar City" (https://sketchfab.com/3d-models/tri-planar-city-6c11167cdec04e8a9ea1bb9a7d19d0a9) by d880 (https://sketchfab.com/distance880) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

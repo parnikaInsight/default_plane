@@ -1,0 +1,11 @@
+Model Information:
+* title:	Energy Sphere
+* source:	https://sketchfab.com/3d-models/energy-sphere-d3c2a8e291604dd4b41bdd7d295e1c90
+* author:	Sirhaian (https://sketchfab.com/sirhaian)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Energy Sphere" (https://sketchfab.com/3d-models/energy-sphere-d3c2a8e291604dd4b41bdd7d295e1c90) by Sirhaian (https://sketchfab.com/sirhaian) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
