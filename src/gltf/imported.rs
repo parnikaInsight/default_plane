@@ -48,7 +48,7 @@ pub fn create_city(
     //tron city pretty cool but laggy
     //works: imaginary_city_i but ugly
     //white_round_exhibition_gallery to go to worlds through portals
-    let player_handle2: Handle<Scene> = asset_server.load("city/white_round_exhibition_gallery/scene.gltf#Scene0");
+    let player_handle2: Handle<Scene> = asset_server.load("city/uxr_city_fractal_tower/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 0.0, 0.0),
@@ -59,6 +59,6 @@ pub fn create_city(
         ..default()
     });
     commands.insert_resource(Animations(vec![
-        asset_server.load("city/white_round_exhibition_gallery/scene.gltf#Animation0")
+        asset_server.load("city/uxr_city_fractal_tower/scene.gltf#Animation0")
     ]));
 }
