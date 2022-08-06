@@ -1,0 +1,11 @@
+Model Information:
+* title:	Skullhome
+* source:	https://sketchfab.com/3d-models/skullhome-04752e909147464f84d477469cabb94d
+* author:	Maxaal (https://sketchfab.com/Maxaal)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Skullhome" (https://sketchfab.com/3d-models/skullhome-04752e909147464f84d477469cabb94d) by Maxaal (https://sketchfab.com/Maxaal) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

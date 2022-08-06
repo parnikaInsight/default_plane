@@ -95,9 +95,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     //art
     app
-        .add_startup_system(imported::create_earth)
-        .add_system(imported::create_city)
-        .add_system(imported::play_scene);
+        //.add_startup_system(imported::create_earth)
+        .add_system(imported::create_city);
+       // .add_system(imported::play_scene);
 
         // .add_system(follow_me::update_camera) //puts camera behind player
         // .add_system(follow_me::frame); //follows player

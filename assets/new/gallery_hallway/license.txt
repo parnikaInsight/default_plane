@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gallery Hallway
+* source:	https://sketchfab.com/3d-models/gallery-hallway-e01b828e50f74db2a5f84bde8944538b
+* author:	jimbogies (https://sketchfab.com/jimbogies)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gallery Hallway" (https://sketchfab.com/3d-models/gallery-hallway-e01b828e50f74db2a5f84bde8944538b) by jimbogies (https://sketchfab.com/jimbogies) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
