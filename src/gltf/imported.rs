@@ -49,7 +49,9 @@ pub fn create_city(
     //works: imaginary_city_i but ugly
     //white_round_exhibition_gallery to go to worlds through portals
 
-    let player_handle2: Handle<Scene> = asset_server.load("new/temple_church_round/scene.gltf#Scene0");
+    //gallery_round_flatfloor_baked (IN SPACE), guelph_station_1 (simple gray and blue), kleeblatt_quest_home_environment, sci-fi_neon_model, skullhome, the_hunters_rest, throne_room
+    //minas_tirith_throne_room_test_v1
+    let player_handle2: Handle<Scene> = asset_server.load("city/imaginary_city_i/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 0.0, 0.0),

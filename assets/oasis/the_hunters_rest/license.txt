@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Hunters Rest
+* source:	https://sketchfab.com/3d-models/the-hunters-rest-d8e1b9a9db3245f6b9cb443528baf448
+* author:	m3at3allz (https://sketchfab.com/m3at3allz)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Hunters Rest" (https://sketchfab.com/3d-models/the-hunters-rest-d8e1b9a9db3245f6b9cb443528baf448) by m3at3allz (https://sketchfab.com/m3at3allz) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

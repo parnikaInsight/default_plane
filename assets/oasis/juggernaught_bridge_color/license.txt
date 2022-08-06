@@ -1,0 +1,11 @@
+Model Information:
+* title:	Juggernaught Bridge Color
+* source:	https://sketchfab.com/3d-models/juggernaught-bridge-color-6d4a4dfc289d4bd18320ec21e1a419f2
+* author:	Binkley-Spacetrucker (https://sketchfab.com/Binkley-Piratepants)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Juggernaught Bridge Color" (https://sketchfab.com/3d-models/juggernaught-bridge-color-6d4a4dfc289d4bd18320ec21e1a419f2) by Binkley-Spacetrucker (https://sketchfab.com/Binkley-Piratepants) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
