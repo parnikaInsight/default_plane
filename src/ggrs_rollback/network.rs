@@ -54,12 +54,12 @@ pub fn setup_system(
     // plane
     commands
         .spawn_bundle(PbrBundle {
-            // mesh: meshes.add(Mesh::from(shape::Plane { size: 100.0 })), //PLANE_SIZE
-            // material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+            mesh: meshes.add(Mesh::from(shape::Plane { size: PLANE_SIZE })), 
+            material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
             ..Default::default()
         })
         .insert(RigidBody::Fixed)
-        .insert(Collider::cuboid(50.0, 0.0, 50.0)) //half the cube size
+        .insert(Collider::cuboid(7.5, 7.5, 7.5)) //half the cube size
         .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     // player cube - just spawn whatever entity you want, then add a `Rollback` component with a unique id (for example through the `RollbackIdProvider` resource).

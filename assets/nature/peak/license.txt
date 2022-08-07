@@ -1,0 +1,11 @@
+Model Information:
+* title:	Peak
+* source:	https://sketchfab.com/3d-models/peak-0307872971a24ce3847730ff9a6a5665
+* author:	Foto Retina (https://sketchfab.com/ferret)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Peak" (https://sketchfab.com/3d-models/peak-0307872971a24ce3847730ff9a6a5665) by Foto Retina (https://sketchfab.com/ferret) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	El Capitan
+* source:	https://sketchfab.com/3d-models/el-capitan-ec8286fe454a4912805fbc2d80e3e739
+* author:	Mark Burginger architect (https://sketchfab.com/toy_meister)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "El Capitan" (https://sketchfab.com/3d-models/el-capitan-ec8286fe454a4912805fbc2d80e3e739) by Mark Burginger architect (https://sketchfab.com/toy_meister) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

@@ -9,3 +9,5 @@ Mixamo
 camera
  - if first person pov, put collider on camera/ character entity
  - else, don't let camera move outside of a certain radius so it stays in earth
+
+ annoying cursor grab

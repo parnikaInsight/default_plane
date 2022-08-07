@@ -1,0 +1,11 @@
+Model Information:
+* title:	Exoplanets
+* source:	https://sketchfab.com/3d-models/exoplanets-0938591d2f4c4172b09d9eb18ea480d7
+* author:	Loïc Norgeot (https://sketchfab.com/norgeotloic)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Exoplanets" (https://sketchfab.com/3d-models/exoplanets-0938591d2f4c4172b09d9eb18ea480d7) by Loïc Norgeot (https://sketchfab.com/norgeotloic) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

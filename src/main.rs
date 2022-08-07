@@ -80,7 +80,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugins(DefaultPickingPlugins)
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-        .add_plugin(RapierDebugRenderPlugin::default())
+       // .add_plugin(RapierDebugRenderPlugin::default())
         .add_startup_system(ggrs_camera::setup_camera)
         .add_system(ggrs_camera::update_camera)
         //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
@@ -95,8 +95,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     //art
     app
-        .add_startup_system(imported::create_earth)
-        .add_system(imported::create_city);
+        .add_startup_system(imported::create_earth);
+      //  .add_system(imported::create_city);
        // .add_system(imported::play_scene);
 
         // .add_system(follow_me::update_camera) //puts camera behind player

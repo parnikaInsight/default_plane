@@ -25,15 +25,15 @@ pub fn create_earth(
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 0.0, 0.0),
-            // scale: Vec3::new(0.5, 0.5, 0.5),
+            scale: Vec3::new(0.3, 0.3, 0.3),
             ..default()
         },
         scene: player_handle2.clone(),
         ..default()
     })
     .insert(RigidBody::Fixed)
-    .insert(Collider::ball(45.0)) //half the cube size
-    .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 1.0)));
+    .insert(Collider::ball(30.0)) //half the cube size
+    .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     commands.insert_resource(Animations(vec![
         asset_server.load("sketchfab/heaven/scene.gltf#Animation0")
@@ -51,11 +51,13 @@ pub fn create_city(
 
     //gallery_round_flatfloor_baked (IN SPACE), guelph_station_1 (simple gray and blue), kleeblatt_quest_home_environment, sci-fi_neon_model, skullhome, the_hunters_rest, throne_room
     //minas_tirith_throne_room_test_v1
-    let player_handle2: Handle<Scene> = asset_server.load("city/imaginary_city_i/scene.gltf#Scene0");
+    
+
+    let player_handle2: Handle<Scene> = asset_server.load("nature/peak/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 0.0, 0.0),
-            scale: Vec3::new(0.1, 0.1, 0.1),
+            scale: Vec3::new(15.0, 15.0, 15.0),
             ..default()
         },
         scene: player_handle2.clone(),
