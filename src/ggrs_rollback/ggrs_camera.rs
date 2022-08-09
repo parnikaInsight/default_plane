@@ -14,6 +14,7 @@ pub fn setup_camera(
     asset_server: Res<AssetServer>,
 ) {
     let translation = [0.0f32, 5.0f32, 5.0f32];
+  //  let translation = [0.0f32, 30.0f32, 0.0f32];
     let transform = Transform::from_translation(bevy::math::Vec3::from_slice(&translation))
         .looking_at(bevy::math::Vec3::ZERO, bevy::math::Vec3::Y);
 

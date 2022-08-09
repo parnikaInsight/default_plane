@@ -1,0 +1,11 @@
+Model Information:
+* title:	Level 02 - VR platform game on Sketchfab
+* source:	https://sketchfab.com/3d-models/level-02-vr-platform-game-on-sketchfab-47f281e4c1b4440981249f7a2fdae8c1
+* author:	JER3D (https://sketchfab.com/jeremygo)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Level 02 - VR platform game on Sketchfab" (https://sketchfab.com/3d-models/level-02-vr-platform-game-on-sketchfab-47f281e4c1b4440981249f7a2fdae8c1) by JER3D (https://sketchfab.com/jeremygo) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

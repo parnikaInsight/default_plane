@@ -62,6 +62,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // continue building/running the app like you normally would
     app.insert_resource(Msaa { samples: 4 })
+        .insert_resource(ClearColor(Color::rgb(0.0, 0.0, 0.0)))
         .insert_resource(WindowDescriptor {
             //must come before default plugin
             width: 1700.,
@@ -80,27 +81,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_plugins(DefaultPickingPlugins)
         .add_plugin(DollyCursorGrab)
         .add_plugin(RapierPhysicsPlugin::<NoUserData>::default())
-       // .add_plugin(RapierDebugRenderPlugin::default())
+        // .add_plugin(RapierDebugRenderPlugin::default())
         .add_startup_system(ggrs_camera::setup_camera)
         .add_system(ggrs_camera::update_camera)
         //.add_system_to_stage(CoreStage::PostUpdate, interact::print_events)
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
         //.add_system(pcg_city::buildings::spawn_buildings) //not updating in rollback
-        .add_system(display::click_for_display)
+        
+        //.add_system(display::click_for_display)
         //.add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
         .add_system(fight::fight);
 
-
     //art
-    app
-        .add_startup_system(imported::create_earth);
-      //  .add_system(imported::create_city);
-       // .add_system(imported::play_scene);
+    app.add_startup_system(imported::create_default_plane);
+    //.add_startup_system(imported::create_world);
+    //.add_system(imported::play_scene);
 
-        // .add_system(follow_me::update_camera) //puts camera behind player
-        // .add_system(follow_me::frame); //follows player
+    // .add_system(follow_me::update_camera) //puts camera behind player
+    // .add_system(follow_me::frame); //follows player
 
     app.run();
 
