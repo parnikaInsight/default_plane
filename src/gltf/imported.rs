@@ -17,38 +17,14 @@ pub fn play_scene(
     }
 }
 
-pub fn create_earth(
-    mut commands: Commands, 
-    asset_server: Res<AssetServer>, 
-    mut meshes: ResMut<Assets<Mesh>>,) {
-    let player_handle2: Handle<Scene> = asset_server.load("sketchfab/heaven/scene.gltf#Scene0");
-    commands.spawn_bundle(SceneBundle {
-        transform: Transform {
-            translation: Vec3::new(0.0, 0.0, 0.0),
-            scale: Vec3::new(0.3, 0.3, 0.3),
-            ..default()
-        },
-        scene: player_handle2.clone(),
-        ..default()
-    })
-    .insert(RigidBody::Fixed)
-    .insert(Collider::ball(30.0)) //half the cube size
-    .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
-
-    commands.insert_resource(Animations(vec![
-        asset_server.load("sketchfab/heaven/scene.gltf#Animation0")
-    ]));
-}
-
 pub fn create_default_plane(
     mut commands: Commands, 
     asset_server: Res<AssetServer>,
 ){
-    let player_handle2: Handle<Scene> = asset_server.load("nature/green_island/scene.gltf#Scene0");
+    let player_handle2: Handle<Scene> = asset_server.load("nature/the_palace_at_knossos_after_midnight/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 0.0, 0.0),
-            //scale: Vec3::new(5.0, 5.0, 5.0),
             ..default()
         },
         scene: player_handle2.clone(),
