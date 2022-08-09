@@ -13,7 +13,8 @@ pub fn setup_camera(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
 ) {
-    let translation = [3.0f32, 1.0f32, 1.0f32];
+    let translation = [-2.0f32, 2.0f32, 5.0f32];
+       // let translation = [3.0f32, 1.0f32, 1.0f32];
   //  let translation = [0.0f32, 30.0f32, 0.0f32];
     let transform = Transform::from_translation(bevy::math::Vec3::from_slice(&translation))
         .looking_at(bevy::math::Vec3::ZERO, bevy::math::Vec3::Y);
@@ -45,12 +46,6 @@ pub fn setup_camera(
 
         .insert_bundle(PickingCameraBundle::default())
         .insert(MainCamera);
-
-    // // light
-    // commands.spawn_bundle(PointLightBundle {
-    //     transform: Transform::from_xyz(4.0, 8.0, 4.0),
-    //     ..Default::default()
-    // });
 
     // directional 'sun' light
     commands.spawn_bundle(DirectionalLightBundle {

@@ -21,7 +21,7 @@ pub fn create_default_plane(
     mut commands: Commands, 
     asset_server: Res<AssetServer>,
 ){
-    let player_handle2: Handle<Scene> = asset_server.load("nature/the_palace_at_knossos_after_midnight/scene.gltf#Scene0");
+    let player_handle2: Handle<Scene> = asset_server.load("nature/heaven/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
             translation: Vec3::new(0.0, 0.0, 0.0),

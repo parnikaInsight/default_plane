@@ -44,6 +44,16 @@ pub fn setup_system(
     synctest_session: Option<Res<SyncTestSession<GGRSConfig>>>,
     spectator_session: Option<Res<SpectatorSession<GGRSConfig>>>,
 ) {
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Cube { size: CUBE_SIZE })),
+        material: materials.add(PLAYER_COLORS[0.0 as usize].into()),
+        transform: Transform {
+            translation: Vec3::new(0.0, 0.0, -10.0),
+            ..default()
+        },
+        ..Default::default()
+    });
+    
     println!("started setup system");
     let num_players = p2p_session
         .map(|s| s.num_players())
@@ -54,8 +64,8 @@ pub fn setup_system(
     // plane
     commands
         .spawn_bundle(PbrBundle {
-            // mesh: meshes.add(Mesh::from(shape::Plane { size: PLANE_SIZE })), 
-            // material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+            mesh: meshes.add(Mesh::from(shape::Plane { size: PLANE_SIZE })), 
+            material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
             ..Default::default()
         })
         .insert(RigidBody::Fixed)
@@ -90,6 +100,8 @@ pub fn setup_system(
         let mut rng = thread_rng();
         let x_loc: f32 = rng.gen();
 
+        let player_handle = asset_server.load("mixamo/from_blender.glb#Scene0");
+
         let entity_id = commands
             // .spawn_bundle(PbrBundle {
             //     mesh: meshes.add(Mesh::from(shape::Cube { size: CUBE_SIZE })),
@@ -102,7 +114,7 @@ pub fn setup_system(
                     translation: Vec3::new(handle as f32, 0.0, -5.0),
                     ..default()
                 },
-                //scene: player_handle.clone(),
+                scene: player_handle.clone(),
                 ..default()
             })
             .insert(info::Player {
