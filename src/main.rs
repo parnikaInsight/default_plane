@@ -88,16 +88,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .init_resource::<MyGrid>()
         .init_resource::<math::city_perlin::HeightNoiseFn>()
         .add_system(pcg_city::buildings::spawn_buildings) //not updating in rollback
-        
-        .add_system(display::click_for_display)
+        .add_system(display::click_for_display) //not working anymore :(
         //.add_startup_system(display::setup_ui_camera)
         .add_system(interact::add_friend)
         .add_system(fight::fight);
 
     //art
-    app.add_startup_system(imported::create_default_plane);
-    //.add_startup_system(imported::create_world);
-    //.add_system(imported::play_scene);
+    app.add_startup_system(imported::create_default_plane)//animation of gltf not yet updated in rollback
+        .add_system(imported::play_scene);
 
     // .add_system(follow_me::update_camera) //puts camera behind player
     // .add_system(follow_me::frame); //follows player

@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
+
 pub struct Animations(Vec<Handle<AnimationClip>>);
 
 pub fn play_scene(
@@ -21,6 +22,10 @@ pub fn create_default_plane(
     mut commands: Commands, 
     asset_server: Res<AssetServer>,
 ){
+    commands.insert_resource(Animations(vec![
+        asset_server.load("nature/phoenix_bird/scene.gltf#Animation0")
+    ]));
+    
     let player_handle2: Handle<Scene> = asset_server.load("nature/heaven/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
         transform: Transform {
@@ -31,7 +36,14 @@ pub fn create_default_plane(
         ..default()
     });
 
-    // commands.insert_resource(Animations(vec![
-    //     asset_server.load("default/level_02_-_vr_platform_game_on_sketchfab/scene.gltf#Animation0")
-    // ]));
+    let player_handle1: Handle<Scene> = asset_server.load("nature/phoenix_bird/scene.gltf#Scene0");
+    commands.spawn_bundle(SceneBundle {
+        transform: Transform {
+            translation: Vec3::new(0.0, 5.0, -10.0),
+            scale: Vec3::new(0.01, 0.01, 0.01),
+            ..default()
+        },
+        scene: player_handle1.clone(),
+        ..default()
+    });
 }

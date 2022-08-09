@@ -9,6 +9,7 @@ Today
 ----------------------------------------------------------------
 - skeletal animation: rotate wasd, mesh colliders, other animations
 - basic objects, multiple people, combat
+- update gltf animations in rollback
 
 - follow dolly
 - add object to camera, then add raycast to object
