@@ -17,7 +17,7 @@ mod camera;
 mod pcg_city;
 use pcg_city::buildings;
 mod gltf;
-use gltf::character;
+use gltf::{character, imported};
 
 mod ggrs_rollback;
 mod players;
@@ -92,7 +92,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(interact::add_friend)
         .add_system(fight::fight);
 
-        //fox
+        app.add_startup_system(imported::create_default_plane);
+        
     //app
         // .add_startup_system(character::setup_character)
         // .add_system(character::setup_scene_once_loaded)
