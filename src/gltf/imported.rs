@@ -1,22 +1,31 @@
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
+#[derive(Debug)]
 pub struct Animations(Vec<Handle<AnimationClip>>);
 
 pub fn play_scene(
     animations: Res<Animations>,
-    mut player: Query<&mut AnimationPlayer>,
-    mut done: Local<bool>,
+    mut player: Query<&mut AnimationPlayer, Added<AnimationPlayer>>,
+   // mut done: Local<bool>,
 ) {
-    if !*done {
-        if let Ok(mut player) = player.get_single_mut() {
-            let time_elapsed = player.play(animations.0[0].clone_weak()).repeat().elapsed();
-            println!("time: {}", time_elapsed);
-            *done = true;
-            println!("Animation");
-        }
+    for mut anim in player.iter_mut(){
+        anim.play(animations.0[0].clone_weak()).repeat();
+        println!("in here");
     }
-}
+ }
+
+        // let time_elapsed = player.play(animations.0[0].clone_weak()).repeat().elapsed();
+            // println!("time: {}", time_elapsed);
+            // *done = true;
+
+        // for mut p in player.iter_mut(){
+        //     println!("Animation");
+        //     p.play(animations.0[0].clone_weak()).repeat();
+        // }
+        // *done = true;
+//     }
+// }
 
 pub fn create_default_plane(
     mut commands: Commands, 
@@ -25,16 +34,6 @@ pub fn create_default_plane(
     commands.insert_resource(Animations(vec![
         asset_server.load("nature/phoenix_bird/scene.gltf#Animation0")
     ]));
-    
-    let player_handle2: Handle<Scene> = asset_server.load("nature/heaven/scene.gltf#Scene0");
-    commands.spawn_bundle(SceneBundle {
-        transform: Transform {
-            translation: Vec3::new(0.0, 0.0, 0.0),
-            ..default()
-        },
-        scene: player_handle2.clone(),
-        ..default()
-    });
 
     let player_handle1: Handle<Scene> = asset_server.load("nature/phoenix_bird/scene.gltf#Scene0");
     commands.spawn_bundle(SceneBundle {
@@ -46,4 +45,16 @@ pub fn create_default_plane(
         scene: player_handle1.clone(),
         ..default()
     });
+
+    // let player_handle2: Handle<Scene> = asset_server.load("nature/heaven/scene.gltf#Scene0");
+    // commands.spawn_bundle(SceneBundle {
+    //     transform: Transform {
+    //         translation: Vec3::new(0.0, 0.0, 0.0),
+    //         ..default()
+    //     },
+    //     scene: player_handle2.clone(),
+    //     ..default()
+    // });
+
+    println!("created bird");
 }

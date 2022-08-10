@@ -82,9 +82,9 @@ pub fn setup_system(
     let query = &args[1];
 
     // Insert a resource with the current scene information
-    commands.insert_resource(Animations(vec![
-        asset_server.load("mixamo/from_blender.glb#Animation0")
-    ]));
+    // commands.insert_resource(Animations(vec![
+    //     asset_server.load("mixamo/from_blender.glb#Animation0")
+    // ]));
    // let player_handle = asset_server.load("mixamo/from_blender.glb#Scene0");
 
     for handle in 0..num_players {
@@ -265,18 +265,18 @@ pub fn start_ggrs_session(
 }
 
 //movement-------------------------------------------------------------------
-pub struct Animations(Vec<Handle<AnimationClip>>); // breaks when in character.rs says resource not found, need to clean this file
+// pub struct Animations(Vec<Handle<AnimationClip>>); // breaks when in character.rs says resource not found, need to clean this file
 
-pub fn animate(animations: Res<Animations>, mut player: Query<&mut AnimationPlayer>) {
-    for mut player in &mut player {
-        player.play(animations.0[0].clone_weak()).repeat();
-        println!("Player animation from separate fn")
-    }
-}
+// pub fn animate(animations: Res<Animations>, mut player: Query<&mut AnimationPlayer>) {
+//     for mut player in &mut player {
+//         player.play(animations.0[0].clone_weak()).repeat();
+//         println!("Player animation from separate fn")
+//     }
+// }
 // Once the scene is loaded, start the animation
 pub fn move_player(
-    animations: Res<Animations>,
-    mut player: Query<&mut AnimationPlayer>,
+    // animations: Res<Animations>,
+    // mut player: Query<&mut AnimationPlayer>,
     inputs: Res<Vec<(movement::BoxInput, InputStatus)>>,
     mut query: Query<(&mut Transform, &info::Player), With<Rollback>>,
 ) {

@@ -7,9 +7,10 @@ use std::net::SocketAddr;
 
 use bevy::input::mouse::MouseMotion;
 use bevy_dolly::prelude::*;
+use bevy_egui::{egui, EguiContext, EguiPlugin};
+use bevy_inspector_egui::WorldInspectorPlugin;
 use bevy_mod_picking::*;
 use bevy_rapier3d::prelude::*;
-//use bevy_egui::{egui, EguiContext, EguiPlugin};
 
 mod math;
 use math::grid::MyGrid;
@@ -94,11 +95,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add_system(fight::fight);
 
     //art
-    app.add_startup_system(imported::create_default_plane)//animation of gltf not yet updated in rollback
+    app.add_startup_system(imported::create_default_plane) //animation of gltf not yet updated in rollback
         .add_system(imported::play_scene);
 
     // .add_system(follow_me::update_camera) //puts camera behind player
     // .add_system(follow_me::frame); //follows player
+
+    //egui
+    app.add_plugin(EguiPlugin)
+        .add_plugin(WorldInspectorPlugin::new());
 
     app.run();
 

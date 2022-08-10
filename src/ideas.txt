@@ -1,8 +1,9 @@
 - drag and drop asset files onto character to change skin/ texture
 
-
 - you enter heaven and as you fly out towards the white, you get transported to the main center
 where you can meet friends. From main center, you can also go through portals to others game
 worlds.
 
 - people can draw on anything (relentlo) like blank city canvas
+
+- one camera stationed at front slightly high to see whole plane, one camera follows ur player, no fly camera for players

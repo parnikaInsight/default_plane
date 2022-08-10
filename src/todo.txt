@@ -1,25 +1,24 @@
-Today
-
-- scale orbs
-- put orbs within orbs, main orb (def plane) is heaven orb
-- heaven and space orbs
-- portal to travel between orbs : superdump/bevy portal-demo branch
-- don't focus on architecture--it gets too heavy and slow, instead use orbs and focus on portal
-
-----------------------------------------------------------------
-- skeletal animation: rotate wasd, mesh colliders, other animations
-- basic objects, multiple people, combat
+- skeletal animation: rotate wasd
+- overlay custom mesh colliders on gltf 
+- mixamo animations easings
 - update gltf animations in rollback
+- customize gltf/ mixamo characters
+- npcs
 
 - follow dolly
-- add object to camera, then add raycast to object
+- add object to camera
+- switch between 1st, 3rd pov, and locked camera
 
-- rose skybox
+- audio directions
 
+- egui
+
+- portal to travel between orbs : superdump/bevy portal-demo branch
+
+Sketchfab
 - terrain generation
 - country slice grass
 - rose water
-
 - microsoft flight simulation
 
 - pcg world
