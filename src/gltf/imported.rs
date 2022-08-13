@@ -27,6 +27,9 @@ pub fn play_scene(
 //     }
 // }
 
+
+//Collider::convex_decomposition(vertices, indices)
+
 pub fn create_default_plane(
     mut commands: Commands, 
     asset_server: Res<AssetServer>,

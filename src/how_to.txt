@@ -1,2 +1,4 @@
 Mixamo
 - go to animation, upload character, download fbx, import into blender, export as glb to use in bevy as asset
+
+Custom collider mesh on gltf/unique object

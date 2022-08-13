@@ -3,9 +3,6 @@ Should appear only if u hover and u (camera) is within certain distance or click
 - adding a friend should have apparent UI (rn just print statement)
 - when fighting, damage must also occur when bullet's pos == opponent's pos (not just radius like now)
 
-Mixamo
-- go to animation, upload character, download fbx, import into blender, export as glb to use in bevy as asset
-
 camera
  - if first person pov, put collider on camera/ character entity
  - else, don't let camera move outside of a certain radius so it stays in earth
