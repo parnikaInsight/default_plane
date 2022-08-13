@@ -1,0 +1,11 @@
+Model Information:
+* title:	Free Sci Fi Fighter
+* source:	https://sketchfab.com/3d-models/free-sci-fi-fighter-dca1c832ee574e2fa2cdaa06515f66a9
+* author:	CGPitbull (https://sketchfab.com/CGPitbull)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Free Sci Fi Fighter" (https://sketchfab.com/3d-models/free-sci-fi-fighter-dca1c832ee574e2fa2cdaa06515f66a9) by CGPitbull (https://sketchfab.com/CGPitbull) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

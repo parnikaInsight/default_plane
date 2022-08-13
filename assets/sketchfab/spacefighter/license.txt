@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spacefighter
+* source:	https://sketchfab.com/3d-models/spacefighter-3fee2d4e2a97431da3c4726abe099a74
+* author:	zeee7 (https://sketchfab.com/zeee7)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spacefighter" (https://sketchfab.com/3d-models/spacefighter-3fee2d4e2a97431da3c4726abe099a74) by zeee7 (https://sketchfab.com/zeee7) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

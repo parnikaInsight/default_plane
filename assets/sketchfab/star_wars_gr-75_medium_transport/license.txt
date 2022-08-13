@@ -1,0 +1,11 @@
+Model Information:
+* title:	Star Wars: GR-75 Medium Transport
+* source:	https://sketchfab.com/3d-models/star-wars-gr-75-medium-transport-071b158d02c044ee9b431aeb28b85b6a
+* author:	Daniel (https://sketchfab.com/DanielAndersson)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Star Wars: GR-75 Medium Transport" (https://sketchfab.com/3d-models/star-wars-gr-75-medium-transport-071b158d02c044ee9b431aeb28b85b6a) by Daniel (https://sketchfab.com/DanielAndersson) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

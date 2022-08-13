@@ -1,0 +1,11 @@
+Model Information:
+* title:	Star Trek - D'Deridex Class Warbird
+* source:	https://sketchfab.com/3d-models/star-trek-dderidex-class-warbird-4cd1e185eaa645b2ad3eeae31d0c5d0d
+* author:	Wholock (https://sketchfab.com/wholock)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Star Trek - D'Deridex Class Warbird" (https://sketchfab.com/3d-models/star-trek-dderidex-class-warbird-4cd1e185eaa645b2ad3eeae31d0c5d0d) by Wholock (https://sketchfab.com/wholock) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

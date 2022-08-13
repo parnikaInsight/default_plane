@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Corvette Class Light Frigate [The Expanse]
+* source:	https://sketchfab.com/3d-models/the-corvette-class-light-frigate-the-expanse-5cc7b9ac82db44a18aa9d37afe1498d2
+* author:	Anton Perfilev (https://sketchfab.com/wintermute666)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Corvette Class Light Frigate [The Expanse]" (https://sketchfab.com/3d-models/the-corvette-class-light-frigate-the-expanse-5cc7b9ac82db44a18aa9d37afe1498d2) by Anton Perfilev (https://sketchfab.com/wintermute666) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

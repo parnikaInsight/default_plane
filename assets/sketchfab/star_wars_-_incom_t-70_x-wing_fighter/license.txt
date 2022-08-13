@@ -1,0 +1,11 @@
+Model Information:
+* title:	STAR WARS - INCOM T-70 X-WING FIGHTER
+* source:	https://sketchfab.com/3d-models/star-wars-incom-t-70-x-wing-fighter-a0e8486c603343c3a8cd06a5e3cb21c2
+* author:	El X-Wing Boricua (https://sketchfab.com/frankybelis)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "STAR WARS - INCOM T-70 X-WING FIGHTER" (https://sketchfab.com/3d-models/star-wars-incom-t-70-x-wing-fighter-a0e8486c603343c3a8cd06a5e3cb21c2) by El X-Wing Boricua (https://sketchfab.com/frankybelis) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

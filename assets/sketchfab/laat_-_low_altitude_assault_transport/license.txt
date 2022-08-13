@@ -1,0 +1,11 @@
+Model Information:
+* title:	LAAT - Low Altitude Assault Transport
+* source:	https://sketchfab.com/3d-models/laat-low-altitude-assault-transport-cf7f6043210a418abdd818d5e8dd0fd8
+* author:	Mind Mulch for The Masses (https://sketchfab.com/mindmulchforthemasses)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "LAAT - Low Altitude Assault Transport" (https://sketchfab.com/3d-models/laat-low-altitude-assault-transport-cf7f6043210a418abdd818d5e8dd0fd8) by Mind Mulch for The Masses (https://sketchfab.com/mindmulchforthemasses) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

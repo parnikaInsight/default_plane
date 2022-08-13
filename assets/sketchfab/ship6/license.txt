@@ -1,0 +1,11 @@
+Model Information:
+* title:	ship6
+* source:	https://sketchfab.com/3d-models/ship6-9e3ae2ad55ae4772b2205e1396a27101
+* author:	Jabril Anderson (https://sketchfab.com/jabrilanderson)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "ship6" (https://sketchfab.com/3d-models/ship6-9e3ae2ad55ae4772b2205e1396a27101) by Jabril Anderson (https://sketchfab.com/jabrilanderson) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Andromeda
+* source:	https://sketchfab.com/3d-models/andromeda-55d65ffffdd84731bd8a82b2af440e4e
+* author:	morenostefanuto (https://sketchfab.com/morenostefanuto)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Andromeda" (https://sketchfab.com/3d-models/andromeda-55d65ffffdd84731bd8a82b2af440e4e) by morenostefanuto (https://sketchfab.com/morenostefanuto) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Millennium Falcon
+* source:	https://sketchfab.com/3d-models/millennium-falcon-6a27ba566af142708743ccb8b4668d4b
+* author:	Stym (https://sketchfab.com/Stym)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Millennium Falcon" (https://sketchfab.com/3d-models/millennium-falcon-6a27ba566af142708743ccb8b4668d4b) by Stym (https://sketchfab.com/Stym) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

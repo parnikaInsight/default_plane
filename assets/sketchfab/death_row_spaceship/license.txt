@@ -1,0 +1,11 @@
+Model Information:
+* title:	Death Row Spaceship
+* source:	https://sketchfab.com/3d-models/death-row-spaceship-712057c4562d413594beb723f6ec6dd6
+* author:	blacknibow (https://sketchfab.com/blacknibow)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Death Row Spaceship" (https://sketchfab.com/3d-models/death-row-spaceship-712057c4562d413594beb723f6ec6dd6) by blacknibow (https://sketchfab.com/blacknibow) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

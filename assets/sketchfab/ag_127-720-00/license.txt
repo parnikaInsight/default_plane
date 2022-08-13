@@ -1,0 +1,11 @@
+Model Information:
+* title:	AG 127-720-00
+* source:	https://sketchfab.com/3d-models/ag-127-720-00-2c70e2f36aa44267a171ee6ef2dc677a
+* author:	alx_flameniro (https://sketchfab.com/alx_flameniro)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "AG 127-720-00" (https://sketchfab.com/3d-models/ag-127-720-00-2c70e2f36aa44267a171ee6ef2dc677a) by alx_flameniro (https://sketchfab.com/alx_flameniro) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Raven spaceship - Star Conflict (v.2)
+* source:	https://sketchfab.com/3d-models/raven-spaceship-star-conflict-v2-5edb70fdc0da4e6aa7d96f5f19f7a419
+* author:	Polenta (https://sketchfab.com/kln)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Raven spaceship - Star Conflict (v.2)" (https://sketchfab.com/3d-models/raven-spaceship-star-conflict-v2-5edb70fdc0da4e6aa7d96f5f19f7a419) by Polenta (https://sketchfab.com/kln) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

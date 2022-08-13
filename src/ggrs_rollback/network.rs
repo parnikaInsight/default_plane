@@ -57,10 +57,10 @@ pub fn setup_system(
             // mesh: meshes.add(Mesh::from(shape::Plane { size: 100.0 })), //PLANE_SIZE
             // material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
             ..Default::default()
-        })
-        .insert(RigidBody::Fixed)
-        .insert(Collider::cuboid(50.0, 0.0, 50.0)) //half the cube size
-        .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
+        });
+        // .insert(RigidBody::Fixed)
+        // .insert(Collider::cuboid(50.0, 0.0, 50.0)) //half the cube size
+        // .insert(ColliderDebugColor(Color::hsl(220.0, 1.0, 0.3)));
 
     // player cube - just spawn whatever entity you want, then add a `Rollback` component with a unique id (for example through the `RollbackIdProvider` resource).
     // Every entity that you want to be saved/loaded needs a `Rollback` component with a unique rollback id.

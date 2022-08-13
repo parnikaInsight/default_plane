@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ktinga Shift Class
+* source:	https://sketchfab.com/3d-models/ktinga-shift-class-44128c836514440cbbc5d2b77fb58943
+* author:	morenostefanuto (https://sketchfab.com/morenostefanuto)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ktinga Shift Class" (https://sketchfab.com/3d-models/ktinga-shift-class-44128c836514440cbbc5d2b77fb58943) by morenostefanuto (https://sketchfab.com/morenostefanuto) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

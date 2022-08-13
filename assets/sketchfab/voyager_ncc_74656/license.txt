@@ -1,0 +1,11 @@
+Model Information:
+* title:	Voyager NCC 74656
+* source:	https://sketchfab.com/3d-models/voyager-ncc-74656-f14d79df1e404a81b2bcffa25f978744
+* author:	morenostefanuto (https://sketchfab.com/morenostefanuto)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Voyager NCC 74656" (https://sketchfab.com/3d-models/voyager-ncc-74656-f14d79df1e404a81b2bcffa25f978744) by morenostefanuto (https://sketchfab.com/morenostefanuto) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

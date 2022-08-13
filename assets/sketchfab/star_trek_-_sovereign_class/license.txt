@@ -1,0 +1,11 @@
+Model Information:
+* title:	Star Trek - Sovereign Class
+* source:	https://sketchfab.com/3d-models/star-trek-sovereign-class-e54ca13f5a3747c584dd304e4bb81826
+* author:	Wholock (https://sketchfab.com/wholock)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Star Trek - Sovereign Class" (https://sketchfab.com/3d-models/star-trek-sovereign-class-e54ca13f5a3747c584dd304e4bb81826) by Wholock (https://sketchfab.com/wholock) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

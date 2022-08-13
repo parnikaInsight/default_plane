@@ -1,0 +1,11 @@
+Model Information:
+* title:	AJF-12 "Dvergr"
+* source:	https://sketchfab.com/3d-models/ajf-12-dvergr-ecc16e103e79448faf9730f172a1d7e8
+* author:	Star Conflict (https://sketchfab.com/star_conflict)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "AJF-12 "Dvergr"" (https://sketchfab.com/3d-models/ajf-12-dvergr-ecc16e103e79448faf9730f172a1d7e8) by Star Conflict (https://sketchfab.com/star_conflict) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

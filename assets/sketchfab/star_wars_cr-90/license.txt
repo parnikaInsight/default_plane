@@ -1,0 +1,11 @@
+Model Information:
+* title:	Star Wars: CR-90
+* source:	https://sketchfab.com/3d-models/star-wars-cr-90-60e26a508ca84126b30f01461f60086e
+* author:	Daniel (https://sketchfab.com/DanielAndersson)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Star Wars: CR-90" (https://sketchfab.com/3d-models/star-wars-cr-90-60e26a508ca84126b30f01461f60086e) by Daniel (https://sketchfab.com/DanielAndersson) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
