@@ -10,7 +10,7 @@ bevy = {version = "0.8.0", features = ["jpeg"]} # with default-features = false,
 rand = "0.8.5"
 noise = "0.7.0"
 glam = "0.21.2"
-bevy_dolly = {path = "./src/crates/bevy_dolly"} #updated for bevy 0.8
+bevy_dolly = {git = "https://github.com/paxsethorld/bevy_dolly.git"}# {path = "./src/crates/bevy_dolly"} #updated for bevy 0.8
 dolly = "0.3.1"
 bevy_mod_picking = {git = "https://github.com/paxsethorld/bevy_mod_picking.git", branch = "main"} #updated for bevy 0.8
 bevy_mod_raycast = { git = "https://github.com/paxsethorld/bevy_mod_raycast.git", branch = "main" } #updated for bevy 0.8
