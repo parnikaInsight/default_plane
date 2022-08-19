@@ -6,4 +6,4 @@ worlds.
 
 - people can draw on anything (relentlo) like blank city canvas
 
-- one camera stationed at front slightly high to see whole plane, one camera follows ur player, no fly camera for players
+- one camera stationed at front slightly high to see whole plane, one camera follows ur player, fly camera

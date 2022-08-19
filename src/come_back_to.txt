@@ -3,5 +3,4 @@ Display
 - Only 1 camera needs to be spawned in 0.8, which is Camera3dBundle in ggrs_camera
 - In 0.7, I had to have a separate UI camera
 
-Animations of gltf
-- not working with main but I had is working isolated
+Animations of many gltf
